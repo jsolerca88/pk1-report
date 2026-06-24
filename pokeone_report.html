@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PokeOne — Reporte de Partida</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1f2937;
+    --border: #30363d;
+    --red: #e3342f;
+    --red-dark: #c0392b;
+    --gold: #f6ad55;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --green: #56d364;
+    --blue: #58a6ff;
+    --yellow: #e3b341;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  /* ── UPLOAD SCREEN ── */
+  #upload-screen {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; gap: 24px; padding: 24px;
+  }
+  .upload-logo { font-size: 64px; }
+  .upload-title { font-size: 28px; font-weight: 700; color: var(--red); }
+  .upload-subtitle { color: var(--text-muted); text-align: center; max-width: 400px; line-height: 1.6; }
+  .upload-zone {
+    border: 2px dashed var(--border); border-radius: 16px; padding: 48px 64px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    background: var(--surface);
+  }
+  .upload-zone:hover, .upload-zone.drag-over { border-color: var(--red); background: #1a0d0c; }
+  .upload-zone-icon { font-size: 48px; }
+  .upload-zone-text { color: var(--text-muted); font-size: 14px; text-align: center; }
+  .upload-btn {
+    background: var(--red); color: white; border: none; border-radius: 8px;
+    padding: 10px 24px; font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .upload-btn:hover { background: var(--red-dark); }
+  #file-input { display: none; }
+
+  /* ── LAYOUT ── */
+  #app { display: none; flex-direction: row; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    width: 220px; min-height: 100vh; background: var(--surface); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  .sidebar-header {
+    padding: 20px 16px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sidebar-logo { font-size: 28px; }
+  .sidebar-title { font-size: 16px; font-weight: 700; color: var(--red); }
+  .sidebar-trainer { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .nav-section { padding: 12px 8px 4px; font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 1px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px; padding: 9px 12px; margin: 2px 4px;
+    border-radius: 8px; cursor: pointer; font-size: 14px; color: var(--text-muted);
+    transition: background 0.15s, color 0.15s; user-select: none;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: #2d1a1a; color: var(--red); font-weight: 600; }
+  .nav-item .icon { font-size: 18px; width: 22px; text-align: center; }
+  .sidebar-footer { margin-top: auto; padding: 12px; border-top: 1px solid var(--border); }
+  .re-upload-btn {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted);
+    border-radius: 8px; padding: 8px; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .re-upload-btn:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── MAIN ── */
+  #main { flex: 1; overflow-y: auto; }
+  .section { display: none; padding: 28px 32px; }
+  .section.active { display: block; }
+  .section-title { font-size: 22px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .section-title .icon { font-size: 24px; }
+
+  /* ── OVERVIEW ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; display: flex; flex-direction: column; gap: 4px;
+  }
+  .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-value { font-size: 24px; font-weight: 700; color: var(--gold); }
+  .stat-sub { font-size: 12px; color: var(--text-muted); }
+
+  .overview-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 900px) { .overview-row { grid-template-columns: 1fr; } }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 14px; }
+
+  /* Badges */
+  .badges-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge-item {
+    width: 52px; height: 52px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--border);
+    transition: transform 0.2s; cursor: default; position: relative;
+  }
+  .badge-item.earned { border-color: var(--gold); box-shadow: 0 0 12px rgba(246,173,85,0.4); }
+  .badge-item:not(.earned) { opacity: 0.25; filter: grayscale(1); }
+  .badge-item:hover .badge-tooltip {
+    opacity: 1; pointer-events: auto; transform: translateY(-4px);
+  }
+  .badge-tooltip {
+    position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%) translateY(0);
+    background: #2d2d2d; border: 1px solid var(--border); border-radius: 6px;
+    padding: 4px 8px; font-size: 11px; white-space: nowrap; color: var(--text);
+    opacity: 0; pointer-events: none; transition: all 0.15s; z-index: 10;
+  }
+  .region-label { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
+
+  /* Region levels */
+  .region-bar-list { display: flex; flex-direction: column; gap: 12px; }
+  .region-row { display: flex; flex-direction: column; gap: 4px; }
+  .region-row-header { display: flex; justify-content: space-between; align-items: center; }
+  .region-name { font-size: 14px; font-weight: 600; }
+  .region-lvl { font-size: 14px; color: var(--gold); font-weight: 700; }
+  .bar-track { background: var(--surface2); border-radius: 4px; height: 8px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+
+  /* PVE/PVP */
+  .points-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .point-card { background: var(--surface2); border-radius: 10px; padding: 12px; text-align: center; }
+  .point-region { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .point-val { font-size: 20px; font-weight: 700; }
+  .point-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ── PARTY ── */
+  .party-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .poke-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px;
+    display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s;
+  }
+  .poke-card:hover { border-color: var(--red); }
+  .poke-card-header { display: flex; align-items: center; gap: 12px; }
+  .poke-sprite { width: 72px; height: 72px; image-rendering: pixelated; }
+  .poke-sprite-placeholder { width: 72px; height: 72px; background: var(--surface2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .poke-info { flex: 1; }
+  .poke-name { font-size: 17px; font-weight: 700; }
+  .poke-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .poke-types { display: flex; gap: 5px; margin-top: 6px; }
+  .type-badge {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .poke-level { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .poke-held { font-size: 11px; color: var(--text-muted); }
+
+  /* Stats bars */
+  .stat-bars { display: flex; flex-direction: column; gap: 5px; }
+  .stat-row { display: grid; grid-template-columns: 50px 30px 1fr 30px; align-items: center; gap: 6px; font-size: 12px; }
+  .stat-name { color: var(--text-muted); font-size: 11px; }
+  .stat-num { text-align: right; font-weight: 600; font-size: 12px; }
+  .stat-bar-track { background: var(--surface2); border-radius: 3px; height: 6px; overflow: hidden; }
+  .stat-bar-fill { height: 100%; border-radius: 3px; }
+  .stat-iv { color: var(--text-muted); font-size: 11px; text-align: right; }
+
+  /* Moves */
+  .moves-list { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .move-item { background: var(--surface2); border-radius: 6px; padding: 5px 8px; font-size: 12px; }
+  .move-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .move-pp { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+
+  /* Nature */
+  .poke-nature { font-size: 12px; color: var(--text-muted); }
+  .poke-nature .up { color: #f87171; }
+  .poke-nature .down { color: #60a5fa; }
+
+  /* ── PC BOXES ── */
+  .pc-controls { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+  .search-input {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 8px 14px; font-size: 14px; outline: none; width: 220px;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--red); }
+  .filter-select {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 8px 12px; font-size: 14px; outline: none; cursor: pointer;
+  }
+  .sort-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .sort-btn.active { border-color: var(--red); color: var(--red); }
+  .pc-count { color: var(--text-muted); font-size: 13px; margin-left: auto; }
+
+  .box-section { margin-bottom: 24px; }
+  .box-header { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+  .box-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+
+  .pc-poke-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px; cursor: pointer; transition: border-color 0.2s, transform 0.15s;
+    position: relative;
+  }
+  .pc-poke-card:hover { border-color: var(--red); transform: translateY(-2px); }
+  .pc-poke-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .pc-sprite { width: 40px; height: 40px; image-rendering: pixelated; }
+  .pc-poke-name { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pc-poke-meta { font-size: 11px; color: var(--text-muted); }
+  .pc-poke-types { display: flex; gap: 3px; margin-top: 4px; }
+  .shiny-star { color: var(--gold); font-size: 13px; position: absolute; top: 6px; right: 8px; }
+
+  /* IV quality indicator */
+  .iv-indicator { display: flex; gap: 2px; margin-top: 4px; }
+  .iv-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ── MODAL ── */
+  /* detail page reuses .section layout — no overlay needed */
+  .detail-back {
+    display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .detail-back:hover { border-color: var(--red); color: var(--red); }
+  .detail-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+  @media (max-width: 800px) { .detail-layout { grid-template-columns: 1fr; } }
+  .detail-left { display: flex; flex-direction: column; gap: 14px; }
+  .detail-hero {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+  }
+  .modal-sprite { width: 120px; height: 120px; image-rendering: pixelated; }
+  .modal-name { font-size: 22px; font-weight: 700; }
+  .modal-id { color: var(--text-muted); font-size: 14px; }
+  .modal-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  .modal-section-title { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .modal-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .modal-kv { background: var(--surface2); border-radius: 8px; padding: 8px 12px; }
+  .modal-kv .k { font-size: 11px; color: var(--text-muted); }
+  .modal-kv .v { font-size: 14px; font-weight: 600; margin-top: 2px; }
+  .iv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .iv-table th { text-align: left; color: var(--text-muted); font-weight: 600; font-size: 11px; padding: 4px 6px; text-transform: uppercase; }
+  .iv-table td { padding: 5px 6px; border-top: 1px solid var(--border); }
+  .iv-perfect { color: var(--blue); font-weight: 700; }
+  .iv-good { color: var(--green); font-weight: 600; }
+  .iv-avg { color: var(--yellow); }
+  .iv-poor { color: #f87171; }
+
+  /* ── ANALYSIS ── */
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 800px) { .charts-row { grid-template-columns: 1fr; } }
+  .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .chart-title { font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+  .chart-wrap { position: relative; height: 240px; }
+  .chart-wrap-tall { position: relative; height: 320px; }
+
+  /* Top IVs table */
+  .iv-rank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .iv-rank-table th { text-align: left; color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .iv-rank-table td { padding: 7px 10px; border-bottom: 1px solid #1f2937; }
+  .iv-rank-table tr:hover td { background: var(--surface2); }
+  .iv-score { display: inline-block; background: var(--surface2); border-radius: 4px; padding: 2px 8px; font-weight: 700; }
+
+  /* ── AI CARD ── */
+  .ai-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px; position: relative; overflow: hidden;
+  }
+  .ai-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--red), #a855f7, #3b82f6);
+  }
+  .ai-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+  .ai-badge { font-size: 11px; font-weight: 700; color: var(--text-muted); background: var(--surface2); border-radius: 20px; padding: 3px 10px; }
+  .ai-diagnosis { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 18px; line-height: 1.5; font-style: italic; }
+  .ai-sections { display: flex; flex-direction: column; gap: 12px; }
+  .ai-section { background: var(--surface2); border-radius: 10px; padding: 14px 16px; }
+  .ai-section--green { border-left: 3px solid #56d364; }
+  .ai-section--red   { border-left: 3px solid #f87171; }
+  .ai-section--blue  { border-left: 3px solid #60a5fa; }
+  .ai-section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .ai-section-body { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .ai-list { font-size: 13px; color: var(--text); line-height: 1.7; padding-left: 18px; margin: 0; }
+  .ai-list li { margin-bottom: 3px; }
+  .ai-loading { display: flex; align-items: center; gap: 12px; padding: 20px 0; color: var(--text-muted); font-size: 14px; }
+  .ai-spinner {
+    width: 22px; height: 22px; border: 3px solid var(--border); border-top-color: var(--red);
+    border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── UTILS ── */
+  .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .pill-red { background: #3d1515; color: #f87171; }
+  .pill-green { background: #0d3321; color: #56d364; }
+  .pill-gold { background: #2d2000; color: var(--gold); }
+  .pill-blue { background: #0d2240; color: var(--blue); }
+
+  .rank-tab-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+    border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .rank-tab-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .rank-tab-btn.active { background: var(--gold); border-color: var(--gold); color: #111; }
+
+  .sep { height: 1px; background: var(--border); margin: 16px 0; }
+  .tag { font-size: 11px; background: var(--surface2); border-radius: 4px; padding: 2px 7px; color: var(--text-muted); }
+
+  /* Pokédex ring */
+  .dex-rings { display: flex; gap: 24px; align-items: center; }
+  .ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .ring-label { font-size: 11px; color: var(--text-muted); text-align: center; }
+  .ring-canvas { width: 80px; height: 80px; }
+  .ring-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 16px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- UPLOAD SCREEN -->
+<div id="upload-screen">
+  <div class="upload-logo">🎮</div>
+  <div class="upload-title">PokeOne — Reporte de Partida</div>
+  <div class="upload-subtitle">Carga tu archivo JSON exportado para visualizar el estado completo de tu partida.</div>
+  <div class="upload-zone" id="drop-zone">
+    <div class="upload-zone-icon">📂</div>
+    <div class="upload-zone-text">Arrastra tu <strong>input_jsolerca.json</strong> aquí<br>o haz clic para seleccionar</div>
+    <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar JSON</button>
+  </div>
+  <input type="file" id="file-input" accept=".json">
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🔴</div>
+      <div>
+        <div class="sidebar-title">PokeOne</div>
+        <div class="sidebar-trainer" id="sidebar-trainer">—</div>
+      </div>
+    </div>
+    <div class="nav-section">General</div>
+    <div class="nav-item active" data-tab="overview"><span class="icon">🏠</span> Overview</div>
+    <div class="nav-item" data-tab="party"><span class="icon">⚔️</span> Equipo Activo</div>
+    <div class="nav-section">Pokémon</div>
+    <div class="nav-item" data-tab="pc"><span class="icon">💾</span> Cajas PC</div>
+    <div class="nav-item" data-tab="ranking"><span class="icon">🏆</span> Ranking</div>
+    <div class="sidebar-footer">
+      <button class="re-upload-btn" onclick="resetApp()">↩ Cargar nuevo JSON</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- OVERVIEW -->
+    <div class="section active" id="tab-overview">
+      <div class="section-title"><span class="icon">🏠</span> Resumen de Partida</div>
+
+      <div class="stats-grid" id="stats-grid"></div>
+
+      <div class="overview-row">
+        <div class="card">
+          <div class="card-title">🏅 Medallas Kanto</div>
+          <div class="region-label">Kanto Gym Badges</div>
+          <div class="badges-grid" id="kanto-badges"></div>
+          <div style="margin-top:14px">
+            <div class="region-label">Johto Gym Badges</div>
+            <div class="badges-grid" id="johto-badges"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🎖️ Niveles de Entrenador</div>
+          <div class="region-bar-list" id="region-levels"></div>
+          <div class="sep"></div>
+          <div class="card-title">📖 Pokédex</div>
+          <div id="pokedex-info"></div>
+        </div>
+      </div>
+
+      <div class="overview-row">
+        <div class="card">
+          <div class="card-title">⚔️ Puntos PVP</div>
+          <div class="points-grid" id="pvp-points"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛡️ Puntos PVE</div>
+          <div class="points-grid" id="pve-points"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTY -->
+    <div class="section" id="tab-party">
+      <div class="section-title"><span class="icon">⚔️</span> Equipo Activo</div>
+      <div class="party-grid" id="party-grid"></div>
+
+      <!-- AI EVALUATION -->
+      <div id="ai-eval-block" style="margin-top:28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px">
+            🤖 Valoración IA del equipo
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <input id="ai-key-input" type="password" placeholder="API Key de Anthropic…"
+              style="background:var(--surface);border:1px solid var(--border);color:var(--text);
+                     border-radius:8px;padding:7px 12px;font-size:13px;outline:none;width:240px;
+                     transition:border-color 0.2s"
+              onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+            <button onclick="runAIEval()" id="ai-eval-btn"
+              style="background:var(--red);color:white;border:none;border-radius:8px;
+                     padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;
+                     transition:background 0.2s;white-space:nowrap"
+              onmouseover="this.style.background='var(--red-dark)'" onmouseout="this.style.background='var(--red)'">
+              Analizar equipo
+            </button>
+          </div>
+        </div>
+        <div id="ai-eval-result" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- PC -->
+    <div class="section" id="tab-pc">
+      <div class="section-title"><span class="icon">💾</span> Cajas PC</div>
+      <div class="pc-controls">
+        <input type="text" class="search-input" id="pc-search" placeholder="🔍 Buscar Pokémon...">
+        <select class="filter-select" id="pc-type-filter">
+          <option value="">Todos los tipos</option>
+        </select>
+        <select class="filter-select" id="pc-sort">
+          <option value="box">Por caja</option>
+          <option value="level-desc">Nivel ↓</option>
+          <option value="level-asc">Nivel ↑</option>
+          <option value="iv-desc">IVs ↓</option>
+          <option value="name">Nombre</option>
+        </select>
+        <span class="pc-count" id="pc-count"></span>
+      </div>
+      <div id="pc-list"></div>
+    </div>
+
+    <!-- ANALYSIS -->
+    <!-- RANKING -->
+    <div class="section" id="tab-ranking">
+      <div class="section-title"><span class="icon">🏆</span> Ranking de Pokémon</div>
+
+      <!-- tab switcher -->
+      <div style="display:flex;gap:8px;margin-bottom:20px">
+        <button class="rank-tab-btn active" data-rank="top" onclick="switchRankTab('top',this)">🏅 Top 50 — Mejores</button>
+        <button class="rank-tab-btn" data-rank="trash" onclick="switchRankTab('trash',this)">🗑️ Trash 50 — Peores</button>
+      </div>
+
+      <div id="rank-top" class="rank-panel">
+        <div style="overflow-x:auto">
+          <table class="iv-rank-table">
+            <thead><tr>
+              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th><th>Perfección</th>
+              <th>HP</th><th>Atk</th><th>Def</th><th>SpAtk</th><th>SpDef</th><th>Spd</th>
+              <th>Total IV</th>
+            </tr></thead>
+            <tbody id="rank-top-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="rank-trash" class="rank-panel" style="display:none">
+        <div style="overflow-x:auto">
+          <table class="iv-rank-table">
+            <thead><tr>
+              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th><th>Perfección</th>
+              <th>HP</th><th>Atk</th><th>Def</th><th>SpAtk</th><th>SpDef</th><th>Spd</th>
+              <th>Total IV</th>
+            </tr></thead>
+            <tbody id="rank-trash-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL -->
+    <div class="section" id="tab-detail">
+      <div id="detail-content"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────
+let gameData = null;
+let allPokemon = [];
+
+const TYPE_COLORS = {
+  Normal:'#a7a796', Fire:'#ff4422', Water:'#3399ff', Electric:'#ffcc00',
+  Grass:'#77cc55', Ice:'#66ccff', Fighting:'#bb5544', Poison:'#a55294',
+  Ground:'#ddbb55', Flying:'#8899ff', Psychic:'#ff5599', Bug:'#aabb22',
+  Rock:'#bbaa66', Ghost:'#6666bb', Dragon:'#7766ee', Dark:'#775544',
+  Steel:'#aaaabb', Fairy:'#ee99ee'
+};
+
+const KANTO_BADGES = [
+  {id:1, name:'Boulder', emoji:'🪨', city:'Pewter'},
+  {id:2, name:'Cascade', emoji:'💧', city:'Cerulean'},
+  {id:3, name:'Thunder', emoji:'⚡', city:'Vermilion'},
+  {id:4, name:'Rainbow', emoji:'🌈', city:'Celadon'},
+  {id:5, name:'Soul',    emoji:'🌸', city:'Fuchsia'},
+  {id:6, name:'Marsh',   emoji:'🧠', city:'Saffron'},
+  {id:7, name:'Volcano', emoji:'🌋', city:'Cinnabar'},
+  {id:8, name:'Earth',   emoji:'🌍', city:'Viridian'},
+];
+const JOHTO_BADGES = [
+  {id:9,  name:'Zephyr',  emoji:'🦅', city:'Violet'},
+  {id:10, name:'Hive',    emoji:'🐝', city:'Azalea'},
+  {id:11, name:'Plain',   emoji:'🎗️', city:'Goldenrod'},
+  {id:12, name:'Fog',     emoji:'👁️', city:'Ecruteak'},
+  {id:13, name:'Storm',   emoji:'🌊', city:'Cianwood'},
+  {id:14, name:'Mineral', emoji:'⚙️', city:'Olivine'},
+  {id:15, name:'Glacier', emoji:'❄️', city:'Mahogany'},
+  {id:16, name:'Rising',  emoji:'🐉', city:'Blackthorn'},
+];
+
+const NATURE_EFFECTS = {
+  Hardy:{}, Docile:{}, Serious:{}, Bashful:{}, Quirky:{},
+  Lonely:{up:'Atk',down:'Def'}, Brave:{up:'Atk',down:'Speed'}, Adamant:{up:'Atk',down:'SpAtk'}, Naughty:{up:'Atk',down:'SpDef'},
+  Bold:{up:'Def',down:'Atk'}, Relaxed:{up:'Def',down:'Speed'}, Impish:{up:'Def',down:'SpAtk'}, Lax:{up:'Def',down:'SpDef'},
+  Timid:{up:'Speed',down:'Atk'}, Hasty:{up:'Speed',down:'Def'}, Jolly:{up:'Speed',down:'SpAtk'}, Naive:{up:'Speed',down:'SpDef'},
+  Modest:{up:'SpAtk',down:'Atk'}, Mild:{up:'SpAtk',down:'Def'}, Quiet:{up:'SpAtk',down:'Speed'}, Rash:{up:'SpAtk',down:'SpDef'},
+  Calm:{up:'SpDef',down:'Atk'}, Gentle:{up:'SpDef',down:'Def'}, Sassy:{up:'SpDef',down:'Speed'}, Careful:{up:'SpDef',down:'SpAtk'},
+};
+
+const STAT_COLORS = {HP:'#f87171', Atk:'#fb923c', Def:'#facc15', SpAtk:'#60a5fa', SpDef:'#34d399', Speed:'#a78bfa'};
+const STAT_LABELS = {HP:'HP', Atk:'Atk', Def:'Def', SpAtk:'SpA', SpDef:'SpD', Speed:'Spe'};
+const STAT_MAX = {HP:255, Atk:190, Def:190, SpAtk:190, SpDef:190, Speed:180};
+
+function spriteUrl(id) {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+}
+
+function ivClass(v) {
+  if (v === 31) return 'iv-perfect';
+  if (v >= 26) return 'iv-good';
+  if (v >= 16) return 'iv-avg';
+  return 'iv-poor';
+}
+function ivDotColor(v) {
+  if (v === 31) return '#58a6ff';
+  if (v >= 26) return '#56d364';
+  if (v >= 16) return '#e3b341';
+  return '#f87171';
+}
+function ivTotal(ivs) {
+  return (ivs.HP||0)+(ivs.Atk||0)+(ivs.Def||0)+(ivs.SpAtk||0)+(ivs.SpDef||0)+(ivs.Speed||0);
+}
+
+// ─── FILE LOADING ────────────────────────────────────────────────────
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (file) readFile(file);
+});
+
+const dropZone = document.getElementById('drop-zone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) readFile(file);
+});
+dropZone.addEventListener('click', () => document.getElementById('file-input').click());
+
+function readFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const json = JSON.parse(e.target.result);
+      if (!json.data) throw new Error('Formato inválido');
+      loadData(json.data);
+    } catch(err) {
+      alert('Error al leer el JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function resetApp() {
+  document.getElementById('upload-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+
+// ─── LOAD & RENDER ───────────────────────────────────────────────────
+function loadData(data) {
+  gameData = data;
+  allPokemon = [];
+  data.pokemon.forEach((box, boxIdx) => {
+    box.forEach(entry => {
+      allPokemon.push({ ...entry, _boxIdx: boxIdx });
+    });
+  });
+
+  document.getElementById('upload-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('sidebar-trainer').textContent = data.user_info.userName;
+
+  renderOverview();
+  renderParty();
+  renderPC();
+  renderRanking();
+}
+
+// ─── OVERVIEW ────────────────────────────────────────────────────────
+function renderOverview() {
+  const ui = gameData.user_info;
+  const playedH = Math.round(ui.playedDays * 24);
+  const joinedDays = Math.round(ui.joinDate);
+
+  const stats = [
+    {label:'Oro', value: ui.gold.toLocaleString(), sub:'monedas'},
+    {label:'PokéDollar', value: ui.pokeDollar.toLocaleString(), sub:'$'},
+    {label:'Tiempo jugado', value: playedH + 'h', sub: Math.floor(ui.playedDays) + ' días'},
+    {label:'Pasos dados', value: ui.steps.toLocaleString(), sub:''},
+    {label:'Wild encuentros', value: ui.wildEncountered.toLocaleString(), sub:''},
+    {label:'Pokémon fainting', value: ui.fainted, sub:'veces'},
+    {label:'Pokédex capturados', value: ui.pokedexCaught, sub:'de ' + ui.pokedexSeen + ' vistos'},
+    {label:'PVP W/L', value: ui.pvpWins + '/' + ui.pvpLosses, sub:'wins / losses'},
+    {label:'Pokémon en PC', value: allPokemon.length, sub:'totales'},
+    {label:'Reward Level', value: gameData.reward_level, sub:'nivel'},
+  ];
+
+  document.getElementById('stats-grid').innerHTML = stats.map(s => `
+    <div class="stat-card">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value">${s.value}</div>
+      ${s.sub ? `<div class="stat-sub">${s.sub}</div>` : ''}
+    </div>
+  `).join('');
+
+  // Badges
+  const earned = new Set(ui.badges);
+  document.getElementById('kanto-badges').innerHTML = KANTO_BADGES.map(b => `
+    <div class="badge-item ${earned.has(b.id) ? 'earned' : ''}">
+      ${b.emoji}
+      <div class="badge-tooltip">${b.name} Badge<br>${b.city} City</div>
+    </div>
+  `).join('');
+  document.getElementById('johto-badges').innerHTML = JOHTO_BADGES.map(b => `
+    <div class="badge-item ${earned.has(b.id) ? 'earned' : ''}">
+      ${b.emoji}
+      <div class="badge-tooltip">${b.name} Badge<br>${b.city} City</div>
+    </div>
+  `).join('');
+
+  // Region levels
+  const regions = [
+    {name:'Kanto', level: ui.kantoTrainerLevel, max: 100, color:'#e3342f'},
+    {name:'Johto', level: ui.johtoTrainerLevel, max: 100, color:'#f6ad55'},
+    {name:'Unova', level: ui.unovaTrainerLevel, max: 100, color:'#58a6ff'},
+  ];
+  document.getElementById('region-levels').innerHTML = regions.map(r => `
+    <div class="region-row">
+      <div class="region-row-header">
+        <span class="region-name">${r.name}</span>
+        <span class="region-lvl">Lv ${r.level}</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.min(100, r.level)}%;background:${r.color}"></div>
+      </div>
+    </div>
+  `).join('');
+
+  // Pokédex
+  const pct = Math.round(ui.pokedexCaught / ui.pokedexSeen * 100);
+  document.getElementById('pokedex-info').innerHTML = `
+    <div style="display:flex;align-items:center;gap:16px">
+      <div>
+        <div style="font-size:32px;font-weight:700;color:var(--gold)">${ui.pokedexCaught}</div>
+        <div style="font-size:12px;color:var(--text-muted)">capturados</div>
+      </div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span style="color:var(--text-muted)">Vistos: ${ui.pokedexSeen}</span>
+          <span style="color:var(--green)">${pct}%</span>
+        </div>
+        <div class="bar-track" style="height:12px">
+          <div class="bar-fill" style="width:${pct}%;background:var(--green)"></div>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Versión: ${gameData.user_info.accountVersion}</div>
+      </div>
+    </div>
+  `;
+
+  // PVP
+  document.getElementById('pvp-points').innerHTML = [
+    {region:'Kanto', pts: ui.kantoPvpPoints, info: ui.kantoPvpInfo},
+    {region:'Johto', pts: ui.johtoPvpPoints, info: ui.johtoPvpInfo},
+    {region:'Unova', pts: ui.unovaPvpPoints, info: ui.unovaPvpInfo},
+  ].map(r => `
+    <div class="point-card">
+      <div class="point-region">${r.region}</div>
+      <div class="point-val" style="color:var(--blue)">${r.pts}</div>
+      <div class="point-label">Total: ${r.info.total}</div>
+      <div class="point-label" style="margin-top:2px">Hoy: +${r.info.day}</div>
+    </div>
+  `).join('');
+
+  // PVE
+  document.getElementById('pve-points').innerHTML = [
+    {region:'Kanto', pts: ui.kantoPvePoints, info: ui.kantoPveInfo},
+    {region:'Johto', pts: ui.johtoPvePoints, info: ui.johtoPveInfo},
+    {region:'Unova', pts: ui.unovaPvePoints || 0, info: {total:0,day:0}},
+  ].map(r => `
+    <div class="point-card">
+      <div class="point-region">${r.region}</div>
+      <div class="point-val" style="color:var(--gold)">${r.pts}</div>
+      <div class="point-label">Total: ${r.info.total}</div>
+      <div class="point-label" style="margin-top:2px">Hoy: +${r.info.day}</div>
+    </div>
+  `).join('');
+}
+
+// ─── PARTY ───────────────────────────────────────────────────────────
+function renderParty() {
+  const party = allPokemon.filter(p => p._boxIdx === 0);
+  document.getElementById('party-grid').innerHTML = party.map(p => pokeCardHTML(p, true)).join('');
+}
+
+function pokeCardHTML(entry, large=false) {
+  const pk = entry.Pokemon;
+  const payload = pk.Payload;
+  const stats = pk.Stats;
+  const ivs = payload.IVs;
+  const nature = payload.NatureName;
+  const nfx = NATURE_EFFECTS[nature] || {};
+  const types = pk.StaticData.Types;
+  const moves = payload.Moves.filter(Boolean);
+  const hpPct = Math.round(payload.HP / stats.HP * 100);
+
+  const statKeys = ['HP','Atk','Def','SpAtk','SpDef','Speed'];
+  const statBars = statKeys.map(k => {
+    const val = stats[k];
+    const iv = ivs[k];
+    const pct = Math.round(val / STAT_MAX[k] * 100);
+    const natUp = nfx.up === k ? '▲' : '';
+    const natDn = nfx.down === k ? '▼' : '';
+    return `<div class="stat-row">
+      <span class="stat-name">${STAT_LABELS[k]}${natUp ? `<span style="color:#f87171;font-size:9px">▲</span>` : ''}${natDn ? `<span style="color:#60a5fa;font-size:9px">▼</span>` : ''}</span>
+      <span class="stat-num">${val}</span>
+      <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${pct}%;background:${STAT_COLORS[k]}"></div></div>
+      <span class="stat-iv ${ivClass(iv)}">${iv}</span>
+    </div>`;
+  }).join('');
+
+  const heldBadge = pk.Payload.HoldItemData
+    ? `<span class="tag">🎒 ${pk.Payload.HoldItemData.name}</span>` : '';
+  const notTradeTag = payload.NotTradeable ? `<span class="tag" style="color:#f87171">🔒 No tradeable</span>` : '';
+  const caughtDate = new Date(payload.CaughtDateUtc).toLocaleDateString('es-ES');
+
+  const natureStr = nfx.up
+    ? `${nature} <span class="up">+${nfx.up}</span> <span class="down">-${nfx.down}</span>`
+    : `${nature}`;
+
+  return `
+    <div class="poke-card" onclick='openModal(${JSON.stringify(JSON.stringify(entry))})'>
+      <div class="poke-card-header">
+        <img class="poke-sprite" src="${spriteUrl(payload.PokemonID)}" onerror="this.style.display='none'" alt="${pk.StaticData.Name}">
+        <div class="poke-info">
+          <div class="poke-name">${pk.StaticData.Name}${payload.Shiny ? ' ⭐' : ''}</div>
+          <div class="poke-sub">Lv ${payload.Level} · #${payload.PokemonID} · <span class="poke-nature">${natureStr}</span></div>
+          <div class="poke-types" style="margin-top:5px">
+            ${types.map(t => `<span class="type-badge" style="background:${t.color}">${t.name}</span>`).join('')}
+          </div>
+          <div style="margin-top:5px">${roleBadgeHTML(entry)}</div>
+          <div style="margin-top:5px;display:flex;gap:6px;flex-wrap:wrap">
+            ${heldBadge}${notTradeTag}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;display:flex;justify-content:space-between">
+          <span>STATS</span>
+          <span>IV</span>
+        </div>
+        <div class="stat-bars">${statBars}</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:5px">MOVIMIENTOS</div>
+        <div class="moves-list">
+          ${moves.map(m => `<div class="move-item"><div class="move-name">${m.Name}</div><div class="move-pp">PP: ${m.PP}/${m.MaxPP}</div></div>`).join('')}
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);display:flex;gap:10px;flex-wrap:wrap">
+        <span>Capturado: ${caughtDate}</span>
+        <span>Lv${payload.CaughtLevel}</span>
+        <span>${pk.Payload.PokeballData?.name || ''}</span>
+        <span>Felicidad: ${payload.Happiness}</span>
+      </div>
+    </div>
+  `;
+}
+
+// ─── PC BOXES ────────────────────────────────────────────────────────
+function renderPC() {
+  // Populate type filter
+  const types = new Set();
+  allPokemon.forEach(p => p.Pokemon.StaticData.Types.forEach(t => types.add(t.name)));
+  const tf = document.getElementById('pc-type-filter');
+  tf.innerHTML = '<option value="">Todos los tipos</option>' +
+    [...types].sort().map(t => `<option value="${t}">${t}</option>`).join('');
+
+  document.getElementById('pc-search').addEventListener('input', renderPCList);
+  document.getElementById('pc-type-filter').addEventListener('change', renderPCList);
+  document.getElementById('pc-sort').addEventListener('change', renderPCList);
+
+  renderPCList();
+}
+
+function renderPCList() {
+  const query = document.getElementById('pc-search').value.toLowerCase();
+  const typeF = document.getElementById('pc-type-filter').value;
+  const sort  = document.getElementById('pc-sort').value;
+
+  let list = allPokemon.filter(p => {
+    const name = p.Pokemon.StaticData.Name.toLowerCase();
+    const nick = (p.Pokemon.Payload.Nickname || '').toLowerCase();
+    const matchQ = !query || name.includes(query) || nick.includes(query);
+    const matchT = !typeF || p.Pokemon.StaticData.Types.some(t => t.name === typeF);
+    return matchQ && matchT;
+  });
+
+  if (sort === 'level-desc') list.sort((a,b) => b.Pokemon.Payload.Level - a.Pokemon.Payload.Level);
+  else if (sort === 'level-asc') list.sort((a,b) => a.Pokemon.Payload.Level - b.Pokemon.Payload.Level);
+  else if (sort === 'iv-desc') list.sort((a,b) => ivTotal(b.Pokemon.Payload.IVs) - ivTotal(a.Pokemon.Payload.IVs));
+  else if (sort === 'name') list.sort((a,b) => a.Pokemon.StaticData.Name.localeCompare(b.Pokemon.StaticData.Name));
+  else list.sort((a,b) => a._boxIdx - b._boxIdx || a.Position - b.Position);
+
+  document.getElementById('pc-count').textContent = `${list.length} Pokémon`;
+
+  const byBox = {};
+  if (sort === 'box') {
+    list.forEach(p => {
+      const k = p._boxIdx;
+      if (!byBox[k]) byBox[k] = [];
+      byBox[k].push(p);
+    });
+  } else {
+    byBox['results'] = list;
+  }
+
+  const container = document.getElementById('pc-list');
+  container.innerHTML = '';
+
+  const boxLabels = {0:'⚔️ Equipo Activo (Caja 0)'};
+  for (const [boxKey, entries] of Object.entries(byBox)) {
+    if (!entries.length) continue;
+    const label = sort === 'box'
+      ? (boxLabels[boxKey] || `📦 Caja ${parseInt(boxKey)}`)
+      : `🔍 Resultados`;
+    const section = document.createElement('div');
+    section.className = 'box-section';
+    section.innerHTML = `
+      <div class="box-header">
+        <span>${label}</span>
+        <span style="font-size:12px">${entries.length} pokémon</span>
+      </div>
+      <div class="box-grid">
+        ${entries.map(p => pcPokeCardHTML(p)).join('')}
+      </div>
+    `;
+    container.appendChild(section);
+    if (sort !== 'box') break;
+  }
+
+  // Click handlers
+  container.querySelectorAll('.pc-poke-card').forEach((el, i) => {
+    el.addEventListener('click', () => {
+      const uid = el.dataset.uid;
+      const entry = allPokemon.find(p => p.Pokemon.UniqueID === uid);
+      if (entry) openModal(JSON.stringify(entry));
+    });
+  });
+}
+
+function pcPokeCardHTML(entry) {
+  const pk = entry.Pokemon;
+  const payload = pk.Payload;
+  const types = pk.StaticData.Types;
+  const ivs = payload.IVs;
+  const total = ivTotal(ivs);
+  const statKeys = ['HP','Atk','Def','SpAtk','SpDef','Speed'];
+
+  const heldItem = payload.HoldItemData;
+
+  const pct = getPerfection(entry);
+
+  return `
+    <div class="pc-poke-card" data-uid="${pk.UniqueID}">
+      <div style="position:absolute;top:6px;right:8px;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+        ${payload.Shiny ? '<span style="font-size:13px">⭐</span>' : ''}
+        ${heldItem ? `<span title="${heldItem.name}" style="font-size:13px">💠</span>` : ''}
+      </div>
+      <div class="pc-poke-header">
+        <img class="pc-sprite" src="${spriteUrl(payload.PokemonID)}" onerror="this.style.opacity=0" alt="">
+        <div style="flex:1;overflow:hidden">
+          <div class="pc-poke-name">${pk.StaticData.Name}</div>
+          <div class="pc-poke-meta" style="display:flex;align-items:center;gap:6px">
+            <span>Lv ${payload.Level}</span>
+            <span style="font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ─── CATÁLOGO DE STATS BASE (fuente: pokeonecommunity.com/pokedex/pokemon-list/) ───
+const BASE_STATS = {
+  1:{name:"Bulbasaur",hp:45,atk:49,def:49,spatk:65,spdef:65,spe:45},
+  2:{name:"Ivysaur",hp:60,atk:62,def:63,spatk:80,spdef:80,spe:60},
+  3:{name:"Venusaur",hp:80,atk:82,def:83,spatk:100,spdef:100,spe:80},
+  4:{name:"Charmander",hp:39,atk:52,def:43,spatk:60,spdef:50,spe:65},
+  5:{name:"Charmeleon",hp:58,atk:64,def:58,spatk:80,spdef:65,spe:80},
+  6:{name:"Charizard",hp:78,atk:84,def:78,spatk:109,spdef:85,spe:100},
+  7:{name:"Squirtle",hp:44,atk:48,def:65,spatk:50,spdef:64,spe:43},
+  8:{name:"Wartortle",hp:59,atk:63,def:80,spatk:65,spdef:80,spe:58},
+  9:{name:"Blastoise",hp:79,atk:83,def:100,spatk:85,spdef:105,spe:78},
+  10:{name:"Caterpie",hp:45,atk:30,def:35,spatk:20,spdef:20,spe:45},
+  11:{name:"Metapod",hp:50,atk:20,def:55,spatk:25,spdef:25,spe:30},
+  12:{name:"Butterfree",hp:60,atk:45,def:50,spatk:90,spdef:80,spe:70},
+  13:{name:"Weedle",hp:40,atk:35,def:30,spatk:20,spdef:20,spe:50},
+  14:{name:"Kakuna",hp:45,atk:25,def:50,spatk:25,spdef:25,spe:35},
+  15:{name:"Beedrill",hp:65,atk:90,def:40,spatk:45,spdef:80,spe:75},
+  16:{name:"Pidgey",hp:40,atk:45,def:40,spatk:35,spdef:35,spe:56},
+  17:{name:"Pidgeotto",hp:63,atk:60,def:55,spatk:50,spdef:50,spe:71},
+  18:{name:"Pidgeot",hp:83,atk:80,def:75,spatk:70,spdef:70,spe:101},
+  19:{name:"Rattata",hp:30,atk:56,def:35,spatk:25,spdef:35,spe:72},
+  20:{name:"Raticate",hp:55,atk:81,def:60,spatk:50,spdef:70,spe:97},
+  21:{name:"Spearow",hp:40,atk:60,def:30,spatk:31,spdef:31,spe:70},
+  22:{name:"Fearow",hp:65,atk:90,def:65,spatk:61,spdef:61,spe:100},
+  23:{name:"Ekans",hp:35,atk:60,def:44,spatk:40,spdef:54,spe:55},
+  24:{name:"Arbok",hp:60,atk:95,def:69,spatk:65,spdef:79,spe:80},
+  25:{name:"Pikachu",hp:35,atk:55,def:40,spatk:50,spdef:50,spe:90},
+  26:{name:"Raichu",hp:60,atk:90,def:55,spatk:90,spdef:80,spe:110},
+  27:{name:"Sandshrew",hp:50,atk:75,def:85,spatk:20,spdef:30,spe:40},
+  28:{name:"Sandslash",hp:75,atk:100,def:110,spatk:45,spdef:55,spe:65},
+  29:{name:"Nidoran-F",hp:55,atk:47,def:52,spatk:40,spdef:40,spe:41},
+  30:{name:"Nidorina",hp:70,atk:62,def:67,spatk:55,spdef:55,spe:56},
+  31:{name:"Nidoqueen",hp:90,atk:92,def:87,spatk:75,spdef:85,spe:76},
+  32:{name:"Nidoran-M",hp:46,atk:57,def:40,spatk:40,spdef:40,spe:50},
+  33:{name:"Nidorino",hp:61,atk:72,def:57,spatk:55,spdef:55,spe:65},
+  34:{name:"Nidoking",hp:81,atk:102,def:77,spatk:85,spdef:75,spe:85},
+  35:{name:"Clefairy",hp:70,atk:45,def:48,spatk:60,spdef:65,spe:35},
+  36:{name:"Clefable",hp:95,atk:70,def:73,spatk:95,spdef:90,spe:60},
+  37:{name:"Vulpix",hp:38,atk:41,def:40,spatk:50,spdef:65,spe:65},
+  38:{name:"Ninetales",hp:73,atk:76,def:75,spatk:81,spdef:100,spe:100},
+  39:{name:"Jigglypuff",hp:115,atk:45,def:20,spatk:45,spdef:25,spe:20},
+  40:{name:"Wigglytuff",hp:140,atk:70,def:45,spatk:85,spdef:50,spe:45},
+  41:{name:"Zubat",hp:40,atk:45,def:35,spatk:30,spdef:40,spe:55},
+  42:{name:"Golbat",hp:75,atk:80,def:70,spatk:65,spdef:75,spe:90},
+  43:{name:"Oddish",hp:45,atk:50,def:55,spatk:75,spdef:65,spe:30},
+  44:{name:"Gloom",hp:60,atk:65,def:70,spatk:85,spdef:75,spe:40},
+  45:{name:"Vileplume",hp:75,atk:80,def:85,spatk:110,spdef:90,spe:50},
+  46:{name:"Paras",hp:35,atk:70,def:55,spatk:45,spdef:55,spe:25},
+  47:{name:"Parasect",hp:60,atk:95,def:80,spatk:60,spdef:80,spe:30},
+  48:{name:"Venonat",hp:60,atk:55,def:50,spatk:40,spdef:55,spe:45},
+  49:{name:"Venomoth",hp:70,atk:65,def:60,spatk:90,spdef:75,spe:90},
+  50:{name:"Diglett",hp:10,atk:55,def:25,spatk:35,spdef:45,spe:95},
+  51:{name:"Dugtrio",hp:35,atk:100,def:50,spatk:50,spdef:70,spe:120},
+  52:{name:"Meowth",hp:40,atk:45,def:35,spatk:40,spdef:40,spe:90},
+  53:{name:"Persian",hp:65,atk:70,def:60,spatk:65,spdef:65,spe:115},
+  54:{name:"Psyduck",hp:50,atk:52,def:48,spatk:65,spdef:50,spe:55},
+  55:{name:"Golduck",hp:80,atk:82,def:78,spatk:95,spdef:80,spe:85},
+  56:{name:"Mankey",hp:40,atk:80,def:35,spatk:35,spdef:45,spe:70},
+  57:{name:"Primeape",hp:65,atk:105,def:60,spatk:60,spdef:70,spe:95},
+  58:{name:"Growlithe",hp:55,atk:70,def:45,spatk:70,spdef:50,spe:60},
+  59:{name:"Arcanine",hp:90,atk:110,def:80,spatk:100,spdef:80,spe:95},
+  60:{name:"Poliwag",hp:40,atk:50,def:40,spatk:40,spdef:40,spe:90},
+  61:{name:"Poliwhirl",hp:65,atk:65,def:65,spatk:50,spdef:50,spe:90},
+  62:{name:"Poliwrath",hp:90,atk:95,def:95,spatk:70,spdef:90,spe:70},
+  63:{name:"Abra",hp:25,atk:20,def:15,spatk:105,spdef:55,spe:90},
+  64:{name:"Kadabra",hp:40,atk:35,def:30,spatk:120,spdef:70,spe:105},
+  65:{name:"Alakazam",hp:55,atk:50,def:45,spatk:135,spdef:95,spe:120},
+  66:{name:"Machop",hp:70,atk:80,def:50,spatk:35,spdef:35,spe:35},
+  67:{name:"Machoke",hp:80,atk:100,def:70,spatk:50,spdef:60,spe:45},
+  68:{name:"Machamp",hp:90,atk:130,def:80,spatk:65,spdef:85,spe:55},
+  69:{name:"Bellsprout",hp:50,atk:75,def:35,spatk:70,spdef:30,spe:40},
+  70:{name:"Weepinbell",hp:65,atk:90,def:50,spatk:85,spdef:45,spe:55},
+  71:{name:"Victreebel",hp:80,atk:105,def:65,spatk:100,spdef:70,spe:70},
+  72:{name:"Tentacool",hp:40,atk:40,def:35,spatk:50,spdef:100,spe:70},
+  73:{name:"Tentacruel",hp:80,atk:70,def:65,spatk:80,spdef:120,spe:100},
+  74:{name:"Geodude",hp:40,atk:80,def:100,spatk:30,spdef:30,spe:20},
+  75:{name:"Graveler",hp:55,atk:95,def:115,spatk:45,spdef:45,spe:35},
+  76:{name:"Golem",hp:80,atk:120,def:130,spatk:55,spdef:65,spe:45},
+  77:{name:"Ponyta",hp:50,atk:85,def:55,spatk:65,spdef:65,spe:90},
+  78:{name:"Rapidash",hp:65,atk:100,def:70,spatk:80,spdef:80,spe:105},
+  79:{name:"Slowpoke",hp:90,atk:65,def:65,spatk:40,spdef:40,spe:15},
+  80:{name:"Slowbro",hp:95,atk:75,def:110,spatk:100,spdef:80,spe:30},
+  81:{name:"Magnemite",hp:25,atk:35,def:70,spatk:95,spdef:55,spe:45},
+  82:{name:"Magneton",hp:50,atk:60,def:95,spatk:120,spdef:70,spe:70},
+  83:{name:"Farfetchd",hp:52,atk:90,def:55,spatk:58,spdef:62,spe:60},
+  84:{name:"Doduo",hp:35,atk:85,def:45,spatk:35,spdef:35,spe:75},
+  85:{name:"Dodrio",hp:60,atk:110,def:70,spatk:60,spdef:60,spe:100},
+  86:{name:"Seel",hp:65,atk:45,def:55,spatk:45,spdef:70,spe:45},
+  87:{name:"Dewgong",hp:90,atk:70,def:80,spatk:70,spdef:95,spe:70},
+  88:{name:"Grimer",hp:80,atk:80,def:50,spatk:40,spdef:50,spe:25},
+  89:{name:"Muk",hp:105,atk:105,def:75,spatk:65,spdef:100,spe:50},
+  90:{name:"Shellder",hp:30,atk:65,def:100,spatk:45,spdef:25,spe:40},
+  91:{name:"Cloyster",hp:50,atk:95,def:180,spatk:85,spdef:45,spe:70},
+  92:{name:"Gastly",hp:30,atk:35,def:30,spatk:100,spdef:35,spe:80},
+  93:{name:"Haunter",hp:45,atk:50,def:45,spatk:115,spdef:55,spe:95},
+  94:{name:"Gengar",hp:60,atk:65,def:60,spatk:130,spdef:75,spe:110},
+  95:{name:"Onix",hp:35,atk:45,def:160,spatk:30,spdef:45,spe:70},
+  96:{name:"Drowzee",hp:60,atk:48,def:45,spatk:43,spdef:90,spe:42},
+  97:{name:"Hypno",hp:85,atk:73,def:70,spatk:73,spdef:115,spe:67},
+  98:{name:"Krabby",hp:30,atk:105,def:90,spatk:25,spdef:25,spe:50},
+  99:{name:"Kingler",hp:55,atk:130,def:115,spatk:50,spdef:50,spe:75},
+  100:{name:"Voltorb",hp:40,atk:30,def:50,spatk:55,spdef:55,spe:100},
+  101:{name:"Electrode",hp:60,atk:50,def:70,spatk:80,spdef:80,spe:140},
+  102:{name:"Exeggcute",hp:60,atk:40,def:80,spatk:60,spdef:45,spe:40},
+  103:{name:"Exeggutor",hp:95,atk:95,def:85,spatk:125,spdef:65,spe:55},
+  104:{name:"Cubone",hp:50,atk:50,def:95,spatk:40,spdef:50,spe:35},
+  105:{name:"Marowak",hp:60,atk:80,def:110,spatk:50,spdef:80,spe:45},
+  106:{name:"Hitmonlee",hp:50,atk:120,def:53,spatk:35,spdef:110,spe:87},
+  107:{name:"Hitmonchan",hp:50,atk:105,def:79,spatk:35,spdef:110,spe:76},
+  108:{name:"Lickitung",hp:90,atk:55,def:75,spatk:60,spdef:75,spe:30},
+  109:{name:"Koffing",hp:40,atk:65,def:95,spatk:60,spdef:45,spe:35},
+  110:{name:"Weezing",hp:65,atk:90,def:120,spatk:85,spdef:70,spe:60},
+  111:{name:"Rhyhorn",hp:80,atk:85,def:95,spatk:30,spdef:30,spe:25},
+  112:{name:"Rhydon",hp:105,atk:130,def:120,spatk:45,spdef:45,spe:40},
+  113:{name:"Chansey",hp:250,atk:5,def:5,spatk:35,spdef:105,spe:50},
+  114:{name:"Tangela",hp:65,atk:55,def:115,spatk:100,spdef:40,spe:60},
+  115:{name:"Kangaskhan",hp:105,atk:95,def:80,spatk:40,spdef:80,spe:90},
+  116:{name:"Horsea",hp:30,atk:40,def:70,spatk:70,spdef:25,spe:60},
+  117:{name:"Seadra",hp:55,atk:65,def:95,spatk:95,spdef:45,spe:85},
+  118:{name:"Goldeen",hp:45,atk:67,def:60,spatk:35,spdef:50,spe:63},
+  119:{name:"Seaking",hp:80,atk:92,def:65,spatk:65,spdef:80,spe:68},
+  120:{name:"Staryu",hp:30,atk:45,def:55,spatk:70,spdef:55,spe:85},
+  121:{name:"Starmie",hp:60,atk:75,def:85,spatk:100,spdef:85,spe:115},
+  122:{name:"Mr. Mime",hp:40,atk:45,def:65,spatk:100,spdef:120,spe:90},
+  123:{name:"Scyther",hp:70,atk:110,def:80,spatk:55,spdef:80,spe:105},
+  124:{name:"Jynx",hp:65,atk:50,def:35,spatk:115,spdef:95,spe:95},
+  125:{name:"Electabuzz",hp:65,atk:83,def:57,spatk:95,spdef:85,spe:105},
+  126:{name:"Magmar",hp:65,atk:95,def:57,spatk:100,spdef:85,spe:93},
+  127:{name:"Pinsir",hp:65,atk:125,def:100,spatk:55,spdef:70,spe:85},
+  128:{name:"Tauros",hp:75,atk:100,def:95,spatk:40,spdef:70,spe:110},
+  129:{name:"Magikarp",hp:20,atk:10,def:55,spatk:15,spdef:20,spe:80},
+  130:{name:"Gyarados",hp:95,atk:125,def:79,spatk:60,spdef:100,spe:81},
+  131:{name:"Lapras",hp:130,atk:85,def:80,spatk:85,spdef:95,spe:60},
+  132:{name:"Ditto",hp:48,atk:48,def:48,spatk:48,spdef:48,spe:48},
+  133:{name:"Eevee",hp:55,atk:55,def:50,spatk:45,spdef:65,spe:55},
+  134:{name:"Vaporeon",hp:130,atk:65,def:60,spatk:110,spdef:95,spe:65},
+  135:{name:"Jolteon",hp:65,atk:65,def:60,spatk:110,spdef:95,spe:130},
+  136:{name:"Flareon",hp:65,atk:130,def:60,spatk:95,spdef:110,spe:65},
+  137:{name:"Porygon",hp:65,atk:60,def:70,spatk:85,spdef:75,spe:40},
+  138:{name:"Omanyte",hp:35,atk:40,def:100,spatk:90,spdef:55,spe:35},
+  139:{name:"Omastar",hp:70,atk:60,def:125,spatk:115,spdef:70,spe:55},
+  140:{name:"Kabuto",hp:30,atk:80,def:90,spatk:55,spdef:45,spe:55},
+  141:{name:"Kabutops",hp:60,atk:115,def:105,spatk:65,spdef:70,spe:80},
+  142:{name:"Aerodactyl",hp:80,atk:105,def:65,spatk:60,spdef:75,spe:130},
+  143:{name:"Snorlax",hp:160,atk:110,def:65,spatk:65,spdef:110,spe:30},
+  144:{name:"Articuno",hp:90,atk:85,def:100,spatk:95,spdef:125,spe:85},
+  145:{name:"Zapdos",hp:90,atk:90,def:85,spatk:125,spdef:90,spe:100},
+  146:{name:"Moltres",hp:90,atk:100,def:90,spatk:125,spdef:85,spe:90},
+  147:{name:"Dratini",hp:41,atk:64,def:45,spatk:50,spdef:50,spe:50},
+  148:{name:"Dragonair",hp:61,atk:84,def:65,spatk:70,spdef:70,spe:70},
+  149:{name:"Dragonite",hp:91,atk:134,def:95,spatk:100,spdef:100,spe:80},
+  150:{name:"Mewtwo",hp:106,atk:110,def:90,spatk:154,spdef:90,spe:130},
+  151:{name:"Mew",hp:100,atk:100,def:100,spatk:100,spdef:100,spe:100},
+  152:{name:"Chikorita",hp:45,atk:49,def:65,spatk:49,spdef:65,spe:45},
+  153:{name:"Bayleef",hp:60,atk:62,def:80,spatk:63,spdef:80,spe:60},
+  154:{name:"Meganium",hp:80,atk:82,def:100,spatk:83,spdef:100,spe:80},
+  155:{name:"Cyndaquil",hp:39,atk:52,def:43,spatk:60,spdef:50,spe:65},
+  156:{name:"Quilava",hp:58,atk:64,def:58,spatk:80,spdef:65,spe:80},
+  157:{name:"Typhlosion",hp:78,atk:84,def:78,spatk:109,spdef:85,spe:100},
+  158:{name:"Totodile",hp:50,atk:65,def:64,spatk:44,spdef:48,spe:43},
+  159:{name:"Croconaw",hp:65,atk:80,def:80,spatk:59,spdef:63,spe:58},
+  160:{name:"Feraligatr",hp:85,atk:105,def:100,spatk:79,spdef:83,spe:78},
+  161:{name:"Sentret",hp:35,atk:46,def:34,spatk:35,spdef:45,spe:20},
+  162:{name:"Furret",hp:85,atk:76,def:64,spatk:45,spdef:55,spe:90},
+  163:{name:"Hoothoot",hp:60,atk:30,def:30,spatk:36,spdef:56,spe:50},
+  164:{name:"Noctowl",hp:100,atk:50,def:50,spatk:86,spdef:96,spe:70},
+  165:{name:"Ledyba",hp:40,atk:20,def:30,spatk:40,spdef:80,spe:55},
+  166:{name:"Ledian",hp:55,atk:35,def:50,spatk:55,spdef:110,spe:85},
+  167:{name:"Spinarak",hp:40,atk:60,def:40,spatk:40,spdef:40,spe:30},
+  168:{name:"Ariados",hp:70,atk:90,def:70,spatk:60,spdef:60,spe:40},
+  169:{name:"Crobat",hp:85,atk:90,def:80,spatk:70,spdef:80,spe:130},
+  170:{name:"Chinchou",hp:75,atk:38,def:38,spatk:56,spdef:56,spe:67},
+  171:{name:"Lanturn",hp:125,atk:58,def:58,spatk:76,spdef:76,spe:67},
+  172:{name:"Pichu",hp:20,atk:40,def:15,spatk:35,spdef:35,spe:60},
+  173:{name:"Cleffa",hp:50,atk:25,def:28,spatk:45,spdef:55,spe:15},
+  174:{name:"Igglybuff",hp:90,atk:30,def:15,spatk:40,spdef:20,spe:15},
+  175:{name:"Togepi",hp:35,atk:20,def:65,spatk:40,spdef:65,spe:20},
+  176:{name:"Togetic",hp:55,atk:40,def:85,spatk:80,spdef:105,spe:40},
+  177:{name:"Natu",hp:40,atk:50,def:45,spatk:70,spdef:45,spe:70},
+  178:{name:"Xatu",hp:65,atk:75,def:70,spatk:95,spdef:70,spe:95},
+  179:{name:"Mareep",hp:55,atk:40,def:40,spatk:65,spdef:45,spe:35},
+  180:{name:"Flaaffy",hp:70,atk:55,def:55,spatk:80,spdef:60,spe:45},
+  181:{name:"Ampharos",hp:90,atk:75,def:85,spatk:115,spdef:90,spe:55},
+  182:{name:"Bellossom",hp:75,atk:80,def:95,spatk:90,spdef:100,spe:50},
+  183:{name:"Marill",hp:70,atk:20,def:50,spatk:20,spdef:50,spe:40},
+  184:{name:"Azumarill",hp:100,atk:50,def:80,spatk:60,spdef:80,spe:50},
+  185:{name:"Sudowoodo",hp:70,atk:100,def:115,spatk:30,spdef:65,spe:30},
+  186:{name:"Politoed",hp:90,atk:75,def:75,spatk:90,spdef:100,spe:70},
+  187:{name:"Hoppip",hp:35,atk:35,def:40,spatk:35,spdef:55,spe:50},
+  188:{name:"Skiploom",hp:55,atk:45,def:50,spatk:45,spdef:65,spe:80},
+  189:{name:"Jumpluff",hp:75,atk:55,def:70,spatk:55,spdef:95,spe:110},
+  190:{name:"Aipom",hp:55,atk:70,def:55,spatk:40,spdef:55,spe:85},
+  191:{name:"Sunkern",hp:30,atk:30,def:30,spatk:30,spdef:30,spe:30},
+  192:{name:"Sunflora",hp:75,atk:75,def:55,spatk:105,spdef:85,spe:30},
+  193:{name:"Yanma",hp:65,atk:65,def:45,spatk:75,spdef:45,spe:95},
+  194:{name:"Wooper",hp:55,atk:45,def:45,spatk:25,spdef:25,spe:15},
+  195:{name:"Quagsire",hp:95,atk:85,def:85,spatk:65,spdef:65,spe:35},
+  196:{name:"Espeon",hp:65,atk:65,def:60,spatk:130,spdef:95,spe:110},
+  197:{name:"Umbreon",hp:95,atk:65,def:110,spatk:60,spdef:130,spe:65},
+  198:{name:"Murkrow",hp:60,atk:85,def:42,spatk:85,spdef:42,spe:91},
+  199:{name:"Slowking",hp:95,atk:75,def:80,spatk:100,spdef:110,spe:30},
+  200:{name:"Misdreavus",hp:60,atk:60,def:60,spatk:85,spdef:85,spe:85},
+  201:{name:"Unown",hp:48,atk:72,def:48,spatk:72,spdef:48,spe:48},
+  202:{name:"Wobbuffet",hp:190,atk:33,def:58,spatk:33,spdef:58,spe:33},
+  203:{name:"Girafarig",hp:70,atk:80,def:65,spatk:90,spdef:65,spe:85},
+  204:{name:"Pineco",hp:50,atk:65,def:90,spatk:35,spdef:35,spe:15},
+  205:{name:"Forretress",hp:75,atk:90,def:140,spatk:60,spdef:60,spe:40},
+  206:{name:"Dunsparce",hp:100,atk:70,def:70,spatk:65,spdef:65,spe:45},
+  207:{name:"Gligar",hp:65,atk:75,def:105,spatk:35,spdef:65,spe:85},
+  208:{name:"Steelix",hp:75,atk:85,def:200,spatk:55,spdef:65,spe:30},
+  209:{name:"Snubbull",hp:60,atk:80,def:50,spatk:40,spdef:40,spe:30},
+  210:{name:"Granbull",hp:90,atk:120,def:75,spatk:60,spdef:60,spe:45},
+  211:{name:"Qwilfish",hp:65,atk:95,def:85,spatk:55,spdef:55,spe:85},
+  212:{name:"Scizor",hp:70,atk:130,def:100,spatk:55,spdef:80,spe:65},
+  213:{name:"Shuckle",hp:20,atk:10,def:230,spatk:10,spdef:230,spe:5},
+  214:{name:"Heracross",hp:80,atk:125,def:75,spatk:40,spdef:95,spe:85},
+  215:{name:"Sneasel",hp:55,atk:95,def:55,spatk:35,spdef:75,spe:115},
+  216:{name:"Teddiursa",hp:60,atk:80,def:50,spatk:50,spdef:50,spe:40},
+  217:{name:"Ursaring",hp:90,atk:130,def:75,spatk:75,spdef:75,spe:55},
+  218:{name:"Slugma",hp:40,atk:40,def:40,spatk:70,spdef:40,spe:20},
+  219:{name:"Magcargo",hp:50,atk:50,def:120,spatk:80,spdef:80,spe:30},
+  220:{name:"Swinub",hp:50,atk:50,def:40,spatk:30,spdef:30,spe:50},
+  221:{name:"Piloswine",hp:100,atk:100,def:80,spatk:60,spdef:60,spe:50},
+  222:{name:"Corsola",hp:65,atk:55,def:95,spatk:65,spdef:95,spe:35},
+  223:{name:"Remoraid",hp:35,atk:65,def:35,spatk:65,spdef:35,spe:65},
+  224:{name:"Octillery",hp:75,atk:105,def:75,spatk:105,spdef:75,spe:45},
+  225:{name:"Delibird",hp:45,atk:55,def:45,spatk:65,spdef:45,spe:75},
+  226:{name:"Mantine",hp:65,atk:40,def:70,spatk:80,spdef:140,spe:70},
+  227:{name:"Skarmory",hp:65,atk:80,def:140,spatk:40,spdef:70,spe:70},
+  228:{name:"Houndour",hp:45,atk:60,def:30,spatk:80,spdef:50,spe:65},
+  229:{name:"Houndoom",hp:75,atk:90,def:50,spatk:110,spdef:80,spe:95},
+  230:{name:"Kingdra",hp:75,atk:95,def:95,spatk:95,spdef:95,spe:85},
+  231:{name:"Phanpy",hp:90,atk:60,def:60,spatk:40,spdef:40,spe:40},
+  232:{name:"Donphan",hp:90,atk:120,def:120,spatk:60,spdef:60,spe:50},
+  233:{name:"Porygon2",hp:85,atk:80,def:90,spatk:105,spdef:95,spe:60},
+  234:{name:"Stantler",hp:73,atk:95,def:62,spatk:85,spdef:65,spe:85},
+  235:{name:"Smeargle",hp:55,atk:20,def:35,spatk:20,spdef:45,spe:75},
+  236:{name:"Tyrogue",hp:35,atk:35,def:35,spatk:35,spdef:35,spe:35},
+  237:{name:"Hitmontop",hp:50,atk:95,def:95,spatk:35,spdef:110,spe:70},
+  238:{name:"Smoochum",hp:45,atk:30,def:15,spatk:85,spdef:65,spe:65},
+  239:{name:"Elekid",hp:45,atk:63,def:37,spatk:65,spdef:55,spe:95},
+  240:{name:"Magby",hp:45,atk:75,def:37,spatk:70,spdef:55,spe:83},
+  241:{name:"Miltank",hp:95,atk:80,def:105,spatk:40,spdef:70,spe:100},
+  242:{name:"Blissey",hp:255,atk:10,def:10,spatk:75,spdef:135,spe:55},
+  243:{name:"Raikou",hp:90,atk:85,def:75,spatk:115,spdef:100,spe:115},
+  244:{name:"Entei",hp:115,atk:115,def:85,spatk:90,spdef:75,spe:100},
+  245:{name:"Suicune",hp:100,atk:75,def:115,spatk:90,spdef:115,spe:85},
+  246:{name:"Larvitar",hp:50,atk:64,def:50,spatk:45,spdef:50,spe:41},
+  247:{name:"Pupitar",hp:70,atk:84,def:70,spatk:65,spdef:70,spe:51},
+  248:{name:"Tyranitar",hp:100,atk:134,def:110,spatk:95,spdef:100,spe:61},
+  249:{name:"Lugia",hp:106,atk:90,def:130,spatk:90,spdef:154,spe:110},
+  250:{name:"Ho-Oh",hp:106,atk:130,def:90,spatk:110,spdef:154,spe:90},
+  251:{name:"Celebi",hp:100,atk:100,def:100,spatk:100,spdef:100,spe:100},
+};
+
+// ─── ROLE ASSIGNMENT — basado únicamente en stats base de la especie ──
+// primaryIVs = stats clave para el rol (peso x2), secondaryIVs = secundarios (peso x1)
+function getPokemonRole(entry) {
+  const id = entry.Pokemon.Payload.PokemonID;
+  const bs  = BASE_STATS[id];
+  // Fallback a stats calculados si el ID no está en el catálogo
+  const raw = bs || (() => {
+    const s = entry.Pokemon.Stats;
+    return { hp: s.HP, atk: s.Atk, def: s.Def, spatk: s.SpAtk, spdef: s.SpDef, spe: s.Speed };
+  })();
+
+  const hp = raw.hp, atk = raw.atk, def = raw.def;
+  const spa = raw.spatk, spd = raw.spdef, spe = raw.spe;
+
+  const offMax = Math.max(atk, spa);
+  const isPhys = atk > spa * 1.2;
+  const isSpec = spa > atk * 1.2;
+  const bulky  = hp + def + spd;
+
+  // Muros por defensa muy superior al ataque
+  if (def > offMax * 1.5 && hp > 70)  return { role:'Muro Fís.',  color:'#4ade80', icon:'🛡️', primaryIVs:['HP','Def'],    secondaryIVs:['SpDef'] };
+  if (spd > offMax * 1.5 && hp > 70)  return { role:'Muro Esp.',  color:'#22d3ee', icon:'🛡️', primaryIVs:['HP','SpDef'], secondaryIVs:['Def'] };
+  if (def > offMax * 1.2 && spd > offMax * 1.2 && hp > 60)
+    return { role:'Tanque',  color:'#34d399', icon:'🏰', primaryIVs:['HP','Def','SpDef'], secondaryIVs:[] };
+
+  // Barredores: rápidos con ofensa dominante
+  const esFast = spe >= offMax * 0.75;
+  if (esFast && offMax > bulky * 0.35) {
+    if (isPhys) return { role:'Barredor Fís.', color:'#f87171', icon:'⚔️', primaryIVs:['Atk','Speed'],         secondaryIVs:['HP'] };
+    if (isSpec) return { role:'Barredor Esp.', color:'#818cf8', icon:'🔮', primaryIVs:['SpAtk','Speed'],        secondaryIVs:['HP'] };
+    return            { role:'Barredor Mixto', color:'#fb923c', icon:'💥', primaryIVs:['Atk','SpAtk','Speed'],  secondaryIVs:['HP'] };
+  }
+
+  // Atacantes bulky: mucha HP + buen ataque pero sin velocidad para barrer
+  if (hp > 80 && offMax > 70) {
+    if (isPhys) return { role:'Atacante Fís.', color:'#f97316', icon:'🥊', primaryIVs:['Atk','HP'],        secondaryIVs:['Def','Speed'] };
+    if (isSpec) return { role:'Atacante Esp.', color:'#8b5cf6', icon:'🌀', primaryIVs:['SpAtk','HP'],      secondaryIVs:['SpDef','Speed'] };
+    return            { role:'Atacante Mixto', color:'#e879f9', icon:'🎲', primaryIVs:['Atk','SpAtk','HP'], secondaryIVs:['Speed'] };
+  }
+
+  // Fallback por stat ofensivo dominante
+  if (isPhys) return { role:'Físico',   color:'#f97316', icon:'⚔️', primaryIVs:['Atk','Speed'],    secondaryIVs:['HP'] };
+  if (isSpec) return { role:'Especial', color:'#8b5cf6', icon:'🔮', primaryIVs:['SpAtk','Speed'],  secondaryIVs:['HP'] };
+  return             { role:'Versátil', color:'#6b7280', icon:'🎯', primaryIVs:['HP','Atk','SpAtk'], secondaryIVs:['Speed'] };
+}
+
+// ─── PERFECCIÓN ──────────────────────────────────────────────────────
+// Pondera IVs relevantes al rol + bonif./penaliz. de naturaleza
+function getPerfection(entry) {
+  const r      = getPokemonRole(entry);
+  const ivs    = entry.Pokemon.Payload.IVs;
+  const nature = entry.Pokemon.Payload.NatureName;
+  const nfx    = NATURE_EFFECTS[nature] || {};
+  const primary   = r.primaryIVs   || [];
+  const secondary = r.secondaryIVs || [];
+
+  let score = 0, maxScore = 0;
+  primary.forEach(s   => { score += (ivs[s]||0) * 2; maxScore += 31 * 2; });
+  secondary.forEach(s => { score += (ivs[s]||0);      maxScore += 31; });
+
+  // Naturaleza boostea stat primaria → +5% bonus; la rebaja → -8% penalización
+  if (nfx.up   && primary.includes(nfx.up))   score = score * 1.05;
+  if (nfx.down && primary.includes(nfx.down))  score = score * 0.92;
+
+  return Math.min(100, Math.round(score / maxScore * 100));
+}
+
+function perfColor(pct) {
+  if (pct >= 85) return '#56d364';
+  if (pct >= 65) return '#e3b341';
+  return '#f87171';
+}
+
+function roleBadgeHTML(entry, small = false) {
+  const r   = getPokemonRole(entry);
+  const pct = getPerfection(entry);
+  const sz  = small ? '10px' : '11px';
+  return `<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
+    <span style="font-size:${sz};font-weight:700;padding:2px 8px;border-radius:20px;
+      background:${r.color}22;color:${r.color};border:1px solid ${r.color}44;white-space:nowrap">${r.icon} ${r.role}</span>
+    <span style="font-size:${small?'11px':'13px'};font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+  </div>`;
+}
+
+// ─── ANALYSIS ────────────────────────────────────────────────────────
+
+// ─── RANKING ──────────────────────────────────────────────────────────
+function renderRanking() {
+  const byPerf = [...allPokemon].sort((a,b) => getPerfection(b) - getPerfection(a));
+  const top50   = byPerf.slice(0, 50);
+  const trash50 = [...byPerf].reverse().slice(0, 50);
+  fillRankTable('rank-top-body',   top50);
+  fillRankTable('rank-trash-body', trash50);
+}
+
+function fillRankTable(bodyId, list) {
+  document.getElementById(bodyId).innerHTML = list.map((entry, i) => {
+    const pk   = entry.Pokemon;
+    const ivs  = pk.Payload.IVs;
+    const r    = getPokemonRole(entry);
+    const pct  = getPerfection(entry);
+    const totIV = ivTotal(ivs);
+    return `<tr style="cursor:pointer" onclick='openModal(${JSON.stringify(JSON.stringify(entry))})'>
+      <td style="color:var(--text-muted);font-weight:700">${i+1}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px">
+          <img src="${spriteUrl(pk.Payload.PokemonID)}" style="width:28px;height:28px;image-rendering:pixelated" onerror="this.style.display='none'">
+          <span style="font-weight:600">${pk.StaticData.Name}</span>
+          ${pk.Payload.Shiny ? '<span style="color:var(--gold)">⭐</span>' : ''}
+        </div>
+      </td>
+      <td style="color:var(--text-muted)">${pk.Payload.Level}</td>
+      <td><span style="font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;
+        background:${r.color}22;color:${r.color};border:1px solid ${r.color}44;white-space:nowrap">${r.icon} ${r.role}</span></td>
+      <td>
+        <span style="font-size:15px;font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+      </td>
+      ${['HP','Atk','Def','SpAtk','SpDef','Speed'].map(k => {
+        const isPrimary   = r.primaryIVs.includes(k);
+        const isSecondary = r.secondaryIVs.includes(k);
+        const highlight   = isPrimary ? 'font-weight:800;' : isSecondary ? 'opacity:0.8;' : 'opacity:0.4;';
+        return `<td class="${ivClass(ivs[k])}" style="${highlight}">${ivs[k]}${isPrimary?'★':''}</td>`;
+      }).join('')}
+      <td><span class="iv-score" style="color:${totIV>=155?'#56d364':totIV>=120?'#e3b341':'#f87171'}">${totIV}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function switchRankTab(which, btn) {
+  document.querySelectorAll('.rank-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.rank-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('rank-' + which).style.display = 'block';
+}
+
+// ─── MODAL ───────────────────────────────────────────────────────────
+let _prevTab = 'pc';
+
+function openModal(jsonStr) {
+  const entry = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
+  const pk      = entry.Pokemon;
+  const payload = pk.Payload;
+  const ivs     = payload.IVs;
+  const evs     = payload.EVs;
+  const stats   = pk.Stats;
+  const nature  = payload.NatureName;
+  const nfx     = NATURE_EFFECTS[nature] || {};
+  const types   = pk.StaticData.Types;
+  const moves   = payload.Moves.filter(Boolean);
+  const statKeys = ['HP','Atk','Def','SpAtk','SpDef','Speed'];
+  const statLabel = {HP:'PS', Atk:'Ataque', Def:'Defensa', SpAtk:'At.Esp', SpDef:'Def.Esp', Speed:'Velocidad'};
+  const genderIcon = payload.Gender === 1 ? '♂️' : payload.Gender === 2 ? '♀️' : '⚪';
+  const caughtDate = new Date(payload.CaughtDateUtc).toLocaleDateString('es-ES');
+  const r   = getPokemonRole(entry);
+  const pct = getPerfection(entry);
+
+  // save current tab to restore on back
+  const active = document.querySelector('.nav-item.active');
+  if (active) _prevTab = active.dataset.tab;
+
+  const primaryBadges = r.primaryIVs.map(s =>
+    `<span style="font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;
+      background:#1e3a2a;color:#56d364;border:1px solid #56d36444">${statLabel[s]||s}: ${ivs[s]}</span>`).join('');
+  const secondaryBadges = r.secondaryIVs.map(s =>
+    `<span style="font-size:12px;padding:2px 8px;border-radius:4px;
+      background:#1e2a3a;color:#60a5fa;border:1px solid #60a5fa44">${statLabel[s]||s}: ${ivs[s]}</span>`).join('');
+
+  const html = `
+    <button class="detail-back" onclick="closeDetail()">← Volver</button>
+
+    <div class="detail-layout">
+      <!-- LEFT COLUMN -->
+      <div class="detail-left">
+        <div class="detail-hero">
+          <img class="modal-sprite" src="${spriteUrl(payload.PokemonID)}" onerror="this.style.display='none'" alt="">
+          <div class="modal-name">${pk.StaticData.Name} ${payload.Shiny ? '⭐' : ''} ${genderIcon}</div>
+          <div class="modal-id">#${payload.PokemonID} · ${pk.Ability}</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:center">
+            ${types.map(t => `<span class="type-badge" style="background:${t.color}">${t.name}</span>`).join('')}
+          </div>
+          <div style="margin-top:4px">${roleBadgeHTML(entry)}</div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Información</div>
+          <div class="modal-grid-2">
+            <div class="modal-kv"><div class="k">Nivel</div><div class="v">${payload.Level}</div></div>
+            <div class="modal-kv"><div class="k">HP actual</div><div class="v">${payload.HP}/${stats.HP}</div></div>
+            <div class="modal-kv"><div class="k">Naturaleza</div><div class="v">
+              ${nature}${nfx.up ? ` <span style="color:#f87171;font-size:11px">+${nfx.up}</span>` : ''}${nfx.down ? ` <span style="color:#60a5fa;font-size:11px">-${nfx.down}</span>` : ''}
+            </div></div>
+            <div class="modal-kv"><div class="k">Felicidad</div><div class="v">${payload.Happiness}/255</div></div>
+            <div class="modal-kv"><div class="k">Pokéball</div><div class="v">${payload.PokeballData?.name || '—'}</div></div>
+            <div class="modal-kv"><div class="k">Exp</div><div class="v">${payload.Exp.toLocaleString()}</div></div>
+            <div class="modal-kv"><div class="k">Capturado</div><div class="v">${caughtDate}</div></div>
+            <div class="modal-kv"><div class="k">Lv captura</div><div class="v">${payload.CaughtLevel}</div></div>
+            ${payload.HoldItemData ? `<div class="modal-kv" style="grid-column:span 2"><div class="k">Objeto equipado</div><div class="v">💠 ${payload.HoldItemData.name}</div></div>` : ''}
+            ${payload.NotTradeable ? `<div class="modal-kv" style="grid-column:span 2;background:#1a0808;border:1px solid #f8717133"><div class="k" style="color:#f87171">⚠️ No Tradeable</div></div>` : ''}
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:10px">
+            Caja ${entry._boxIdx} · Posición ${entry.Position}
+            ${pk.OriginalTrainer !== pk.Trainer ? ` · OT: ${pk.OriginalTrainer}` : ''}
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Movimientos</div>
+          <div class="moves-list">
+            ${moves.map(m => `
+              <div class="move-item">
+                <div class="move-name">${m.Name}</div>
+                <div class="move-pp">PP: ${m.PP}/${m.MaxPP}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <div class="modal-section">
+          <div class="modal-section-title">Stats · IVs · EVs</div>
+          <table class="iv-table">
+            <thead><tr><th>Stat</th><th>Valor</th><th>IV</th><th>EV</th><th style="width:120px">—</th></tr></thead>
+            <tbody>
+              ${statKeys.map(k => `
+                <tr>
+                  <td style="color:${STAT_COLORS[k]};font-weight:700">${STAT_LABELS[k]}</td>
+                  <td style="font-weight:700;font-size:15px">${stats[k]}</td>
+                  <td class="${ivClass(ivs[k])}" style="font-size:14px">${ivs[k]}</td>
+                  <td style="color:var(--text-muted)">${evs[k]}</td>
+                  <td><div class="bar-track" style="height:8px"><div class="bar-fill" style="width:${Math.round(stats[k]/STAT_MAX[k]*100)}%;background:${STAT_COLORS[k]}"></div></div></td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+          <div style="display:flex;gap:12px;margin-top:12px;font-size:12px;color:var(--text-muted)">
+            <span>Total IVs: <strong style="color:var(--text)">${ivTotal(ivs)}/186</strong></span>
+            <span>Total EVs: <strong style="color:var(--text)">${Object.values(evs).reduce((a,b)=>a+b,0)}</strong></span>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Valoración de rol — ${r.role}</div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px">
+            <span style="font-size:48px;font-weight:900;color:${perfColor(pct)}">${pct}%</span>
+            <div style="flex:1">
+              <div class="bar-track" style="height:10px;margin-bottom:8px">
+                <div class="bar-fill" style="width:${pct}%;background:${perfColor(pct)}"></div>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted)">
+                ${pct >= 85 ? 'Excelente para su rol' : pct >= 65 ? 'Aceptable para su rol' : 'Mejorable para su rol'}
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">IVs clave (×2)</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">${primaryBadges || '<span style="color:var(--text-muted);font-size:12px">—</span>'}</div>
+          </div>
+          ${secondaryBadges ? `
+          <div style="margin-bottom:8px">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">IVs secundarios (×1)</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">${secondaryBadges}</div>
+          </div>` : ''}
+          ${nfx.up || nfx.down ? `
+          <div style="font-size:12px;margin-top:8px;display:flex;flex-direction:column;gap:3px">
+            ${nfx.up   ? `<span style="color:#f87171">↑ ${payload.NatureName} sube ${nfx.up}${r.primaryIVs.includes(nfx.up)   ? ' — <strong>bonus +5%</strong>' : ''}</span>` : ''}
+            ${nfx.down ? `<span style="color:#60a5fa">↓ ${payload.NatureName} baja ${nfx.down}${r.primaryIVs.includes(nfx.down) ? ' — <strong>penaliz. -8%</strong>' : ''}</span>` : ''}
+          </div>` : ''}
+        </div>
+
+        ${payload.EVsCollected && Object.values(payload.EVsCollected).some(v=>v>0) ? `
+        <div class="modal-section">
+          <div class="modal-section-title">EVs acumulados (histórico)</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            ${statKeys.map(k => `
+              <div style="background:var(--surface2);border-radius:8px;padding:8px 12px;text-align:center;min-width:60px">
+                <div style="font-size:11px;color:${STAT_COLORS[k]};font-weight:700">${STAT_LABELS[k]}</div>
+                <div style="font-size:18px;font-weight:700">${payload.EVsCollected[k]||0}</div>
+              </div>`).join('')}
+          </div>
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detail-content').innerHTML = html;
+  // switch to detail section
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('tab-detail').classList.add('active');
+  document.getElementById('main').scrollTop = 0;
+}
+
+function closeDetail() {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('tab-' + _prevTab).classList.add('active');
+  const navItem = document.querySelector(`.nav-item[data-tab="${_prevTab}"]`);
+  if (navItem) navItem.classList.add('active');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('tab-detail').classList.contains('active')) closeDetail();
+});
+
+// ─── AI TEAM EVALUATION ─────────────────────────────────────────────
+let cachedApiKey = '';
+
+function buildTeamPrompt() {
+  const party = allPokemon.filter(p => p._boxIdx === 0);
+  const ui    = gameData.user_info;
+
+  const teamLines = party.map((entry, i) => {
+    const pk      = entry.Pokemon;
+    const payload = pk.Payload;
+    const ivs     = payload.IVs;
+    const stats   = pk.Stats;
+    const role    = getPokemonRole(entry);
+    const pct     = getPerfection(entry);
+    const moves   = payload.Moves.filter(Boolean).map(m => m.Name).join(', ');
+    const nfx     = NATURE_EFFECTS[payload.NatureName] || {};
+    const natStr  = nfx.up ? `${payload.NatureName} (+${nfx.up}/-${nfx.down})` : payload.NatureName;
+    const types   = pk.StaticData.Types.map(t => t.name).join('/');
+    const ivStr   = `HP:${ivs.HP} Atk:${ivs.Atk} Def:${ivs.Def} SpAtk:${ivs.SpAtk} SpDef:${ivs.SpDef} Spe:${ivs.Speed}`;
+    const statStr = `HP:${stats.HP} Atk:${stats.Atk} Def:${stats.Def} SpAtk:${stats.SpAtk} SpDef:${stats.SpDef} Spe:${stats.Speed}`;
+    return `${i+1}. ${pk.StaticData.Name} (${types}) — Lv${payload.Level} | Rol: ${role.role} | Perfección: ${pct}%
+   Naturaleza: ${natStr} | Habilidad: ${pk.Ability} | Felicidad: ${payload.Happiness}
+   Stats: ${statStr}
+   IVs: ${ivStr}
+   Movimientos: ${moves}
+   ${payload.HoldItemData ? 'Objeto: ' + payload.HoldItemData.name : ''}`;
+  }).join('\n\n');
+
+  return `Eres un experto analizador de equipos Pokémon para PokeOne (un MMO). Analiza el siguiente equipo en castellano de España y proporciona una valoración detallada.
+
+CONTEXTO DEL JUGADOR:
+- Nombre: ${ui.userName} | Versión: ${ui.accountVersion}
+- Nivel entrenador Kanto: ${ui.kantoTrainerLevel} | Johto: ${ui.johtoTrainerLevel}
+- Días jugados: ${Math.floor(ui.playedDays)} | Medallas: ${ui.badges.length}/16
+- PVP: ${ui.pvpWins}V / ${ui.pvpLosses}D
+
+EQUIPO ACTUAL:
+${teamLines}
+
+Por favor, proporciona una valoración estructurada con estas secciones exactas usando los marcadores indicados:
+
+[PUNTUACION] Nota del equipo del 1 al 10 con una frase de diagnóstico corta.
+
+[SINERGIA] Analiza la sinergia entre los miembros: cobertura de tipos, roles complementarios, velocidades, si hay huecos evidentes. Sé específico mencionando los Pokémon por nombre.
+
+[FORTALEZAS] 3-4 puntos fuertes concretos del equipo.
+
+[DEBILIDADES] 3-4 vulnerabilidades claras (tipos no cubiertos, roles duplicados, IVs o naturalezas problemáticas para el rol asignado).
+
+[MEJORAS] 2-3 sugerencias accionables y concretas para mejorar el equipo, teniendo en cuenta el nivel de progresión del jugador en PokeOne.
+
+Sé directo, técnico y útil. Responde íntegramente en castellano de España.`;
+}
+
+async function runAIEval() {
+  const keyInput = document.getElementById('ai-key-input');
+  const apiKey   = keyInput.value.trim() || cachedApiKey;
+  if (!apiKey) {
+    keyInput.style.borderColor = 'var(--red)';
+    keyInput.placeholder = '¡Introduce tu API Key de Anthropic!';
+    keyInput.focus();
+    return;
+  }
+  cachedApiKey = apiKey;
+  keyInput.value = '';
+  keyInput.placeholder = 'API Key guardada ✓';
+
+  const btn    = document.getElementById('ai-eval-btn');
+  const result = document.getElementById('ai-eval-result');
+  btn.disabled = true;
+  btn.textContent = '⏳ Analizando…';
+  result.style.display = 'block';
+  result.innerHTML = `
+    <div class="ai-card">
+      <div class="ai-loading">
+        <div class="ai-spinner"></div>
+        <span>Claude está valorando tu equipo…</span>
+      </div>
+    </div>`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1200,
+        messages: [{ role: 'user', content: buildTeamPrompt() }],
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    result.innerHTML = renderAIResponse(text);
+  } catch(e) {
+    result.innerHTML = `<div class="ai-card" style="border-color:#f87171">
+      <div style="color:#f87171;font-weight:700">❌ Error al conectar con la IA</div>
+      <div style="color:var(--text-muted);font-size:13px;margin-top:6px">${e.message}</div>
+    </div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Volver a analizar';
+  }
+}
+
+function renderAIResponse(text) {
+  // Parse sections
+  const get = (tag) => {
+    const m = text.match(new RegExp(`\\[${tag}\\]([\\s\\S]*?)(?=\\[|$)`));
+    return m ? m[1].trim() : '';
+  };
+  const score      = get('PUNTUACION');
+  const synergy    = get('SINERGIA');
+  const strengths  = get('FORTALEZAS');
+  const weaknesses = get('DEBILIDADES');
+  const mejoras    = get('MEJORAS');
+
+  const scoreMatch = score.match(/(\d+(?:\.\d+)?)\s*(?:\/\s*10)?/);
+  const scoreNum   = scoreMatch ? parseFloat(scoreMatch[1]) : null;
+  const scoreColor = scoreNum >= 7 ? '#56d364' : scoreNum >= 5 ? '#e3b341' : '#f87171';
+
+  const fmtList = (txt) => txt.split('\n')
+    .map(l => l.trim()).filter(Boolean)
+    .map(l => l.replace(/^[-•*\d+\.\)]\s*/, ''))
+    .map(l => `<li>${l}</li>`).join('');
+
+  const fmtPara = (txt) => txt.split('\n')
+    .map(l => l.trim()).filter(Boolean)
+    .map(l => l.replace(/^[-•*\d+\.\)]\s*/, ''))
+    .map(l => `<p style="margin:0 0 7px">${l}</p>`).join('');
+
+  return `
+    <div class="ai-card">
+      <div class="ai-header">
+        <div class="ai-badge">🤖 Claude · claude-haiku</div>
+        ${scoreNum !== null ? `
+          <div style="display:flex;align-items:baseline;gap:6px">
+            <span style="font-size:42px;font-weight:900;color:${scoreColor}">${scoreNum}</span>
+            <span style="font-size:18px;color:var(--text-muted)">/10</span>
+          </div>
+        ` : ''}
+      </div>
+      ${score ? `<div class="ai-diagnosis">${score.replace(/\d+(\.\d+)?\s*\/?\s*10[:\s]*/,'').trim()}</div>` : ''}
+
+      <div class="ai-sections">
+        ${synergy ? `
+          <div class="ai-section">
+            <div class="ai-section-title">⚖️ Sinergia</div>
+            <div class="ai-section-body">${fmtPara(synergy)}</div>
+          </div>` : ''}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          ${strengths ? `
+            <div class="ai-section ai-section--green">
+              <div class="ai-section-title" style="color:#56d364">✅ Fortalezas</div>
+              <ul class="ai-list">${fmtList(strengths)}</ul>
+            </div>` : ''}
+          ${weaknesses ? `
+            <div class="ai-section ai-section--red">
+              <div class="ai-section-title" style="color:#f87171">⚠️ Debilidades</div>
+              <ul class="ai-list">${fmtList(weaknesses)}</ul>
+            </div>` : ''}
+        </div>
+        ${mejoras ? `
+          <div class="ai-section ai-section--blue">
+            <div class="ai-section-title" style="color:#60a5fa">💡 Sugerencias de mejora</div>
+            <ul class="ai-list">${fmtList(mejoras)}</ul>
+          </div>` : ''}
+      </div>
+    </div>`;
+}
+
+// ─── NAV ────────────────────────────────────────────────────────────
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById('tab-' + item.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
