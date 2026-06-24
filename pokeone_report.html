@@ -1338,8 +1338,8 @@ function openModal(jsonStr) {
   const entry = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
   const pk      = entry.Pokemon;
   const payload = pk.Payload;
-  const ivs     = payload.IVs;
-  const evs     = payload.EVs;
+  const ivs     = payload.IVs || {};
+  const evs     = payload.EVs || {};
   const stats   = pk.Stats;
   const nature  = payload.NatureName;
   const nfx     = NATURE_EFFECTS[nature] || {};
