@@ -757,6 +757,7 @@ function pokeCardHTML(entry, large=false) {
   const moves = payload.Moves.filter(Boolean);
   const hpPct = Math.round(payload.HP / stats.HP * 100);
 
+  const evs = payload.EVs || {};
   const statKeys = ['HP','Atk','Def','SpAtk','SpDef','Speed'];
   const statBars = statKeys.map(k => {
     const val = stats[k];
