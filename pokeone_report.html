@@ -463,9 +463,9 @@
         <div style="overflow-x:auto">
           <table class="iv-rank-table">
             <thead><tr>
-              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th><th>Perfección</th>
+              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th>
               <th>HP</th><th>Atk</th><th>Def</th><th>SpAtk</th><th>SpDef</th><th>Spd</th>
-              <th>Total IV</th>
+              <th>Total IV</th><th>Habilidad</th><th>Naturaleza</th><th>Perfección</th>
             </tr></thead>
             <tbody id="rank-top-body"></tbody>
           </table>
@@ -476,9 +476,9 @@
         <div style="overflow-x:auto">
           <table class="iv-rank-table">
             <thead><tr>
-              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th><th>Perfección</th>
+              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th>
               <th>HP</th><th>Atk</th><th>Def</th><th>SpAtk</th><th>SpDef</th><th>Spd</th>
-              <th>Total IV</th>
+              <th>Total IV</th><th>Habilidad</th><th>Naturaleza</th><th>Perfección</th>
             </tr></thead>
             <tbody id="rank-trash-body"></tbody>
           </table>
@@ -540,6 +540,19 @@ const NATURE_EFFECTS = {
 const STAT_COLORS = {HP:'#f87171', Atk:'#fb923c', Def:'#facc15', SpAtk:'#60a5fa', SpDef:'#34d399', Speed:'#a78bfa'};
 const STAT_LABELS = {HP:'HP', Atk:'Atk', Def:'Def', SpAtk:'SpA', SpDef:'SpD', Speed:'Spe'};
 const STAT_MAX = {HP:255, Atk:190, Def:190, SpAtk:190, SpDef:190, Speed:180};
+
+function timeSinceCaught(dateUtc) {
+  if (!dateUtc) return '';
+  const now = new Date();
+  const caught = new Date(dateUtc);
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const caughtStart = new Date(caught.getFullYear(), caught.getMonth(), caught.getDate());
+  const days = Math.round((todayStart - caughtStart) / 86400000);
+  if (days === 0) return 'Hoy';
+  if (days === 1) return 'Ayer';
+  if (days <= 30) return `Hace ${days} días`;
+  return 'Hace +30 días';
+}
 
 function spriteUrl(id) {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
@@ -756,6 +769,7 @@ function pokeCardHTML(entry, large=false) {
       <span class="stat-num">${val}</span>
       <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${pct}%;background:${STAT_COLORS[k]}"></div></div>
       <span class="stat-iv ${ivClass(iv)}">${iv}</span>
+      <span style="font-size:11px;width:24px;text-align:right;color:${evs[k]>0?'#60a5fa':'var(--text-muted)'}">${evs[k]||0}</span>
     </div>`;
   }).join('');
 
@@ -780,14 +794,14 @@ function pokeCardHTML(entry, large=false) {
           </div>
           <div style="margin-top:5px">${roleBadgeHTML(entry)}</div>
           <div style="margin-top:5px;display:flex;gap:6px;flex-wrap:wrap">
-            ${heldBadge}${notTradeTag}
+            ${notTradeTag}
           </div>
         </div>
       </div>
       <div>
         <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;display:flex;justify-content:space-between">
           <span>STATS</span>
-          <span>IV</span>
+          <span style="display:flex;gap:18px"><span>IV</span><span>EV</span></span>
         </div>
         <div class="stat-bars">${statBars}</div>
       </div>
@@ -803,6 +817,7 @@ function pokeCardHTML(entry, large=false) {
         <span>${pk.Payload.PokeballData?.name || ''}</span>
         <span>Felicidad: ${payload.Happiness}</span>
       </div>
+      ${heldBadge ? `<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">${heldBadge}</div>` : ''}
     </div>
   `;
 }
@@ -1283,16 +1298,15 @@ function fillRankTable(bodyId, list) {
       <td>
         <div style="display:flex;align-items:center;gap:8px">
           <img src="${spriteUrl(pk.Payload.PokemonID)}" style="width:28px;height:28px;image-rendering:pixelated" onerror="this.style.display='none'">
-          <span style="font-weight:600">${pk.StaticData.Name}</span>
-          ${pk.Payload.Shiny ? '<span style="color:var(--gold)">⭐</span>' : ''}
+          <div>
+            <div style="font-weight:600">${pk.StaticData.Name}${pk.Payload.Shiny ? ' <span style="color:var(--gold)">⭐</span>' : ''}</div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:1px">${timeSinceCaught(pk.Payload.CaughtDateUtc)}</div>
+          </div>
         </div>
       </td>
       <td style="color:var(--text-muted)">${pk.Payload.Level}</td>
       <td><span style="font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;
         background:${r.color}22;color:${r.color};border:1px solid ${r.color}44;white-space:nowrap">${r.icon} ${r.role}</span></td>
-      <td>
-        <span style="font-size:15px;font-weight:800;color:${perfColor(pct)}">${pct}%</span>
-      </td>
       ${['HP','Atk','Def','SpAtk','SpDef','Speed'].map(k => {
         const isPrimary   = r.primaryIVs.includes(k);
         const isSecondary = r.secondaryIVs.includes(k);
@@ -1300,6 +1314,11 @@ function fillRankTable(bodyId, list) {
         return `<td class="${ivClass(ivs[k])}" style="${highlight}">${ivs[k]}${isPrimary?'★':''}</td>`;
       }).join('')}
       <td><span class="iv-score" style="color:${totIV>=155?'#56d364':totIV>=120?'#e3b341':'#f87171'}">${totIV}</span></td>
+      <td style="font-size:12px;color:var(--text-muted)">${pk.Ability || '—'}</td>
+      <td style="font-size:12px;color:var(--text-muted)">${pk.Payload.NatureName || '—'}</td>
+      <td>
+        <span style="font-size:15px;font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+      </td>
     </tr>`;
   }).join('');
 }
