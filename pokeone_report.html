@@ -120,10 +120,10 @@
   .card-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 14px; }
 
   /* Badges */
-  .badges-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badges-grid { display: flex; flex-wrap: wrap; gap: 6px; }
   .badge-item {
-    width: 52px; height: 52px; border-radius: 50%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--border);
+    width: 40px; height: 40px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; font-size: 17px; border: 2px solid var(--border);
     transition: transform 0.2s; cursor: default; position: relative;
   }
   .badge-item.earned { border-color: var(--gold); box-shadow: 0 0 12px rgba(246,173,85,0.4); }
@@ -360,7 +360,7 @@
     <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar archivo</button>
   </div>
   <input type="file" id="file-input" accept=".json">
-  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 10:00</div>
+  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 10:30</div>
 </div>
 
 <!-- APP -->
@@ -396,11 +396,11 @@
 
       <div class="overview-row">
         <div class="card">
-          <div class="card-title">🏅 Medallas Kanto</div>
-          <div class="region-label">Kanto Gym Badges</div>
+          <div class="card-title">🏅 Medallas</div>
+          <div class="region-label">Kanto</div>
           <div class="badges-grid" id="kanto-badges"></div>
           <div style="margin-top:14px">
-            <div class="region-label">Johto Gym Badges</div>
+            <div class="region-label">Johto</div>
             <div class="badges-grid" id="johto-badges"></div>
           </div>
         </div>
@@ -835,7 +835,8 @@ function pokeCardHTML(entry, large=false) {
   }).join('');
 
   const heldBadge = pk.Payload.HoldItemData
-    ? `<span class="tag">🎒 ${pk.Payload.HoldItemData.name}</span>` : '';
+    ? `<span class="tag">🎒 ${pk.Payload.HoldItemData.name}</span>`
+    : `<span class="tag" style="color:var(--text-muted);opacity:0.5">Sin objeto</span>`;
   const notTradeTag = payload.NotTradeable ? `<span class="tag" style="color:#f87171">🔒 No tradeable</span>` : '';
   const caughtDate = new Date(payload.CaughtDateUtc).toLocaleDateString('es-ES');
 
@@ -854,9 +855,6 @@ function pokeCardHTML(entry, large=false) {
             ${types.map(t => `<span class="type-badge" style="background:${t.color}">${t.name}</span>`).join('')}
           </div>
           <div style="margin-top:5px">${roleBadgeHTML(entry)}</div>
-          <div style="margin-top:5px;display:flex;gap:6px;flex-wrap:wrap">
-            ${notTradeTag}
-          </div>
         </div>
       </div>
       <div>
@@ -878,7 +876,10 @@ function pokeCardHTML(entry, large=false) {
         <span>${pk.Payload.PokeballData?.name || ''}</span>
         <span>Felicidad: ${payload.Happiness}</span>
       </div>
-      ${heldBadge ? `<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">${heldBadge}</div>` : ''}
+      <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+        ${heldBadge}
+        ${notTradeTag}
+      </div>
     </div>
   `;
 }
