@@ -360,7 +360,7 @@
     <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar archivo</button>
   </div>
   <input type="file" id="file-input" accept=".json">
-  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 07:30</div>
+  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 10:00</div>
 </div>
 
 <!-- APP -->
@@ -430,29 +430,6 @@
       <div class="section-title"><span class="icon">⚔️</span> Equipo Activo</div>
       <div class="party-grid" id="party-grid"></div>
 
-      <!-- AI EVALUATION -->
-      <div id="ai-eval-block" style="margin-top:28px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px">
-            🤖 Valoración IA del equipo
-          </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <input id="ai-key-input" type="password" placeholder="API Key de Anthropic…"
-              style="background:var(--surface);border:1px solid var(--border);color:var(--text);
-                     border-radius:8px;padding:7px 12px;font-size:13px;outline:none;width:240px;
-                     transition:border-color 0.2s"
-              onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
-            <button onclick="runAIEval()" id="ai-eval-btn"
-              style="background:var(--red);color:white;border:none;border-radius:8px;
-                     padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;
-                     transition:background 0.2s;white-space:nowrap"
-              onmouseover="this.style.background='var(--red-dark)'" onmouseout="this.style.background='var(--red)'">
-              Analizar equipo
-            </button>
-          </div>
-        </div>
-        <div id="ai-eval-result" style="display:none"></div>
-      </div>
     </div>
 
     <!-- PC -->
@@ -494,6 +471,7 @@
       <div style="display:flex;gap:8px;margin-bottom:20px">
         <button class="rank-tab-btn active" data-rank="top" onclick="switchRankTab('top',this)">🏅 Top 50 — Mejores</button>
         <button class="rank-tab-btn" data-rank="trash" onclick="switchRankTab('trash',this)">🗑️ Trash 50 — Peores</button>
+        <button class="rank-tab-btn" data-rank="team" onclick="switchRankTab('team',this)">⚔️ Team actual</button>
       </div>
 
       <div id="rank-top" class="rank-panel">
@@ -518,6 +496,19 @@
               <th>Total IV</th><th>Habilidad</th><th>Naturaleza</th><th>Perfección</th>
             </tr></thead>
             <tbody id="rank-trash-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="rank-team" class="rank-panel" style="display:none">
+        <div style="overflow-x:auto">
+          <table class="iv-rank-table">
+            <thead><tr>
+              <th>#</th><th>Pokémon</th><th>Lv</th><th>Rol</th>
+              <th>HP</th><th>Atk</th><th>Def</th><th>SpAtk</th><th>SpDef</th><th>Spd</th>
+              <th>Total IV</th><th>Habilidad</th><th>Naturaleza</th><th>Perfección</th>
+            </tr></thead>
+            <tbody id="rank-team-body"></tbody>
           </table>
         </div>
       </div>
@@ -1410,6 +1401,11 @@ function renderRankingList() {
   const trash50 = [...byPerf].reverse().slice(0, 50);
   fillRankTable('rank-top-body',   top50);
   fillRankTable('rank-trash-body', trash50);
+
+  // Team: equipo activo (caja 0), filtrado si hay query, ordenado por perfección
+  const teamFiltered = filterPokemon(allPokemon.filter(p => p._boxIdx === 0), query, rankSearchMode);
+  const teamByPerf   = [...teamFiltered].sort((a,b) => getPerfection(b) - getPerfection(a));
+  fillRankTable('rank-team-body', teamByPerf);
 }
 
 function fillRankTable(bodyId, list) {
