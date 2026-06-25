@@ -360,7 +360,7 @@
     <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar archivo</button>
   </div>
   <input type="file" id="file-input" accept=".json">
-  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 10:30</div>
+  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 10:45</div>
 </div>
 
 <!-- APP -->
@@ -614,8 +614,9 @@ function timeSinceCaught(dateUtc) {
   return 'Hace +30 días';
 }
 
-function spriteUrl(id) {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+function spriteUrl(id, shiny = false) {
+  const base = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+  return shiny ? `${base}/shiny/${id}.png` : `${base}/${id}.png`;
 }
 
 function ivClass(v) {
@@ -847,7 +848,7 @@ function pokeCardHTML(entry, large=false) {
   return `
     <div class="poke-card" onclick='openModal(${JSON.stringify(JSON.stringify(entry))})'>
       <div class="poke-card-header">
-        <img class="poke-sprite" src="${spriteUrl(payload.PokemonID)}" onerror="this.style.display='none'" alt="${pk.StaticData.Name}">
+        <img class="poke-sprite" src="${spriteUrl(payload.PokemonID, payload.Shiny)}" onerror="this.style.display='none'" alt="${pk.StaticData.Name}">
         <div class="poke-info">
           <div class="poke-name">${pk.StaticData.Name}${payload.Shiny ? ' ⭐' : ''}</div>
           <div class="poke-sub">Lv ${payload.Level} · #${payload.PokemonID} · <span class="poke-nature">${natureStr}</span></div>
@@ -1028,7 +1029,7 @@ function pcPokeCardHTML(entry) {
         ${heldItem ? `<span title="${heldItem.name}" style="font-size:13px">💠</span>` : ''}
       </div>
       <div class="pc-poke-header">
-        <img class="pc-sprite" src="${spriteUrl(payload.PokemonID)}" onerror="this.style.opacity=0" alt="">
+        <img class="pc-sprite" src="${spriteUrl(payload.PokemonID, payload.Shiny)}" onerror="this.style.opacity=0" alt="">
         <div style="flex:1;overflow:hidden">
           <div class="pc-poke-name">${pk.StaticData.Name}</div>
           <div class="pc-poke-meta" style="display:flex;align-items:center;gap:6px">
@@ -1420,7 +1421,7 @@ function fillRankTable(bodyId, list) {
       <td style="color:var(--text-muted);font-weight:700">${i+1}</td>
       <td>
         <div style="display:flex;align-items:center;gap:8px">
-          <img src="${spriteUrl(pk.Payload.PokemonID)}" style="width:28px;height:28px;image-rendering:pixelated" onerror="this.style.display='none'">
+          <img src="${spriteUrl(pk.Payload.PokemonID, pk.Payload.Shiny)}" style="width:28px;height:28px;image-rendering:pixelated" onerror="this.style.display='none'">
           <div>
             <div style="font-weight:600">${pk.StaticData.Name}${pk.Payload.Shiny ? ' <span style="color:var(--gold)">⭐</span>' : ''}</div>
             <div style="font-size:10px;color:var(--text-muted);margin-top:1px">${timeSinceCaught(pk.Payload.CaughtDateUtc)}</div>
@@ -1492,7 +1493,7 @@ function openModal(jsonStr) {
       <!-- LEFT COLUMN -->
       <div class="detail-left">
         <div class="detail-hero">
-          <img class="modal-sprite" src="${spriteUrl(payload.PokemonID)}" onerror="this.style.display='none'" alt="">
+          <img class="modal-sprite" src="${spriteUrl(payload.PokemonID, payload.Shiny)}" onerror="this.style.display='none'" alt="">
           <div class="modal-name">${pk.StaticData.Name} ${payload.Shiny ? '⭐' : ''} ${genderIcon}</div>
           <div class="modal-id">#${payload.PokemonID} · ${pk.Ability}</div>
           <div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:center">
