@@ -25,26 +25,43 @@
   /* ── UPLOAD SCREEN ── */
   #upload-screen {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 100vh; gap: 24px; padding: 24px;
+    min-height: 100vh; gap: 20px; padding: 24px;
+    background: radial-gradient(ellipse at 50% 0%, #1a1f2e 0%, var(--bg) 60%);
   }
-  .upload-logo { font-size: 64px; }
-  .upload-title { font-size: 28px; font-weight: 700; color: var(--red); }
-  .upload-subtitle { color: var(--text-muted); text-align: center; max-width: 400px; line-height: 1.6; }
+  .upload-card {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    margin-bottom: 8px;
+  }
+  .upload-logo {
+    font-size: 52px; line-height: 1;
+    filter: drop-shadow(0 0 18px rgba(88,166,255,0.25));
+  }
+  .upload-title {
+    font-size: 26px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.5px;
+  }
+  .upload-title span { color: var(--blue); }
+  .upload-subtitle { color: var(--text-muted); text-align: center; max-width: 380px; line-height: 1.6; font-size: 14px; }
   .upload-zone {
-    border: 2px dashed var(--border); border-radius: 16px; padding: 48px 64px;
-    display: flex; flex-direction: column; align-items: center; gap: 16px;
-    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    border: 1px solid var(--border); border-radius: 20px; padding: 44px 72px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    cursor: pointer; transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
     background: var(--surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
   }
-  .upload-zone:hover, .upload-zone.drag-over { border-color: var(--red); background: #1a0d0c; }
-  .upload-zone-icon { font-size: 48px; }
-  .upload-zone-text { color: var(--text-muted); font-size: 14px; text-align: center; }
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--blue); background: #0d1420;
+    box-shadow: 0 0 0 4px rgba(88,166,255,0.08), 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .upload-zone-icon { font-size: 40px; opacity: 0.8; }
+  .upload-zone-text { color: var(--text-muted); font-size: 13px; text-align: center; line-height: 1.6; }
+  .upload-zone-text strong { color: var(--text); font-weight: 600; }
   .upload-btn {
-    background: var(--red); color: white; border: none; border-radius: 8px;
-    padding: 10px 24px; font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: background 0.2s;
+    background: var(--blue); color: #0d1117; border: none; border-radius: 8px;
+    padding: 9px 22px; font-size: 14px; font-weight: 700; cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.2px;
   }
-  .upload-btn:hover { background: var(--red-dark); }
+  .upload-btn:hover { opacity: 0.85; transform: translateY(-1px); }
   #file-input { display: none; }
 
   /* ── LAYOUT ── */
@@ -58,9 +75,10 @@
   .sidebar-header {
     padding: 20px 16px 16px; border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(180deg, rgba(88,166,255,0.05) 0%, transparent 100%);
   }
   .sidebar-logo { font-size: 28px; }
-  .sidebar-title { font-size: 16px; font-weight: 700; color: var(--red); }
+  .sidebar-title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
   .sidebar-trainer { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
   .nav-section { padding: 12px 8px 4px; font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 1px; }
   .nav-item {
@@ -69,14 +87,14 @@
     transition: background 0.15s, color 0.15s; user-select: none;
   }
   .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active { background: #2d1a1a; color: var(--red); font-weight: 600; }
+  .nav-item.active { background: rgba(88,166,255,0.08); color: var(--blue); font-weight: 600; border-left: 2px solid var(--blue); margin-left: 4px; padding-left: 10px; }
   .nav-item .icon { font-size: 18px; width: 22px; text-align: center; }
   .sidebar-footer { margin-top: auto; padding: 12px; border-top: 1px solid var(--border); }
   .re-upload-btn {
     width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted);
     border-radius: 8px; padding: 8px; font-size: 13px; cursor: pointer; transition: all 0.2s;
   }
-  .re-upload-btn:hover { border-color: var(--red); color: var(--red); }
+  .re-upload-btn:hover { border-color: var(--blue); color: var(--blue); }
 
   /* ── MAIN ── */
   #main { flex: 1; overflow-y: auto; }
@@ -143,7 +161,7 @@
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px;
     display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s;
   }
-  .poke-card:hover { border-color: var(--red); }
+  .poke-card:hover { border-color: var(--blue); }
   .poke-card-header { display: flex; align-items: center; gap: 12px; }
   .poke-sprite { width: 72px; height: 72px; image-rendering: pixelated; }
   .poke-sprite-placeholder { width: 72px; height: 72px; background: var(--surface2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
@@ -185,7 +203,7 @@
     border-radius: 8px; padding: 8px 14px; font-size: 14px; outline: none; width: 220px;
     transition: border-color 0.2s;
   }
-  .search-input:focus { border-color: var(--red); }
+  .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(88,166,255,0.08); }
   .filter-select {
     background: var(--surface); border: 1px solid var(--border); color: var(--text);
     border-radius: 8px; padding: 8px 12px; font-size: 14px; outline: none; cursor: pointer;
@@ -195,7 +213,13 @@
     border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer;
     transition: all 0.15s;
   }
-  .sort-btn.active { border-color: var(--red); color: var(--red); }
+  .sort-btn.active { border-color: var(--blue); color: var(--blue); }
+  .mode-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .mode-btn.active { border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,0.08); }
   .pc-count { color: var(--text-muted); font-size: 13px; margin-left: auto; }
 
   .box-section { margin-bottom: 24px; }
@@ -207,7 +231,7 @@
     padding: 10px; cursor: pointer; transition: border-color 0.2s, transform 0.15s;
     position: relative;
   }
-  .pc-poke-card:hover { border-color: var(--red); transform: translateY(-2px); }
+  .pc-poke-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
   .pc-poke-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
   .pc-sprite { width: 40px; height: 40px; image-rendering: pixelated; }
   .pc-poke-name { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -227,7 +251,7 @@
     padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--text-muted);
     cursor: pointer; transition: all 0.15s;
   }
-  .detail-back:hover { border-color: var(--red); color: var(--red); }
+  .detail-back:hover { border-color: var(--blue); color: var(--blue); }
   .detail-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
   @media (max-width: 800px) { .detail-layout { grid-template-columns: 1fr; } }
   .detail-left { display: flex; flex-direction: column; gap: 14px; }
@@ -325,15 +349,18 @@
 
 <!-- UPLOAD SCREEN -->
 <div id="upload-screen">
-  <div class="upload-logo">🎮</div>
-  <div class="upload-title">PokeOne — Reporte de Partida</div>
-  <div class="upload-subtitle">Carga tu archivo JSON exportado para visualizar el estado completo de tu partida.</div>
+  <div class="upload-card">
+    <div class="upload-logo">🎮</div>
+    <div class="upload-title">PokeOne<span> Report</span></div>
+    <div class="upload-subtitle">Carga tu archivo JSON exportado para visualizar el estado completo de tu partida.</div>
+  </div>
   <div class="upload-zone" id="drop-zone">
     <div class="upload-zone-icon">📂</div>
     <div class="upload-zone-text">Arrastra tu <strong>input_jsolerca.json</strong> aquí<br>o haz clic para seleccionar</div>
-    <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar JSON</button>
+    <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar archivo</button>
   </div>
   <input type="file" id="file-input" accept=".json">
+  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 07:30</div>
 </div>
 
 <!-- APP -->
@@ -341,9 +368,9 @@
   <!-- SIDEBAR -->
   <nav id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo">🔴</div>
+      <div class="sidebar-logo">🎮</div>
       <div>
-        <div class="sidebar-title">PokeOne</div>
+        <div class="sidebar-title">Poke<span style="color:var(--blue)">One</span></div>
         <div class="sidebar-trainer" id="sidebar-trainer">—</div>
       </div>
     </div>
@@ -432,7 +459,9 @@
     <div class="section" id="tab-pc">
       <div class="section-title"><span class="icon">💾</span> Cajas PC</div>
       <div class="pc-controls">
-        <input type="text" class="search-input" id="pc-search" placeholder="🔍 Buscar Pokémon...">
+        <input type="text" class="search-input" id="pc-search" placeholder="🔍 Buscar (mín. 3 letras)...">
+        <button class="mode-btn active" id="pc-mode-name" onclick="setPCMode('name')">👤 Nombre</button>
+        <button class="mode-btn" id="pc-mode-evo" onclick="setPCMode('evo')">🔗 Familia evo.</button>
         <select class="filter-select" id="pc-type-filter">
           <option value="">Todos los tipos</option>
         </select>
@@ -452,6 +481,14 @@
     <!-- RANKING -->
     <div class="section" id="tab-ranking">
       <div class="section-title"><span class="icon">🏆</span> Ranking de Pokémon</div>
+
+      <!-- rank search -->
+      <div class="pc-controls" style="margin-bottom:16px">
+        <input type="text" class="search-input" id="rank-search" placeholder="🔍 Buscar (mín. 3 letras)...">
+        <button class="mode-btn active" id="rank-mode-name" onclick="setRankMode('name')">👤 Nombre</button>
+        <button class="mode-btn" id="rank-mode-evo" onclick="setRankMode('evo')">🔗 Familia evo.</button>
+        <span class="pc-count" id="rank-count"></span>
+      </div>
 
       <!-- tab switcher -->
       <div style="display:flex;gap:8px;margin-bottom:20px">
@@ -498,6 +535,8 @@
 // ─── DATA ───────────────────────────────────────────────────────────
 let gameData = null;
 let allPokemon = [];
+let pcSearchMode  = 'name';
+let rankSearchMode = 'name';
 
 const TYPE_COLORS = {
   Normal:'#a7a796', Fire:'#ff4422', Water:'#3399ff', Electric:'#ffcc00',
@@ -540,6 +579,36 @@ const NATURE_EFFECTS = {
 const STAT_COLORS = {HP:'#f87171', Atk:'#fb923c', Def:'#facc15', SpAtk:'#60a5fa', SpDef:'#34d399', Speed:'#a78bfa'};
 const STAT_LABELS = {HP:'HP', Atk:'Atk', Def:'Def', SpAtk:'SpA', SpDef:'SpD', Speed:'Spe'};
 const STAT_MAX = {HP:255, Atk:190, Def:190, SpAtk:190, SpDef:190, Speed:180};
+
+// ─── CADENAS EVOLUTIVAS (Gen 1+2, IDs 1-251) ────────────────────────
+const EVO_CHAINS = [
+  [1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],
+  [16,17,18],[19,20],[21,22],[23,24],[172,25,26],
+  [27,28],[29,30,31],[32,33,34],[173,35,36],[37,38],
+  [174,39,40],[41,42,169],[43,44,45,182],[46,47],[48,49],
+  [50,51],[52,53],[54,55],[56,57],[58,59],
+  [60,61,62,186],[63,64,65],[66,67,68],[69,70,71],[72,73],
+  [74,75,76],[77,78],[79,80,199],[81,82],[83],
+  [84,85],[86,87],[88,89],[90,91],[92,93,94],
+  [95,208],[96,97],[98,99],[100,101],[102,103],
+  [104,105],[236,106,107,237],[108],[109,110],[111,112],
+  [113,242],[114],[115],[116,117,230],[118,119],
+  [120,121],[122],[238,124],[239,125],[240,126],
+  [123,212],[127],[128],[129,130],[131],[132],
+  [133,134,135,136,196,197],[137,233],[138,139],[140,141],
+  [142],[143],[144],[145],[146],[147,148,149],
+  [150],[151],[152,153,154],[155,156,157],[158,159,160],
+  [161,162],[163,164],[165,166],[167,168],[170,171],
+  [175,176],[177,178],[179,180,181],[183,184],[185],
+  [187,188,189],[190],[191,192],[193],[194,195],
+  [198],[200],[201],[202],[203],[204,205],[206],
+  [207],[209,210],[211],[213],[214],[215],[216,217],
+  [218,219],[220,221],[222],[223,224],[225],[226],
+  [227],[228,229],[231,232],[234],[235],[241],
+  [243],[244],[245],[246,247,248],[249],[250],[251]
+];
+const EVO_FAMILY_MAP = {};
+EVO_CHAINS.forEach(chain => chain.forEach(id => { EVO_FAMILY_MAP[id] = chain; }));
 
 function timeSinceCaught(dateUtc) {
   if (!dateUtc) return '';
@@ -839,18 +908,61 @@ function renderPC() {
   renderPCList();
 }
 
+function setPCMode(mode) {
+  pcSearchMode = mode;
+  document.getElementById('pc-mode-name').classList.toggle('active', mode === 'name');
+  document.getElementById('pc-mode-evo').classList.toggle('active', mode === 'evo');
+  renderPCList();
+}
+
+function setRankMode(mode) {
+  rankSearchMode = mode;
+  document.getElementById('rank-mode-name').classList.toggle('active', mode === 'name');
+  document.getElementById('rank-mode-evo').classList.toggle('active', mode === 'evo');
+  renderRankingList();
+}
+
+function filterPokemon(list, query, mode) {
+  if (!query || query.length < 3) return list;
+  const q = query.toLowerCase();
+  if (mode === 'name') {
+    return list.filter(p => {
+      const name = p.Pokemon.StaticData.Name.toLowerCase();
+      const nick = (p.Pokemon.Payload.Nickname || '').toLowerCase();
+      return name.includes(q) || nick.includes(q);
+    });
+  } else {
+    const familyIds = new Set();
+    list.forEach(p => {
+      const name = p.Pokemon.StaticData.Name.toLowerCase();
+      const nick = (p.Pokemon.Payload.Nickname || '').toLowerCase();
+      if (name.includes(q) || nick.includes(q)) {
+        const id = p.Pokemon.Payload.PokemonID;
+        const chain = EVO_FAMILY_MAP[id];
+        if (chain) chain.forEach(fid => familyIds.add(fid));
+        else familyIds.add(id);
+      }
+    });
+    Object.entries(BASE_STATS).forEach(([idStr, bs]) => {
+      if (bs.name.toLowerCase().includes(q)) {
+        const id = parseInt(idStr);
+        const chain = EVO_FAMILY_MAP[id];
+        if (chain) chain.forEach(fid => familyIds.add(fid));
+        else familyIds.add(id);
+      }
+    });
+    if (familyIds.size === 0) return [];
+    return list.filter(p => familyIds.has(p.Pokemon.Payload.PokemonID));
+  }
+}
+
 function renderPCList() {
-  const query = document.getElementById('pc-search').value.toLowerCase();
+  const query = document.getElementById('pc-search').value;
   const typeF = document.getElementById('pc-type-filter').value;
   const sort  = document.getElementById('pc-sort').value;
 
-  let list = allPokemon.filter(p => {
-    const name = p.Pokemon.StaticData.Name.toLowerCase();
-    const nick = (p.Pokemon.Payload.Nickname || '').toLowerCase();
-    const matchQ = !query || name.includes(query) || nick.includes(query);
-    const matchT = !typeF || p.Pokemon.StaticData.Types.some(t => t.name === typeF);
-    return matchQ && matchT;
-  });
+  let list = filterPokemon(allPokemon, query, pcSearchMode)
+    .filter(p => !typeF || p.Pokemon.StaticData.Types.some(t => t.name === typeF));
 
   if (sort === 'level-desc') list.sort((a,b) => b.Pokemon.Payload.Level - a.Pokemon.Payload.Level);
   else if (sort === 'level-asc') list.sort((a,b) => a.Pokemon.Payload.Level - b.Pokemon.Payload.Level);
@@ -1280,7 +1392,20 @@ function roleBadgeHTML(entry, small = false) {
 
 // ─── RANKING ──────────────────────────────────────────────────────────
 function renderRanking() {
-  const byPerf = [...allPokemon].sort((a,b) => getPerfection(b) - getPerfection(a));
+  document.getElementById('rank-search').addEventListener('input', renderRankingList);
+  renderRankingList();
+}
+
+function renderRankingList() {
+  const query = document.getElementById('rank-search').value;
+  const filtered = filterPokemon(allPokemon, query, rankSearchMode);
+
+  const count = document.getElementById('rank-count');
+  count.textContent = query.length >= 3
+    ? filtered.length + ' Pokémon filtrados'
+    : allPokemon.length + ' Pokémon totales';
+
+  const byPerf  = [...filtered].sort((a,b) => getPerfection(b) - getPerfection(a));
   const top50   = byPerf.slice(0, 50);
   const trash50 = [...byPerf].reverse().slice(0, 50);
   fillRankTable('rank-top-body',   top50);
