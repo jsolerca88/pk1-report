@@ -854,11 +854,14 @@ document.getElementById('file-input').addEventListener('change', e => {
   if (file) readFile(file);
 });
 
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => { e.preventDefault(); });
+
 const dropZone = document.getElementById('drop-zone');
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragover', e => { e.preventDefault(); e.stopPropagation(); dropZone.classList.add('drag-over'); });
 dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
 dropZone.addEventListener('drop', e => {
-  e.preventDefault(); dropZone.classList.remove('drag-over');
+  e.preventDefault(); e.stopPropagation(); dropZone.classList.remove('drag-over');
   const file = e.dataTransfer.files[0];
   if (file) readFile(file);
 });
