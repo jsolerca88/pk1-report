@@ -613,22 +613,13 @@ const POKEMON_DB = {
     ],
     pvp:[
       {
-        setName:'Bulky Offensive',
-        moves:[['Giga Drain'],['Sludge Bomb'],['Sleep Powder'],['Leech Seed','Synthesis','Hidden Power Fire']],
-        item:'Black Sludge',
-        ability:'Overgrow',
-        natures:['Bold','Calm'],
-        evs:'252 HP / 252 Def / 4 SpA',
-        desc:'Set defensivo-ofensivo que combina Sleep Powder para incapacitar amenazas con Giga Drain para recuperar HP. Leech Seed presiona switchs y Sludge Bomb cubre tipos Fairy/Grass.'
-      },
-      {
         setName:'Sun Sweeper',
-        moves:[['Solar Beam'],['Sludge Bomb'],['Hidden Power Fire'],['Growth','Sleep Powder']],
+        moves:[['Giga Drain'],['Sludge Bomb'],['Growth'],['Earthquake','Hidden Power Fire']],
         item:'Life Orb',
         ability:'Chlorophyll (HA)',
-        natures:['Modest','Timid'],
+        natures:['Modest','Rash'],
         evs:'4 HP / 252 SpA / 252 Spe',
-        desc:'Con Chlorophyll bajo sol duplica su velocidad y Growth dobla SpAtk y Atk en un turno. Requiere setter de sun para funcionar, pero es devastador en el clima correcto.'
+        desc:'Set ofensivo bajo sol que aprovecha Chlorophyll para doblar la velocidad. Growth en sol sube SpAtk y Atk en 2 etapas de golpe. Giga Drain y Sludge Bomb son sus STABs principales.'
       },
     ]
   },
@@ -659,22 +650,13 @@ const POKEMON_DB = {
     ],
     pvp:[
       {
-        setName:'Special Attacker',
-        moves:[['Fire Blast','Flamethrower'],['Air Slash'],['Dragon Pulse','Focus Blast'],['Roost','Will-O-Wisp']],
+        setName:'Life Orb Special Attacker',
+        moves:[['Fire Blast'],['Air Slash'],['Focus Blast','Hidden Power Grass'],['Roost']],
         item:'Life Orb',
         ability:'Blaze',
-        natures:['Timid','Modest'],
-        evs:'4 HP / 252 SpA / 252 Spe',
-        desc:'Atacante especial poderoso con buen speed. Fire Blast es la STAB principal y Air Slash cubre Fighting/Grass. Roost permite sostenerse ante el daño de Life Orb.'
-      },
-      {
-        setName:'Sun Sweeper',
-        moves:[['Fire Blast'],['Solar Beam'],['Air Slash'],['Dragon Pulse','Focus Blast']],
-        item:'Life Orb',
-        ability:'Solar Power (HA)',
-        natures:['Timid','Modest'],
-        evs:'4 HP / 252 SpA / 252 Spe',
-        desc:'Con Solar Power bajo sol el SpAtk sube a niveles altísimos. Solar Beam sin carga en sun lo cubre perfectamente. Requiere soporte de sun setter.'
+        natures:['Timid'],
+        evs:'4 Def / 252 SpA / 252 Spe',
+        desc:'Atacante especial con excelente cobertura. Fire Blast es su STAB principal, Air Slash para tipos Fighting/Grass, Focus Blast o HP Grass para coverage adicional. Roost para sostenerse.'
       },
     ]
   },
@@ -705,22 +687,13 @@ const POKEMON_DB = {
     ],
     pvp:[
       {
-        setName:'Bulky Spinner',
-        moves:[['Scald'],['Ice Beam'],['Rapid Spin'],['Toxic','Roar','Dragon Tail']],
+        setName:'Defensive Spinner',
+        moves:[['Scald'],['Rapid Spin'],['Toxic'],['Roar','Ice Beam','Protect']],
         item:'Leftovers',
         ability:'Torrent',
-        natures:['Bold','Calm'],
+        natures:['Bold'],
         evs:'252 HP / 252 Def / 4 SpD',
-        desc:'Defensor sólido con Rapid Spin para eliminar rocas/espinas del campo. Scald tiene 30% de quemar y Ice Beam cubre Grass/Dragon. Toxic presiona rivales pasivos.'
-      },
-      {
-        setName:'Rain Sweeper',
-        moves:[['Surf','Hydro Pump'],['Ice Beam'],['Focus Blast'],['Rapid Spin','Dark Pulse']],
-        item:'Life Orb',
-        ability:'Rain Dish (HA)',
-        natures:['Modest','Timid'],
-        evs:'4 HP / 252 SpA / 252 Spe',
-        desc:'Bajo lluvia Surf/Hydro Pump se potencian y Rain Dish recupera HP pasivamente, compensando el coste del Life Orb. Buen coverage con Ice Beam y Focus Blast.'
+        desc:'Set defensivo de utilidad diseñado para eliminar rocas y espinas del campo con Rapid Spin. Scald tiene 30% de quemar al rival. Toxic presiona a defensores y Roar evita que se setupeen.'
       },
     ]
   },
@@ -750,13 +723,13 @@ const POKEMON_DB = {
     ],
     pvp:[
       {
-        setName:'Sleep Powder Sweeper',
-        moves:[['Sleep Powder'],['Bug Buzz'],['Air Slash'],['Quiver Dance','Psychic']],
-        item:'Focus Sash',
-        ability:'Compound Eyes',
-        natures:['Timid','Modest'],
-        evs:'4 HP / 252 SpA / 252 Spe',
-        desc:'Compound Eyes sube la precisión de Sleep Powder al 97.5%, casi garantizado. Quiver Dance tras dormir al rival puede convertirlo en un sweeper. Bug Buzz y Air Slash son sus STABs.'
+        setName:'Quiver Dance',
+        moves:[['Sleep Powder'],['Quiver Dance'],['Bug Buzz'],['Psychic','Energy Ball']],
+        item:'Life Orb',
+        ability:'Tinted Lens (HA)',
+        natures:['Timid'],
+        evs:'4 Def / 252 SpA / 252 Spe',
+        desc:'"Quiver Dance, worse Volcarona." Sleep Powder para dormir al rival, luego Quiver Dance para subir SpAtk/SpDef/Speed. Tinted Lens hace que los moves "not very effective" hagan daño normal.'
       },
     ]
   },
@@ -786,13 +759,13 @@ const POKEMON_DB = {
     ],
     pvp:[
       {
-        setName:'Offensive Pivot',
-        moves:[['U-turn'],['Poison Jab'],['Drill Run','Knock Off'],['Toxic Spikes','Swords Dance']],
-        item:'Choice Band',
+        setName:'Swords Dance Sweeper',
+        moves:[['Swords Dance'],['X-Scissor'],['Poison Jab'],['Drill Run']],
+        item:'Life Orb',
         ability:'Swarm',
-        natures:['Jolly','Adamant'],
-        evs:'4 HP / 252 Atk / 252 Spe',
-        desc:'U-turn con Choice Band hace daño importante y permite mantener momentum. Poison Jab es el STAB físico principal. Toxic Spikes puede colocarse si se cambia a Choice Band por otro item.'
+        natures:['Jolly'],
+        evs:'252 Atk / 4 Def / 252 Spe',
+        desc:'"Don\'t do it…" Set de Swords Dance para intentar sweepear. X-Scissor y Poison Jab son sus STABs físicos, Drill Run da cobertura contra Steel/Rock. Muy frágil en defensa.'
       },
     ]
   },
