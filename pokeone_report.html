@@ -854,8 +854,8 @@ document.getElementById('file-input').addEventListener('change', e => {
   if (file) readFile(file);
 });
 
-document.addEventListener('dragover', e => e.preventDefault());
-document.addEventListener('drop', e => { e.preventDefault(); });
+window.addEventListener('dragover', e => e.preventDefault(), true);
+window.addEventListener('drop', e => { e.preventDefault(); e.stopPropagation(); }, true);
 
 const dropZone = document.getElementById('drop-zone');
 dropZone.addEventListener('dragover', e => { e.preventDefault(); e.stopPropagation(); dropZone.classList.add('drag-over'); });
