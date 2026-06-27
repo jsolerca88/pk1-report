@@ -357,10 +357,10 @@
   <div class="upload-zone" id="drop-zone">
     <div class="upload-zone-icon">📂</div>
     <div class="upload-zone-text">Arrastra tu <strong>input_jsolerca.json</strong> aquí<br>o haz clic para seleccionar</div>
-    <button class="upload-btn" onclick="document.getElementById('file-input').click()">Seleccionar archivo</button>
+    <button class="upload-btn" onclick="event.stopPropagation();document.getElementById('file-input').click()">Seleccionar archivo</button>
   </div>
   <input type="file" id="file-input" accept=".json">
-  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-25 10:45</div>
+  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-27</div>
 </div>
 
 <!-- APP -->
