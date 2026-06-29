@@ -360,7 +360,7 @@
     <button class="upload-btn" onclick="event.stopPropagation();document.getElementById('file-input').click()">Seleccionar archivo</button>
   </div>
   <input type="file" id="file-input" accept=".json">
-  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-29</div>
+  <div style="font-size:11px;color:#3d4451;font-family:monospace;letter-spacing:0.5px">v2026-06-29 16:00</div>
 </div>
 
 <!-- APP -->
@@ -1297,6 +1297,56 @@ const POKEMON_DB = {
   548:{name:'Petilil',types:['Grass'],base:{hp:45,atk:35,def:50,spatk:70,spdef:50,spe:30},abilities:[{name:'Chlorophyll',isHA:false,desc:"This Pokémon's Speed is doubled in harsh sunlight."},{name:'Own Tempo',isHA:false,desc:'This Pokémon cannot be confused.'},{name:'Leaf Guard',isHA:true,desc:'Prevents status conditions in harsh sunlight.'}],pvp:[],learnset:[{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:5,name:'Leech Seed',type:'Grass',cat:'Status',pwr:null,acc:90},{lv:9,name:'Sleep Powder',type:'Grass',cat:'Status',pwr:null,acc:75},{lv:13,name:'Mega Drain',type:'Grass',cat:'Special',pwr:40,acc:100},{lv:21,name:'Magical Leaf',type:'Grass',cat:'Special',pwr:60,acc:null},{lv:25,name:'Stun Spore',type:'Grass',cat:'Status',pwr:null,acc:75},{lv:29,name:'Giga Drain',type:'Grass',cat:'Special',pwr:75,acc:100},{lv:37,name:'Helping Hand',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:41,name:'Energy Ball',type:'Grass',cat:'Special',pwr:90,acc:100}]},
   549:{name:'Lilligant',types:['Grass'],base:{hp:70,atk:60,def:75,spatk:110,spdef:75,spe:90},abilities:[{name:'Chlorophyll',isHA:false,desc:"This Pokémon's Speed is doubled in harsh sunlight."},{name:'Own Tempo',isHA:false,desc:'This Pokémon cannot be confused.'},{name:'Leaf Guard',isHA:true,desc:'Prevents status conditions in harsh sunlight.'}],pvp:[{setName:'Quiver Dance Sol',moves:[['Quiver Dance'],['Petal Dance'],['Sleep Powder'],['Hidden Power Fire']],item:'Life Orb',ability:'Chlorophyll',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Chlorophyll bajo sol: 90 × 2 = 180 Speed. QD sube SpAtk/SpDef/Speed. Sleep Powder para asegurar setup. 110 SpAtk + QD + LO. Petal Dance STAB máximo. HP Fire cubre Steel.'},{setName:'Own Tempo',moves:[['Quiver Dance'],['Petal Dance'],['Giga Drain'],['Hidden Power Ice']],item:'Life Orb',ability:'Own Tempo',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Own Tempo: Petal Dance no confunde a Lilligant. QD sube stats. 110 SpAtk. Giga Drain STAB + recupera HP. HP Ice cobertura Dragon. 90 Speed sin sol.'}],learnset:[{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Leech Seed',type:'Grass',cat:'Status',pwr:null,acc:90},{lv:1,name:'Sleep Powder',type:'Grass',cat:'Status',pwr:null,acc:75},{lv:17,name:'Synthesis',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:29,name:'Giga Drain',type:'Grass',cat:'Special',pwr:75,acc:100},{lv:33,name:'Quiver Dance',type:'Bug',cat:'Status',pwr:null,acc:null},{lv:37,name:'Petal Dance',type:'Grass',cat:'Special',pwr:120,acc:100},{lv:41,name:'Sunny Day',type:'Fire',cat:'Status',pwr:null,acc:null},{lv:45,name:'Energy Ball',type:'Grass',cat:'Special',pwr:90,acc:100}]},
   550:{name:'Basculin',types:['Water'],base:{hp:70,atk:92,def:65,spatk:80,spdef:55,spe:98},abilities:[{name:'Reckless',isHA:false,desc:'Increases the power of recoil moves by 20%.'},{name:'Adaptability',isHA:false,desc:'Raises STAB bonus from 1.5× to 2×.'},{name:'Mold Breaker',isHA:true,desc:"Moves can ignore the target's abilities."}],pvp:[{setName:'Adaptability',moves:[['Wave Crash'],['Aqua Jet'],['Double-Edge'],['Head Smash']],item:'Choice Band',ability:'Adaptability',natures:['Adamant'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Adaptability: Wave Crash 2× STAB. 92 Atk + CB. Wave Crash STAB muy potente. Aqua Jet prioridad. Double-Edge + Head Smash cobertura Normal/Rock. 98 Speed alto.'}],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Water Gun',type:'Water',cat:'Special',pwr:40,acc:100},{lv:5,name:'Uproar',type:'Normal',cat:'Special',pwr:90,acc:100},{lv:9,name:'Bite',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:13,name:'Aqua Jet',type:'Water',cat:'Physical',pwr:40,acc:100},{lv:17,name:'Chip Away',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:21,name:'Take Down',type:'Normal',cat:'Physical',pwr:90,acc:85},{lv:25,name:'Aqua Tail',type:'Water',cat:'Physical',pwr:90,acc:90},{lv:29,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:33,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:41,name:'Final Gambit',type:'Fighting',cat:'Special',pwr:null,acc:100},{lv:49,name:'Double-Edge',type:'Normal',cat:'Physical',pwr:120,acc:100}]},
+  551:{name:'Sandile',types:['Ground','Dark'],base:{hp:50,atk:72,def:35,spatk:35,spdef:35,spe:65},abilities:[{name:'Intimidate',isHA:false,desc:"Lowers the opposing Pokémon's Attack by one stage upon entering battle."},{name:'Moxie',isHA:false,desc:'Raises Attack by one stage after KOing a Pokémon.'},{name:'Anger Point',isHA:true,desc:'Raises Attack to maximum after taking a critical hit.'}],pvp:[],learnset:[{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Rage',type:'Normal',cat:'Physical',pwr:20,acc:100},{lv:4,name:'Bite',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:7,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:10,name:'Torment',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:13,name:'Sand Tomb',type:'Ground',cat:'Physical',pwr:35,acc:85},{lv:16,name:'Assurance',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:19,name:'Mud-Slap',type:'Ground',cat:'Special',pwr:20,acc:100},{lv:23,name:'Embargo',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:27,name:'Swagger',type:'Normal',cat:'Status',pwr:null,acc:85},{lv:31,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:35,name:'Dig',type:'Ground',cat:'Physical',pwr:80,acc:100},{lv:39,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:43,name:'Foul Play',type:'Dark',cat:'Physical',pwr:95,acc:100},{lv:47,name:'Sandstorm',type:'Rock',cat:'Status',pwr:null,acc:null},{lv:51,name:'Earthquake',type:'Ground',cat:'Physical',pwr:100,acc:100},{lv:55,name:'Thrash',type:'Normal',cat:'Physical',pwr:120,acc:100}]},
+  552:{name:'Krokorok',types:['Ground','Dark'],base:{hp:60,atk:82,def:45,spatk:45,spdef:45,spe:74},abilities:[{name:'Intimidate',isHA:false,desc:"Lowers the opposing Pokémon's Attack by one stage upon entering battle."},{name:'Moxie',isHA:false,desc:'Raises Attack by one stage after KOing a Pokémon.'},{name:'Anger Point',isHA:true,desc:'Raises Attack to maximum after taking a critical hit.'}],pvp:[],learnset:[{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Rage',type:'Normal',cat:'Physical',pwr:20,acc:100},{lv:4,name:'Bite',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:7,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:13,name:'Sand Tomb',type:'Ground',cat:'Physical',pwr:35,acc:85},{lv:16,name:'Assurance',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:23,name:'Embargo',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:31,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:35,name:'Dig',type:'Ground',cat:'Physical',pwr:80,acc:100},{lv:43,name:'Foul Play',type:'Dark',cat:'Physical',pwr:95,acc:100},{lv:51,name:'Earthquake',type:'Ground',cat:'Physical',pwr:100,acc:100}]},
+  553:{name:'Krookodile',types:['Ground','Dark'],base:{hp:95,atk:117,def:80,spatk:65,spdef:70,spe:92},abilities:[{name:'Intimidate',isHA:false,desc:"Lowers the opposing Pokémon's Attack by one stage upon entering battle."},{name:'Moxie',isHA:false,desc:'Raises Attack by one stage after KOing a Pokémon.'},{name:'Anger Point',isHA:true,desc:'Raises Attack to maximum after taking a critical hit.'}],pvp:[{setName:'Moxie Scarf',moves:[['Earthquake'],['Crunch'],['Stone Edge'],['Fire Fang']],item:'Choice Scarf',ability:'Moxie',natures:['Jolly'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Moxie: cada KO sube Atk +1. 117 Atk + Scarf. EQ STAB Ground. Crunch STAB Dark. Stone Edge cobertura Flying. Fire Fang Steel. Ground/Dark inmune a Electric y Psychic.'},{setName:'Swords Dance',moves:[['Swords Dance'],['Earthquake'],['Crunch'],['Stone Edge']],item:'Life Orb',ability:'Moxie',natures:['Jolly'],evs:'4 HP / 252 Atk / 252 Spe',desc:'SD + Moxie = acumula Atk muy rápido. 117 Atk + LO. EQ STAB. Crunch STAB. Stone Edge cobertura. 92 Speed decente. Intimidate variante para bajar Atk al entrar.'}],learnset:[{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Rage',type:'Normal',cat:'Physical',pwr:20,acc:100},{lv:4,name:'Bite',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:7,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:13,name:'Sand Tomb',type:'Ground',cat:'Physical',pwr:35,acc:85},{lv:16,name:'Assurance',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:23,name:'Embargo',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:31,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:37,name:'Dig',type:'Ground',cat:'Physical',pwr:80,acc:100},{lv:45,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:53,name:'Foul Play',type:'Dark',cat:'Physical',pwr:95,acc:100},{lv:61,name:'Earthquake',type:'Ground',cat:'Physical',pwr:100,acc:100},{lv:69,name:'Outrage',type:'Dragon',cat:'Physical',pwr:120,acc:100}]},
+  554:{name:'Darumaka',types:['Fire'],base:{hp:70,atk:90,def:45,spatk:15,spdef:45,spe:50},abilities:[{name:'Hustle',isHA:false,desc:'Raises Attack by 50% but lowers accuracy of physical moves by 20%.'},{name:'Inner Focus',isHA:true,desc:'Prevents flinching.'}],pvp:[],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:5,name:'Ember',type:'Fire',cat:'Special',pwr:40,acc:100},{lv:9,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:13,name:'Rage',type:'Normal',cat:'Physical',pwr:20,acc:100},{lv:17,name:'Fire Fang',type:'Fire',cat:'Physical',pwr:65,acc:95},{lv:21,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:25,name:'Facade',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:29,name:'Fire Punch',type:'Fire',cat:'Physical',pwr:75,acc:100},{lv:33,name:'Work Up',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:37,name:'Flare Blitz',type:'Fire',cat:'Physical',pwr:120,acc:100},{lv:41,name:'Belly Drum',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:45,name:'Superpower',type:'Fighting',cat:'Physical',pwr:120,acc:100},{lv:49,name:'Thrash',type:'Normal',cat:'Physical',pwr:120,acc:100}]},
+  555:{name:'Darmanitan',types:['Fire'],base:{hp:105,atk:140,def:55,spatk:30,spdef:55,spe:95},abilities:[{name:'Hustle',isHA:false,desc:'Raises Attack by 50% but lowers accuracy of physical moves by 20%.'},{name:'Sheer Force',isHA:true,desc:'Removes additional effects of moves but increases power by 30%.'}],pvp:[{setName:'Choice Scarf',moves:[['Flare Blitz'],['Rock Slide'],['Superpower'],['U-turn']],item:'Choice Scarf',ability:'Sheer Force (HA)',natures:['Jolly'],evs:'4 HP / 252 Atk / 252 Spe',desc:'140 Atk + Sheer Force + Scarf. Flare Blitz × 1.3 sin recoil (SF elimina efecto recoil). Rock Slide × 1.3. 95 Speed + Scarf = 142. Superpower cobertura Steel. U-turn pivot.'},{setName:'Choice Band',moves:[['Flare Blitz'],['Rock Slide'],['Superpower'],['Fire Punch']],item:'Choice Band',ability:'Sheer Force (HA)',natures:['Adamant'],evs:'4 HP / 252 Atk / 252 Spe',desc:'140 Atk + CB + Sheer Force. Flare Blitz STAB devastador. Fire Punch alternativa sin recoil. Rock Slide cobertura. Superpower Steel. Uno de los atacantes más poderosos del juego.'}],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:5,name:'Ember',type:'Fire',cat:'Special',pwr:40,acc:100},{lv:9,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:17,name:'Fire Fang',type:'Fire',cat:'Physical',pwr:65,acc:95},{lv:21,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:29,name:'Fire Punch',type:'Fire',cat:'Physical',pwr:75,acc:100},{lv:33,name:'Work Up',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:37,name:'Flare Blitz',type:'Fire',cat:'Physical',pwr:120,acc:100},{lv:41,name:'Belly Drum',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:45,name:'Superpower',type:'Fighting',cat:'Physical',pwr:120,acc:100},{lv:49,name:'Thrash',type:'Normal',cat:'Physical',pwr:120,acc:100},{lv:53,name:'Hammer Arm',type:'Fighting',cat:'Physical',pwr:100,acc:90}]},
+  556:{name:'Maractus',types:['Grass'],base:{hp:75,atk:86,def:67,spatk:106,spdef:67,spe:60},abilities:[{name:'Water Absorb',isHA:false,desc:'Restores 1/4 of max HP when hit by Water moves.'},{name:'Chlorophyll',isHA:false,desc:"This Pokémon's Speed is doubled in harsh sunlight."},{name:'Storm Drain',isHA:true,desc:'Draws in all Water moves to raise Special Attack by one stage.'}],pvp:[],learnset:[{lv:1,name:'Peck',type:'Flying',cat:'Physical',pwr:35,acc:100},{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:5,name:'Sweet Scent',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:9,name:'Growth',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:13,name:'Pin Missile',type:'Bug',cat:'Physical',pwr:25,acc:95},{lv:17,name:'Mega Drain',type:'Grass',cat:'Special',pwr:40,acc:100},{lv:21,name:'Synthesis',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:25,name:'Cotton Spore',type:'Grass',cat:'Status',pwr:null,acc:100},{lv:29,name:'Needle Arm',type:'Grass',cat:'Physical',pwr:60,acc:100},{lv:33,name:'Giga Drain',type:'Grass',cat:'Special',pwr:75,acc:100},{lv:37,name:'Acupressure',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:41,name:'Ingrain',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:45,name:'Petal Dance',type:'Grass',cat:'Special',pwr:120,acc:100},{lv:49,name:'Sucker Punch',type:'Dark',cat:'Physical',pwr:70,acc:100},{lv:53,name:'Cotton Guard',type:'Grass',cat:'Status',pwr:null,acc:null}]},
+  557:{name:'Dwebble',types:['Bug','Rock'],base:{hp:50,atk:65,def:85,spatk:35,spdef:35,spe:55},abilities:[{name:'Sturdy',isHA:false,desc:"This Pokémon cannot be KO'd from full HP in one hit."},{name:'Shell Armor',isHA:false,desc:'Prevents critical hits.'},{name:'Weak Armor',isHA:true,desc:'Lowers Defense but raises Speed when hit by a physical move.'}],pvp:[],learnset:[{lv:1,name:'Fury Cutter',type:'Bug',cat:'Physical',pwr:40,acc:95},{lv:1,name:'Rock Blast',type:'Rock',cat:'Physical',pwr:25,acc:90},{lv:6,name:'Withdraw',type:'Water',cat:'Status',pwr:null,acc:null},{lv:11,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:16,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:21,name:'Smack Down',type:'Rock',cat:'Physical',pwr:50,acc:100},{lv:26,name:'Rock Polish',type:'Rock',cat:'Status',pwr:null,acc:null},{lv:31,name:'Bug Bite',type:'Bug',cat:'Physical',pwr:60,acc:100},{lv:36,name:'Stealth Rock',type:'Rock',cat:'Status',pwr:null,acc:null},{lv:41,name:'Rock Slide',type:'Rock',cat:'Physical',pwr:75,acc:90},{lv:46,name:'Shell Smash',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:51,name:'Rock Wrecker',type:'Rock',cat:'Physical',pwr:150,acc:90},{lv:56,name:'X-Scissor',type:'Bug',cat:'Physical',pwr:80,acc:100}]},
+  558:{name:'Crustle',types:['Bug','Rock'],base:{hp:70,atk:95,def:125,spatk:65,spdef:75,spe:45},abilities:[{name:'Sturdy',isHA:false,desc:"This Pokémon cannot be KO'd from full HP in one hit."},{name:'Shell Armor',isHA:false,desc:'Prevents critical hits.'},{name:'Weak Armor',isHA:true,desc:'Lowers Defense but raises Speed when hit by a physical move.'}],pvp:[{setName:'Shell Smash',moves:[['Shell Smash'],['Stone Edge'],['X-Scissor'],['Earthquake']],item:'White Herb',ability:'Sturdy',natures:['Adamant'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Shell Smash: +2 Atk/SpAtk/Speed, -1 Def/SpDef. White Herb restaura Def/SpDef. Sturdy garantiza sobrevivir 1 ataque para setear SS. 95 Atk + SS. Stone Edge + X-Scissor STAB doble.'},{setName:'Stealth Rock',moves:[['Stealth Rock'],['Stone Edge'],['X-Scissor'],['Earthquake']],item:'Leftovers',ability:'Sturdy',natures:['Adamant'],evs:'252 HP / 252 Atk / 4 Def',desc:'SR setter bulky con 70/125/75 bulk. Sturdy garantiza SR. 95 Atk hace daño decente. Stone Edge + X-Scissor STAB. EQ cobertura. Muy difícil de OHKO desde HP lleno.'}],learnset:[{lv:1,name:'Fury Cutter',type:'Bug',cat:'Physical',pwr:40,acc:95},{lv:1,name:'Rock Blast',type:'Rock',cat:'Physical',pwr:25,acc:90},{lv:6,name:'Withdraw',type:'Water',cat:'Status',pwr:null,acc:null},{lv:11,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:21,name:'Smack Down',type:'Rock',cat:'Physical',pwr:50,acc:100},{lv:26,name:'Rock Polish',type:'Rock',cat:'Status',pwr:null,acc:null},{lv:31,name:'Bug Bite',type:'Bug',cat:'Physical',pwr:60,acc:100},{lv:36,name:'Stealth Rock',type:'Rock',cat:'Status',pwr:null,acc:null},{lv:41,name:'Rock Slide',type:'Rock',cat:'Physical',pwr:75,acc:90},{lv:46,name:'Shell Smash',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:54,name:'Rock Wrecker',type:'Rock',cat:'Physical',pwr:150,acc:90},{lv:62,name:'X-Scissor',type:'Bug',cat:'Physical',pwr:80,acc:100}]},
+  559:{name:'Scraggy',types:['Dark','Fighting'],base:{hp:50,atk:75,def:70,spatk:35,spdef:70,spe:48},abilities:[{name:'Shed Skin',isHA:false,desc:'Has a 1/3 chance to heal its own status condition at the end of each turn.'},{name:'Moxie',isHA:false,desc:'Raises Attack by one stage after KOing a Pokémon.'},{name:'Intimidate',isHA:true,desc:"Lowers the opposing Pokémon's Attack by one stage upon entering battle."}],pvp:[],learnset:[{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Scratch',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:4,name:'Low Kick',type:'Fighting',cat:'Physical',pwr:null,acc:100},{lv:8,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:12,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:16,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:20,name:'Swagger',type:'Normal',cat:'Status',pwr:null,acc:85},{lv:24,name:'Brick Break',type:'Fighting',cat:'Physical',pwr:75,acc:100},{lv:28,name:'Payback',type:'Dark',cat:'Physical',pwr:50,acc:100},{lv:32,name:'Chip Away',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:36,name:'Hi Jump Kick',type:'Fighting',cat:'Physical',pwr:130,acc:90},{lv:40,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:44,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:48,name:'Façade',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:52,name:'Rock Climb',type:'Normal',cat:'Physical',pwr:90,acc:85},{lv:56,name:'Focus Punch',type:'Fighting',cat:'Physical',pwr:150,acc:100}]},
+  560:{name:'Scrafty',types:['Dark','Fighting'],base:{hp:65,atk:90,def:115,spatk:45,spdef:115,spe:58},abilities:[{name:'Shed Skin',isHA:false,desc:'Has a 1/3 chance to heal its own status condition at the end of each turn.'},{name:'Moxie',isHA:false,desc:'Raises Attack by one stage after KOing a Pokémon.'},{name:'Intimidate',isHA:true,desc:"Lowers the opposing Pokémon's Attack by one stage upon entering battle."}],pvp:[{setName:'Bulk Up',moves:[['Bulk Up'],['Drain Punch'],['Crunch'],['Ice Punch']],item:'Leftovers',ability:'Shed Skin',natures:['Careful'],evs:'252 HP / 4 Atk / 252 SpD',desc:'Shed Skin cura status con 33% de probabilidad. BU sube Atk/Def. 65/115/115 bulk simétrico. Drain Punch STAB Fighting + recupera HP. Crunch STAB Dark. Ice Punch cobertura Flying.'},{setName:'Moxie Scarf',moves:[['Crunch'],['Hi Jump Kick'],['Ice Punch'],['Drain Punch']],item:'Choice Scarf',ability:'Moxie',natures:['Jolly'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Moxie: cada KO sube Atk +1. 90 Atk + Scarf. Hi Jump Kick 130 potencia STAB Fighting. Crunch STAB Dark. Ice Punch cobertura. 58 Speed bajo pero Scarf lo compensa.'}],learnset:[{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Scratch',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:12,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:16,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:20,name:'Swagger',type:'Normal',cat:'Status',pwr:null,acc:85},{lv:24,name:'Brick Break',type:'Fighting',cat:'Physical',pwr:75,acc:100},{lv:28,name:'Payback',type:'Dark',cat:'Physical',pwr:50,acc:100},{lv:32,name:'Chip Away',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:38,name:'Hi Jump Kick',type:'Fighting',cat:'Physical',pwr:130,acc:90},{lv:44,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:50,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:58,name:'Focus Punch',type:'Fighting',cat:'Physical',pwr:150,acc:100}]},
+  561:{name:'Sigilyph',types:['Psychic','Flying'],base:{hp:72,atk:58,def:80,spatk:103,spdef:80,spe:97},abilities:[{name:'Wonder Skin',isHA:false,desc:'Makes status moves more likely to miss.'},{name:'Magic Guard',isHA:false,desc:'Prevents all indirect damage.'},{name:'Tinted Lens',isHA:true,desc:'Doubles the power of not-very-effective moves.'}],pvp:[{setName:'Calm Mind',moves:[['Calm Mind'],['Psyshock'],['Air Slash'],['Ice Beam']],item:'Life Orb',ability:'Magic Guard',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Magic Guard: LO no daña a Sigilyph. 103 SpAtk + CM + LO sin pérdida de HP. Psyshock STAB pega SpDef. Air Slash STAB Flying 30% flinch. Ice Beam cobertura. 97 Speed alto.'},{setName:'Cosmic Power',moves:[['Cosmic Power'],['Stored Power'],['Roost'],['Psycho Shift']],item:'Flame Orb',ability:'Magic Guard',natures:['Timid'],evs:'252 HP / 4 Def / 252 Spe',desc:'Flame Orb + Magic Guard: se quema pero Magic Guard evita el daño. Psycho Shift pasa la quemadura al rival. CP sube Def/SpDef. Stored Power con CP acumulado. Roost curación.'}],learnset:[{lv:1,name:'Gust',type:'Flying',cat:'Special',pwr:40,acc:100},{lv:1,name:'Miracle Eye',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:5,name:'Hypnosis',type:'Psychic',cat:'Status',pwr:null,acc:60},{lv:9,name:'Psywave',type:'Psychic',cat:'Special',pwr:null,acc:100},{lv:13,name:'Tailwind',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:17,name:'Whirlwind',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:21,name:'Psybeam',type:'Psychic',cat:'Special',pwr:65,acc:100},{lv:25,name:'Air Cutter',type:'Flying',cat:'Special',pwr:60,acc:95},{lv:29,name:'Light Screen',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:33,name:'Reflect',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:37,name:'Air Slash',type:'Flying',cat:'Special',pwr:75,acc:95},{lv:41,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:45,name:'Cosmic Power',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:49,name:'Sky Attack',type:'Flying',cat:'Physical',pwr:140,acc:90},{lv:53,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100}]},
+  562:{name:'Yamask',types:['Ghost'],base:{hp:38,atk:30,def:85,spatk:55,spdef:65,spe:30},abilities:[{name:'Mummy',isHA:false,desc:'Contact with this Pokémon changes the attacker\'s Ability to Mummy.'}],pvp:[],learnset:[{lv:1,name:'Astonish',type:'Ghost',cat:'Physical',pwr:30,acc:100},{lv:1,name:'Protect',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:1,name:'Disable',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Haze',type:'Ice',cat:'Status',pwr:null,acc:null},{lv:5,name:'Night Shade',type:'Ghost',cat:'Special',pwr:null,acc:100},{lv:9,name:'Hex',type:'Ghost',cat:'Special',pwr:65,acc:100},{lv:13,name:'Will-O-Wisp',type:'Fire',cat:'Status',pwr:null,acc:85},{lv:17,name:'Ominous Wind',type:'Ghost',cat:'Special',pwr:60,acc:100},{lv:21,name:'Curse',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:25,name:'Power Split',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:29,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:33,name:'Shadow Ball',type:'Ghost',cat:'Special',pwr:80,acc:100},{lv:37,name:'Grudge',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:41,name:'Mean Look',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:45,name:'Destiny Bond',type:'Ghost',cat:'Status',pwr:null,acc:null}]},
+  563:{name:'Cofagrigus',types:['Ghost'],base:{hp:58,atk:50,def:145,spatk:95,spdef:105,spe:30},abilities:[{name:'Mummy',isHA:false,desc:"Contact with this Pokémon changes the attacker's Ability to Mummy."}],pvp:[{setName:'Defensive',moves:[['Will-O-Wisp'],['Shadow Ball'],['Hex'],['Nasty Plot']],item:'Leftovers',ability:'Mummy',natures:['Bold'],evs:'252 HP / 252 Def / 4 SpA',desc:'Mummy: los que hacen contacto pierden su habilidad. 58/145/105 bulk excelente. WoW quema físicos. Hex hace 130 potencia si el rival tiene status. Shadow Ball STAB. NP sube SpAtk.'},{setName:'Trick Room',moves:[['Trick Room'],['Shadow Ball'],['Hex'],['Will-O-Wisp']],item:'Leftovers',ability:'Mummy',natures:['Quiet'],evs:'252 HP / 4 Def / 252 SpA',desc:'30 Speed = setter de TR ideal. 95 SpAtk bajo TR. Shadow Ball STAB. Hex 130 potencia vs status. WoW quema antes de TR. Mummy neutraliza habilidades de atacantes físicos.'}],learnset:[{lv:1,name:'Astonish',type:'Ghost',cat:'Physical',pwr:30,acc:100},{lv:1,name:'Protect',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:1,name:'Disable',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Haze',type:'Ice',cat:'Status',pwr:null,acc:null},{lv:5,name:'Night Shade',type:'Ghost',cat:'Special',pwr:null,acc:100},{lv:9,name:'Hex',type:'Ghost',cat:'Special',pwr:65,acc:100},{lv:13,name:'Will-O-Wisp',type:'Fire',cat:'Status',pwr:null,acc:85},{lv:21,name:'Curse',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:29,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:33,name:'Shadow Ball',type:'Ghost',cat:'Special',pwr:80,acc:100},{lv:37,name:'Grudge',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:45,name:'Destiny Bond',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:49,name:'Nasty Plot',type:'Dark',cat:'Status',pwr:null,acc:null}]},
+  564:{name:'Tirtouga',types:['Water','Rock'],base:{hp:54,atk:78,def:103,spatk:53,spdef:45,spe:22},abilities:[{name:'Solid Rock',isHA:false,desc:'Reduces damage from super-effective hits by 25%.'},{name:'Sturdy',isHA:false,desc:"This Pokémon cannot be KO'd from full HP in one hit."},{name:'Swift Swim',isHA:true,desc:'Doubles Speed in rain.'}],pvp:[],learnset:[{lv:1,name:'Bide',type:'Normal',cat:'Physical',pwr:null,acc:null},{lv:1,name:'Withdraw',type:'Water',cat:'Status',pwr:null,acc:null},{lv:1,name:'Water Gun',type:'Water',cat:'Special',pwr:40,acc:100},{lv:7,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:13,name:'Bite',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:19,name:'Protect',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:25,name:'Aqua Jet',type:'Water',cat:'Physical',pwr:40,acc:100},{lv:31,name:'Ancient Power',type:'Rock',cat:'Special',pwr:60,acc:100},{lv:37,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:43,name:'Wide Guard',type:'Rock',cat:'Status',pwr:null,acc:null},{lv:49,name:'Brine',type:'Water',cat:'Special',pwr:65,acc:100},{lv:55,name:'Smack Down',type:'Rock',cat:'Physical',pwr:50,acc:100},{lv:61,name:'Waterfall',type:'Water',cat:'Physical',pwr:80,acc:100},{lv:67,name:'Stone Edge',type:'Rock',cat:'Physical',pwr:100,acc:80}]},
+  565:{name:'Carracosta',types:['Water','Rock'],base:{hp:74,atk:108,def:133,spatk:83,spdef:65,spe:32},abilities:[{name:'Solid Rock',isHA:false,desc:'Reduces damage from super-effective hits by 25%.'},{name:'Sturdy',isHA:false,desc:"This Pokémon cannot be KO'd from full HP in one hit."},{name:'Swift Swim',isHA:true,desc:'Doubles Speed in rain.'}],pvp:[{setName:'Shell Smash',moves:[['Shell Smash'],['Waterfall'],['Stone Edge'],['Aqua Jet']],item:'White Herb',ability:'Sturdy',natures:['Adamant'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Shell Smash: +2 Atk/SpAtk/Speed, -1 Def/SpDef. White Herb restaura defensas. Sturdy garantiza SS. 108 Atk + SS. Waterfall STAB. Stone Edge STAB Rock. Aqua Jet prioridad.'},{setName:'Swift Swim',moves:[['Waterfall'],['Stone Edge'],['Earthquake'],['Shell Smash']],item:'Life Orb',ability:'Swift Swim (HA)',natures:['Adamant'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Swift Swim en lluvia: 32 × 2 = 64 Speed. SS sube aún más. 108 Atk + LO + lluvia boosted Waterfall. Stone Edge. EQ cobertura. Solid Rock reduce super efectivos.'}],learnset:[{lv:1,name:'Bide',type:'Normal',cat:'Physical',pwr:null,acc:null},{lv:1,name:'Withdraw',type:'Water',cat:'Status',pwr:null,acc:null},{lv:1,name:'Water Gun',type:'Water',cat:'Special',pwr:40,acc:100},{lv:7,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:13,name:'Bite',type:'Dark',cat:'Physical',pwr:60,acc:100},{lv:25,name:'Aqua Jet',type:'Water',cat:'Physical',pwr:40,acc:100},{lv:31,name:'Ancient Power',type:'Rock',cat:'Special',pwr:60,acc:100},{lv:37,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:49,name:'Brine',type:'Water',cat:'Special',pwr:65,acc:100},{lv:61,name:'Waterfall',type:'Water',cat:'Physical',pwr:80,acc:100},{lv:67,name:'Stone Edge',type:'Rock',cat:'Physical',pwr:100,acc:80},{lv:73,name:'Shell Smash',type:'Normal',cat:'Status',pwr:null,acc:null}]},
+  566:{name:'Archen',types:['Rock','Flying'],base:{hp:55,atk:112,def:45,spatk:74,spdef:45,spe:70},abilities:[{name:'Defeatist',isHA:false,desc:'Halves Attack and Special Attack when HP drops to 50% or below.'}],pvp:[],learnset:[{lv:1,name:'Quick Attack',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Wing Attack',type:'Flying',cat:'Physical',pwr:60,acc:100},{lv:1,name:'Rock Throw',type:'Rock',cat:'Physical',pwr:50,acc:90},{lv:7,name:'Double Team',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:13,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:19,name:'Pluck',type:'Flying',cat:'Physical',pwr:60,acc:100},{lv:25,name:'Ancient Power',type:'Rock',cat:'Special',pwr:60,acc:100},{lv:31,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:37,name:'Rock Slide',type:'Rock',cat:'Physical',pwr:75,acc:90},{lv:43,name:'Acrobatics',type:'Flying',cat:'Physical',pwr:55,acc:100},{lv:49,name:'Dragon Breath',type:'Dragon',cat:'Special',pwr:60,acc:100},{lv:55,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:61,name:'Stone Edge',type:'Rock',cat:'Physical',pwr:100,acc:80},{lv:67,name:'Head Smash',type:'Rock',cat:'Physical',pwr:150,acc:80}]},
+  567:{name:'Archeops',types:['Rock','Flying'],base:{hp:75,atk:140,def:65,spatk:112,spdef:65,spe:110},abilities:[{name:'Defeatist',isHA:false,desc:'Halves Attack and Special Attack when HP drops to 50% or below.'}],pvp:[{setName:'Choice Band',moves:[['Stone Edge'],['Acrobatics'],['Earthquake'],['Crunch']],item:'Choice Band',ability:'Defeatist',natures:['Jolly'],evs:'4 HP / 252 Atk / 252 Spe',desc:'140 Atk + CB + 110 Speed. Defeatist es el problema: a ≤50% HP el Atk se divide. Stone Edge STAB 100 potencia. Acrobatics STAB Flying 110 potencia sin item. EQ + Crunch cobertura.'}],learnset:[{lv:1,name:'Quick Attack',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Wing Attack',type:'Flying',cat:'Physical',pwr:60,acc:100},{lv:1,name:'Rock Throw',type:'Rock',cat:'Physical',pwr:50,acc:90},{lv:19,name:'Pluck',type:'Flying',cat:'Physical',pwr:60,acc:100},{lv:25,name:'Ancient Power',type:'Rock',cat:'Special',pwr:60,acc:100},{lv:37,name:'Rock Slide',type:'Rock',cat:'Physical',pwr:75,acc:90},{lv:43,name:'Acrobatics',type:'Flying',cat:'Physical',pwr:55,acc:100},{lv:55,name:'Crunch',type:'Dark',cat:'Physical',pwr:80,acc:100},{lv:61,name:'Stone Edge',type:'Rock',cat:'Physical',pwr:100,acc:80},{lv:67,name:'Head Smash',type:'Rock',cat:'Physical',pwr:150,acc:80}]},
+  568:{name:'Trubbish',types:['Poison'],base:{hp:50,atk:50,def:62,spatk:40,spdef:62,spe:65},abilities:[{name:'Stench',isHA:false,desc:'May cause the target to flinch when using moves that make contact.'},{name:'Sticky Hold',isHA:false,desc:"Prevents theft of the Pokémon's held item."},{name:'Aftermath',isHA:true,desc:"Damages the attacker by 1/4 of its max HP if a contact move causes this Pokémon to faint."}],pvp:[],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Poison Gas',type:'Poison',cat:'Status',pwr:null,acc:90},{lv:5,name:'Recycle',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:9,name:'Toxic Spikes',type:'Poison',cat:'Status',pwr:null,acc:null},{lv:13,name:'Acid Spray',type:'Poison',cat:'Special',pwr:40,acc:100},{lv:17,name:'Double Slap',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:21,name:'Sludge',type:'Poison',cat:'Special',pwr:65,acc:100},{lv:25,name:'Stockpile',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:29,name:'Take Down',type:'Normal',cat:'Physical',pwr:90,acc:85},{lv:33,name:'Sludge Bomb',type:'Poison',cat:'Special',pwr:90,acc:100},{lv:37,name:'Clear Smog',type:'Poison',cat:'Special',pwr:50,acc:null},{lv:41,name:'Toxic',type:'Poison',cat:'Status',pwr:null,acc:90},{lv:45,name:'Amnesia',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:49,name:'Gunk Shot',type:'Poison',cat:'Physical',pwr:120,acc:80}]},
+  569:{name:'Garbodor',types:['Poison'],base:{hp:80,atk:95,def:82,spatk:60,spdef:82,spe:75},abilities:[{name:'Stench',isHA:false,desc:'May cause the target to flinch when using moves that make contact.'},{name:'Weak Armor',isHA:false,desc:'Lowers Defense but raises Speed when hit by a physical move.'},{name:'Aftermath',isHA:true,desc:"Damages the attacker by 1/4 of its max HP if a contact move causes this Pokémon to faint."}],pvp:[{setName:'Toxic Spikes',moves:[['Toxic Spikes'],['Gunk Shot'],['Drain Punch'],['Spikes']],item:'Black Sludge',ability:'Aftermath (HA)',natures:['Impish'],evs:'252 HP / 252 Def / 4 Atk',desc:'Doble hazard setter: Toxic Spikes + Spikes. Aftermath: dañar Pokémon que lo contacten y maten. Gunk Shot STAB 120 potencia. Drain Punch cobertura + recupera HP. Black Sludge sustain.'}],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Poison Gas',type:'Poison',cat:'Status',pwr:null,acc:90},{lv:9,name:'Toxic Spikes',type:'Poison',cat:'Status',pwr:null,acc:null},{lv:13,name:'Acid Spray',type:'Poison',cat:'Special',pwr:40,acc:100},{lv:21,name:'Sludge',type:'Poison',cat:'Special',pwr:65,acc:100},{lv:29,name:'Take Down',type:'Normal',cat:'Physical',pwr:90,acc:85},{lv:33,name:'Sludge Bomb',type:'Poison',cat:'Special',pwr:90,acc:100},{lv:37,name:'Clear Smog',type:'Poison',cat:'Special',pwr:50,acc:null},{lv:41,name:'Toxic',type:'Poison',cat:'Status',pwr:null,acc:90},{lv:45,name:'Amnesia',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:49,name:'Gunk Shot',type:'Poison',cat:'Physical',pwr:120,acc:80},{lv:53,name:'Body Slam',type:'Normal',cat:'Physical',pwr:85,acc:100}]},
+  570:{name:'Zorua',types:['Dark'],base:{hp:40,atk:65,def:40,spatk:80,spdef:40,spe:65},abilities:[{name:'Illusion',isHA:false,desc:'Enters battle disguised as the last Pokémon in the party.'}],pvp:[],learnset:[{lv:1,name:'Scratch',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:5,name:'Pursuit',type:'Dark',cat:'Physical',pwr:40,acc:100},{lv:9,name:'Fake Tears',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:13,name:'Fury Swipes',type:'Normal',cat:'Physical',pwr:18,acc:80},{lv:17,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:21,name:'Scary Face',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:25,name:'Taunt',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:29,name:'Foul Play',type:'Dark',cat:'Physical',pwr:95,acc:100},{lv:33,name:'Torment',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:37,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:41,name:'Embargo',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:45,name:'Punishment',type:'Dark',cat:'Physical',pwr:null,acc:100},{lv:49,name:'Nasty Plot',type:'Dark',cat:'Status',pwr:null,acc:null},{lv:53,name:'Imprison',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:57,name:'Night Daze',type:'Dark',cat:'Special',pwr:85,acc:95}]},
+  571:{name:'Zoroark',types:['Dark'],base:{hp:60,atk:105,def:60,spatk:120,spdef:60,spe:105},abilities:[{name:'Illusion',isHA:false,desc:'Enters battle disguised as the last Pokémon in the party.'}],pvp:[{setName:'Nasty Plot',moves:[['Nasty Plot'],['Night Daze'],['Focus Blast'],['Flamethrower']],item:'Life Orb',ability:'Illusion',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Illusion: aparece disfrazado del último Pokémon del equipo, confundiendo al rival. 120 SpAtk + NP + LO. Night Daze STAB 85 potencia. Focus Blast Fighting. Flamethrower Steel.'},{setName:'Choice Specs',moves:[['Night Daze'],['Focus Blast'],['Flamethrower'],['U-turn']],item:'Choice Specs',ability:'Illusion',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'120 SpAtk + Specs. Illusion permite entrar como si fuera otro Pokémon. Night Daze STAB. Focus Blast cobertura. Flamethrower Steel. U-turn para cambiar manteniendo el disfraz.'}],learnset:[{lv:1,name:'U-turn',type:'Bug',cat:'Physical',pwr:70,acc:100},{lv:1,name:'Scratch',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:5,name:'Pursuit',type:'Dark',cat:'Physical',pwr:40,acc:100},{lv:9,name:'Fake Tears',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:17,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:25,name:'Taunt',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:29,name:'Foul Play',type:'Dark',cat:'Physical',pwr:95,acc:100},{lv:37,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:45,name:'Punishment',type:'Dark',cat:'Physical',pwr:null,acc:100},{lv:49,name:'Nasty Plot',type:'Dark',cat:'Status',pwr:null,acc:null},{lv:57,name:'Night Daze',type:'Dark',cat:'Special',pwr:85,acc:95},{lv:61,name:'Hyper Voice',type:'Normal',cat:'Special',pwr:90,acc:100}]},
+  572:{name:'Minccino',types:['Normal'],base:{hp:55,atk:50,def:40,spatk:40,spdef:40,spe:75},abilities:[{name:'Cute Charm',isHA:false,desc:'May cause the target to become infatuated on contact.'},{name:'Technician',isHA:false,desc:'Boosts the power of moves with 60 or less base power by 1.5×.'},{name:'Skill Link',isHA:true,desc:'All multi-strike moves will always hit the maximum number of times.'}],pvp:[],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:4,name:'Helping Hand',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:8,name:'Tickle',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:12,name:'Doubleslap',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:16,name:'Encore',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:20,name:'Swift',type:'Normal',cat:'Special',pwr:60,acc:null},{lv:24,name:'Sing',type:'Normal',cat:'Status',pwr:null,acc:55},{lv:28,name:'Tail Slap',type:'Normal',cat:'Physical',pwr:25,acc:85},{lv:32,name:'Charm',type:'Fairy',cat:'Status',pwr:null,acc:100},{lv:36,name:'Wake-Up Slap',type:'Fighting',cat:'Physical',pwr:70,acc:100},{lv:40,name:'Captivate',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:44,name:'Hyper Voice',type:'Normal',cat:'Special',pwr:90,acc:100},{lv:48,name:'Last Resort',type:'Normal',cat:'Physical',pwr:140,acc:100}]},
+  573:{name:'Cinccino',types:['Normal'],base:{hp:75,atk:95,def:60,spatk:65,spdef:60,spe:115},abilities:[{name:'Cute Charm',isHA:false,desc:'May cause the target to become infatuated on contact.'},{name:'Technician',isHA:false,desc:'Boosts the power of moves with 60 or less base power by 1.5×.'},{name:'Skill Link',isHA:true,desc:'All multi-strike moves will always hit the maximum number of times.'}],pvp:[{setName:'Skill Link',moves:[['Tail Slap'],['Bullet Seed'],['Rock Blast'],['U-turn']],item:'Choice Band',ability:'Skill Link (HA)',natures:['Jolly'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Skill Link: todos los multi-hit siempre golpean 5 veces. Tail Slap 25 × 5 = 125. Bullet Seed 25 × 5 = 125. Rock Blast 25 × 5 = 125. 95 Atk + CB. 115 Speed muy alto. Rompe Subs en cada golpe.'}],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Helping Hand',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:1,name:'Tickle',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:28,name:'Tail Slap',type:'Normal',cat:'Physical',pwr:25,acc:85},{lv:44,name:'Hyper Voice',type:'Normal',cat:'Special',pwr:90,acc:100},{lv:48,name:'Last Resort',type:'Normal',cat:'Physical',pwr:140,acc:100}]},
+  574:{name:'Gothita',types:['Psychic'],base:{hp:45,atk:30,def:50,spatk:70,spdef:50,spe:45},abilities:[{name:'Frisk',isHA:false,desc:"Reveals the foe's held item."},{name:'Competitive',isHA:false,desc:'Raises Special Attack by 2 stages when a stat is lowered.'},{name:'Shadow Tag',isHA:true,desc:'Prevents the foe from switching out.'}],pvp:[],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Confusion',type:'Psychic',cat:'Special',pwr:50,acc:100},{lv:5,name:'Tickle',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:9,name:'Fake Tears',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:13,name:'Double Slap',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:17,name:'Psybeam',type:'Psychic',cat:'Special',pwr:65,acc:100},{lv:21,name:'Embargo',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:25,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:29,name:'Psyshock',type:'Psychic',cat:'Special',pwr:80,acc:100},{lv:33,name:'Flatter',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:37,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100},{lv:41,name:'Heal Block',type:'Psychic',cat:'Status',pwr:null,acc:100},{lv:45,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:49,name:'Telekinesis',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:53,name:'Charm',type:'Fairy',cat:'Status',pwr:null,acc:100},{lv:57,name:'Magic Room',type:'Psychic',cat:'Status',pwr:null,acc:null}]},
+  575:{name:'Gothorita',types:['Psychic'],base:{hp:60,atk:45,def:70,spatk:75,spdef:85,spe:55},abilities:[{name:'Frisk',isHA:false,desc:"Reveals the foe's held item."},{name:'Competitive',isHA:false,desc:'Raises Special Attack by 2 stages when a stat is lowered.'},{name:'Shadow Tag',isHA:true,desc:'Prevents the foe from switching out.'}],pvp:[],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Confusion',type:'Psychic',cat:'Special',pwr:50,acc:100},{lv:13,name:'Double Slap',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:17,name:'Psybeam',type:'Psychic',cat:'Special',pwr:65,acc:100},{lv:25,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:29,name:'Psyshock',type:'Psychic',cat:'Special',pwr:80,acc:100},{lv:37,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100},{lv:45,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:53,name:'Charm',type:'Fairy',cat:'Status',pwr:null,acc:100}]},
+  576:{name:'Gothitelle',types:['Psychic'],base:{hp:70,atk:55,def:95,spatk:95,spdef:110,spe:65},abilities:[{name:'Frisk',isHA:false,desc:"Reveals the foe's held item."},{name:'Competitive',isHA:false,desc:'Raises Special Attack by 2 stages when a stat is lowered.'},{name:'Shadow Tag',isHA:true,desc:'Prevents the foe from switching out.'}],pvp:[{setName:'Shadow Tag Trapper',moves:[['Calm Mind'],['Psychic'],['Shadow Ball'],['Thunderbolt']],item:'Leftovers',ability:'Shadow Tag (HA)',natures:['Calm'],evs:'252 HP / 4 SpA / 252 SpD',desc:'Shadow Tag: el rival no puede cambiar. Atrapa y elimina amenazas específicas. 70/95/110 bulk. CM acumula SpAtk. Psychic STAB. Shadow Ball Dark/Psych. Thunderbolt coverage. 95 SpAtk.'}],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Confusion',type:'Psychic',cat:'Special',pwr:50,acc:100},{lv:17,name:'Psybeam',type:'Psychic',cat:'Special',pwr:65,acc:100},{lv:29,name:'Psyshock',type:'Psychic',cat:'Special',pwr:80,acc:100},{lv:37,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100},{lv:47,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:57,name:'Magic Room',type:'Psychic',cat:'Status',pwr:null,acc:null}]},
+  577:{name:'Solosis',types:['Psychic'],base:{hp:45,atk:30,def:40,spatk:105,spdef:50,spe:20},abilities:[{name:'Overcoat',isHA:false,desc:'Protects against weather-based damage and powder moves.'},{name:'Magic Guard',isHA:false,desc:'Prevents all indirect damage.'},{name:'Regenerator',isHA:true,desc:'Restores 1/3 of max HP when switching out.'}],pvp:[],learnset:[{lv:1,name:'Psywave',type:'Psychic',cat:'Special',pwr:null,acc:100},{lv:1,name:'Reflect',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:1,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:1,name:'Snatch',type:'Dark',cat:'Status',pwr:null,acc:null},{lv:7,name:'Hidden Power',type:'Normal',cat:'Special',pwr:60,acc:100},{lv:13,name:'Light Screen',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:19,name:'Charm',type:'Fairy',cat:'Status',pwr:null,acc:100},{lv:25,name:'Psyshock',type:'Psychic',cat:'Special',pwr:80,acc:100},{lv:31,name:'Endeavor',type:'Normal',cat:'Physical',pwr:null,acc:100},{lv:37,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100},{lv:43,name:'Pain Split',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:49,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:55,name:'Skill Swap',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:61,name:'Heal Block',type:'Psychic',cat:'Status',pwr:null,acc:100}]},
+  578:{name:'Duosion',types:['Psychic'],base:{hp:65,atk:40,def:50,spatk:125,spdef:60,spe:30},abilities:[{name:'Overcoat',isHA:false,desc:'Protects against weather-based damage and powder moves.'},{name:'Magic Guard',isHA:false,desc:'Prevents all indirect damage.'},{name:'Regenerator',isHA:true,desc:'Restores 1/3 of max HP when switching out.'}],pvp:[],learnset:[{lv:1,name:'Psywave',type:'Psychic',cat:'Special',pwr:null,acc:100},{lv:1,name:'Reflect',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:1,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:25,name:'Psyshock',type:'Psychic',cat:'Special',pwr:80,acc:100},{lv:37,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100},{lv:43,name:'Pain Split',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:49,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:55,name:'Skill Swap',type:'Psychic',cat:'Status',pwr:null,acc:null}]},
+  579:{name:'Reuniclus',types:['Psychic'],base:{hp:110,atk:65,def:75,spatk:125,spdef:85,spe:30},abilities:[{name:'Overcoat',isHA:false,desc:'Protects against weather-based damage and powder moves.'},{name:'Magic Guard',isHA:false,desc:'Prevents all indirect damage.'},{name:'Regenerator',isHA:true,desc:'Restores 1/3 of max HP when switching out.'}],pvp:[{setName:'Calm Mind',moves:[['Calm Mind'],['Psyshock'],['Focus Blast'],['Shadow Ball']],item:'Life Orb',ability:'Magic Guard',natures:['Quiet'],evs:'252 HP / 252 SpA / 4 SpD',desc:'Magic Guard: LO sin daño. 125 SpAtk + CM + LO. 30 Speed = bajo TR va primero. Psyshock STAB pega SpDef. Focus Blast Fighting. Shadow Ball Dark/Ghost. 110 HP bulk excelente.'},{setName:'Trick Room',moves:[['Trick Room'],['Psyshock'],['Focus Blast'],['Recover']],item:'Life Orb',ability:'Magic Guard',natures:['Quiet'],evs:'252 HP / 252 SpA / 4 SpD',desc:'30 Speed = TR setter + sweeper. Setea TR y va primero bajo TR. 125 SpAtk + LO sin daño. Recover curación. Magic Guard ignora LO y Hazards. Casi irrompible.'}],learnset:[{lv:1,name:'Psywave',type:'Psychic',cat:'Special',pwr:null,acc:100},{lv:1,name:'Reflect',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:1,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:25,name:'Psyshock',type:'Psychic',cat:'Special',pwr:80,acc:100},{lv:37,name:'Future Sight',type:'Psychic',cat:'Special',pwr:120,acc:100},{lv:43,name:'Pain Split',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:49,name:'Psychic',type:'Psychic',cat:'Special',pwr:90,acc:100},{lv:55,name:'Skill Swap',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:61,name:'Heal Block',type:'Psychic',cat:'Status',pwr:null,acc:100},{lv:67,name:'Recover',type:'Normal',cat:'Status',pwr:null,acc:null}]},
+  580:{name:'Ducklett',types:['Water','Flying'],base:{hp:62,atk:44,def:50,spatk:44,spdef:50,spe:55},abilities:[{name:'Keen Eye',isHA:false,desc:"This Pokémon's accuracy cannot be lowered."},{name:'Big Pecks',isHA:false,desc:"Prevents the Pokémon's Defense from being lowered."},{name:'Hydration',isHA:true,desc:'Heals status conditions at the end of each turn in rain.'}],pvp:[],learnset:[{lv:1,name:'Water Gun',type:'Water',cat:'Special',pwr:40,acc:100},{lv:1,name:'Water Sport',type:'Water',cat:'Status',pwr:null,acc:null},{lv:5,name:'Defog',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:9,name:'Wing Attack',type:'Flying',cat:'Physical',pwr:60,acc:100},{lv:13,name:'Water Pulse',type:'Water',cat:'Special',pwr:60,acc:100},{lv:17,name:'Aerial Ace',type:'Flying',cat:'Physical',pwr:60,acc:null},{lv:21,name:'BubbleBeam',type:'Water',cat:'Special',pwr:65,acc:100},{lv:25,name:'Feather Dance',type:'Flying',cat:'Status',pwr:null,acc:100},{lv:29,name:'Aqua Ring',type:'Water',cat:'Status',pwr:null,acc:null},{lv:33,name:'Air Slash',type:'Flying',cat:'Special',pwr:75,acc:95},{lv:37,name:'Roost',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:41,name:'Rain Dance',type:'Water',cat:'Status',pwr:null,acc:null},{lv:45,name:'Tailwind',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:49,name:'Scald',type:'Water',cat:'Special',pwr:80,acc:100},{lv:53,name:'Hurricane',type:'Flying',cat:'Special',pwr:110,acc:70}]},
+  581:{name:'Swanna',types:['Water','Flying'],base:{hp:75,atk:87,def:63,spatk:87,spdef:63,spe:98},abilities:[{name:'Keen Eye',isHA:false,desc:"This Pokémon's accuracy cannot be lowered."},{name:'Big Pecks',isHA:false,desc:"Prevents the Pokémon's Defense from being lowered."},{name:'Hydration',isHA:true,desc:'Heals status conditions at the end of each turn in rain.'}],pvp:[],learnset:[{lv:1,name:'Water Gun',type:'Water',cat:'Special',pwr:40,acc:100},{lv:1,name:'Water Sport',type:'Water',cat:'Status',pwr:null,acc:null},{lv:5,name:'Defog',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:9,name:'Wing Attack',type:'Flying',cat:'Physical',pwr:60,acc:100},{lv:25,name:'Aqua Ring',type:'Water',cat:'Status',pwr:null,acc:null},{lv:33,name:'Air Slash',type:'Flying',cat:'Special',pwr:75,acc:95},{lv:37,name:'Roost',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:45,name:'Tailwind',type:'Flying',cat:'Status',pwr:null,acc:null},{lv:49,name:'Scald',type:'Water',cat:'Special',pwr:80,acc:100},{lv:53,name:'Hurricane',type:'Flying',cat:'Special',pwr:110,acc:70}]},
+  582:{name:'Vanillite',types:['Ice'],base:{hp:36,atk:50,def:50,spatk:65,spdef:60,spe:44},abilities:[{name:'Ice Body',isHA:false,desc:'Restores HP in hail.'},{name:'Snow Cloak',isHA:false,desc:'Raises evasiveness in hail.'},{name:'Weak Armor',isHA:true,desc:'Lowers Defense but raises Speed when hit by a physical move.'}],pvp:[],learnset:[{lv:1,name:'Icicle Spear',type:'Ice',cat:'Physical',pwr:25,acc:100},{lv:1,name:'Harden',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:4,name:'Astonish',type:'Ghost',cat:'Physical',pwr:30,acc:100},{lv:8,name:'Uproar',type:'Normal',cat:'Special',pwr:90,acc:100},{lv:12,name:'Icy Wind',type:'Ice',cat:'Special',pwr:55,acc:95},{lv:16,name:'Mist',type:'Ice',cat:'Status',pwr:null,acc:null},{lv:20,name:'Avalanche',type:'Ice',cat:'Physical',pwr:60,acc:100},{lv:24,name:'Taunt',type:'Dark',cat:'Status',pwr:null,acc:100},{lv:28,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:32,name:'Acid Armor',type:'Poison',cat:'Status',pwr:null,acc:null},{lv:36,name:'Ice Beam',type:'Ice',cat:'Special',pwr:90,acc:100},{lv:40,name:'Hail',type:'Ice',cat:'Status',pwr:null,acc:null},{lv:44,name:'Blizzard',type:'Ice',cat:'Special',pwr:110,acc:70},{lv:48,name:'Sheer Cold',type:'Ice',cat:'Special',pwr:null,acc:30}]},
+  583:{name:'Vanillish',types:['Ice'],base:{hp:51,atk:65,def:65,spatk:80,spdef:75,spe:59},abilities:[{name:'Ice Body',isHA:false,desc:'Restores HP in hail.'},{name:'Snow Cloak',isHA:false,desc:'Raises evasiveness in hail.'},{name:'Weak Armor',isHA:true,desc:'Lowers Defense but raises Speed when hit by a physical move.'}],pvp:[],learnset:[{lv:1,name:'Icicle Spear',type:'Ice',cat:'Physical',pwr:25,acc:100},{lv:1,name:'Harden',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:4,name:'Astonish',type:'Ghost',cat:'Physical',pwr:30,acc:100},{lv:12,name:'Icy Wind',type:'Ice',cat:'Special',pwr:55,acc:95},{lv:20,name:'Avalanche',type:'Ice',cat:'Physical',pwr:60,acc:100},{lv:28,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:36,name:'Ice Beam',type:'Ice',cat:'Special',pwr:90,acc:100},{lv:40,name:'Hail',type:'Ice',cat:'Status',pwr:null,acc:null},{lv:44,name:'Blizzard',type:'Ice',cat:'Special',pwr:110,acc:70}]},
+  584:{name:'Vanilluxe',types:['Ice'],base:{hp:71,atk:95,def:85,spatk:110,spdef:95,spe:79},abilities:[{name:'Ice Body',isHA:false,desc:'Restores HP in hail.'},{name:'Snow Warning',isHA:false,desc:'Summons hail when this Pokémon enters battle.'},{name:'Weak Armor',isHA:true,desc:'Lowers Defense but raises Speed when hit by a physical move.'}],pvp:[{setName:'Snow Warning Blizzard',moves:[['Blizzard'],['Freeze-Dry'],['Hidden Power Ground'],['Autotomize']],item:'Choice Specs',ability:'Snow Warning',natures:['Modest'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Snow Warning invoca granizo → Blizzard 100% preciso. 110 SpAtk + Specs. Freeze-Dry STAB Ice golpea Water. HP Ground cubre Steel/Rock. Autotomize sube Speed +2.'},{setName:'Choice Scarf',moves:[['Blizzard'],['Freeze-Dry'],['Hidden Power Ground'],['Flash Cannon']],item:'Choice Scarf',ability:'Snow Warning',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Scarf + 79 Speed. Snow Warning → Blizzard sin fallo. 110 SpAtk. Freeze-Dry cubre Water. Flash Cannon STAB Steel. HP Ground cobertura adicional.'}],learnset:[{lv:1,name:'Icicle Spear',type:'Ice',cat:'Physical',pwr:25,acc:100},{lv:1,name:'Harden',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:4,name:'Astonish',type:'Ghost',cat:'Physical',pwr:30,acc:100},{lv:12,name:'Icy Wind',type:'Ice',cat:'Special',pwr:55,acc:95},{lv:20,name:'Avalanche',type:'Ice',cat:'Physical',pwr:60,acc:100},{lv:28,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:38,name:'Ice Beam',type:'Ice',cat:'Special',pwr:90,acc:100},{lv:44,name:'Hail',type:'Ice',cat:'Status',pwr:null,acc:null},{lv:50,name:'Blizzard',type:'Ice',cat:'Special',pwr:110,acc:70},{lv:56,name:'Sheer Cold',type:'Ice',cat:'Special',pwr:null,acc:30}]},
+  585:{name:'Deerling',types:['Normal','Grass'],base:{hp:60,atk:60,def:50,spatk:40,spdef:50,spe:75},abilities:[{name:'Chlorophyll',isHA:false,desc:"This Pokémon's Speed is doubled in harsh sunlight."},{name:'Sap Sipper',isHA:false,desc:'Absorbs Grass moves, raising Attack.'},{name:'Serene Grace',isHA:true,desc:'Doubles the chance of moves having secondary effects.'}],pvp:[],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:5,name:'Sand Attack',type:'Ground',cat:'Status',pwr:null,acc:100},{lv:9,name:'Double Kick',type:'Fighting',cat:'Physical',pwr:30,acc:100},{lv:13,name:'Leech Seed',type:'Grass',cat:'Status',pwr:null,acc:90},{lv:17,name:'Feint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:21,name:'Take Down',type:'Normal',cat:'Physical',pwr:90,acc:85},{lv:25,name:'Jump Kick',type:'Fighting',cat:'Physical',pwr:100,acc:95},{lv:29,name:'Aromatherapy',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:33,name:'Energy Ball',type:'Grass',cat:'Special',pwr:90,acc:100},{lv:37,name:'Bounce',type:'Flying',cat:'Physical',pwr:85,acc:85},{lv:41,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:45,name:'Horn Leech',type:'Grass',cat:'Physical',pwr:75,acc:100},{lv:49,name:'Camouflage',type:'Normal',cat:'Status',pwr:null,acc:null}]},
+  586:{name:'Sawsbuck',types:['Normal','Grass'],base:{hp:80,atk:100,def:70,spatk:60,spdef:70,spe:95},abilities:[{name:'Chlorophyll',isHA:false,desc:"This Pokémon's Speed is doubled in harsh sunlight."},{name:'Sap Sipper',isHA:false,desc:'Absorbs Grass moves, raising Attack.'},{name:'Serene Grace',isHA:true,desc:'Doubles the chance of moves having secondary effects.'}],pvp:[{setName:'Swords Dance',moves:[['Swords Dance'],['Horn Leech'],['Double-Edge'],['Jump Kick']],item:'Life Orb',ability:'Sap Sipper',natures:['Adamant'],evs:'4 HP / 252 Atk / 252 Spe',desc:'Sap Sipper: absorbe Grass moves +1 Atk. SD + 100 Atk + LO. Horn Leech STAB Grass + roba HP. Double-Edge STAB Normal potente. Jump Kick cobertura Steel/Dark. 95 Speed bueno.'}],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Growl',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:21,name:'Take Down',type:'Normal',cat:'Physical',pwr:90,acc:85},{lv:25,name:'Jump Kick',type:'Fighting',cat:'Physical',pwr:100,acc:95},{lv:29,name:'Aromatherapy',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:33,name:'Energy Ball',type:'Grass',cat:'Special',pwr:90,acc:100},{lv:37,name:'Bounce',type:'Flying',cat:'Physical',pwr:85,acc:85},{lv:41,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:47,name:'Horn Leech',type:'Grass',cat:'Physical',pwr:75,acc:100},{lv:53,name:'Swords Dance',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:59,name:'Double-Edge',type:'Normal',cat:'Physical',pwr:120,acc:100}]},
+  587:{name:'Emolga',types:['Electric','Flying'],base:{hp:55,atk:75,def:60,spatk:75,spdef:60,spe:103},abilities:[{name:'Static',isHA:false,desc:'May paralyze the attacker on contact.'},{name:'Motor Drive',isHA:true,desc:'Raises Speed when hit by an Electric move.'}],pvp:[],learnset:[{lv:1,name:'Thunder Shock',type:'Electric',cat:'Special',pwr:40,acc:100},{lv:1,name:'Quick Attack',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:5,name:'Tail Whip',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:9,name:'Charge',type:'Electric',cat:'Status',pwr:null,acc:null},{lv:13,name:'Spark',type:'Electric',cat:'Physical',pwr:65,acc:100},{lv:17,name:'Nuzzle',type:'Electric',cat:'Physical',pwr:20,acc:100},{lv:21,name:'Pursuit',type:'Dark',cat:'Physical',pwr:40,acc:100},{lv:25,name:'Double Team',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:29,name:'Shock Wave',type:'Electric',cat:'Special',pwr:60,acc:null},{lv:33,name:'Acrobatics',type:'Flying',cat:'Physical',pwr:55,acc:100},{lv:37,name:'Light Screen',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:41,name:'Encore',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:45,name:'Volt Switch',type:'Electric',cat:'Special',pwr:70,acc:100},{lv:49,name:'Discharge',type:'Electric',cat:'Special',pwr:80,acc:100}]},
+  588:{name:'Karrablast',types:['Bug'],base:{hp:50,atk:75,def:45,spatk:40,spdef:45,spe:60},abilities:[{name:'Swarm',isHA:false,desc:'Boosts Bug-type moves by 1.5× when HP is below 1/3.'},{name:'Shed Skin',isHA:false,desc:'Has a 1/3 chance to heal its own status condition at the end of each turn.'},{name:'No Guard',isHA:true,desc:'Ensures all moves used by and against this Pokémon hit.'}],pvp:[],learnset:[{lv:1,name:'Peck',type:'Flying',cat:'Physical',pwr:35,acc:100},{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:4,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:7,name:'Focus Energy',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:10,name:'Pursuit',type:'Dark',cat:'Physical',pwr:40,acc:100},{lv:14,name:'False Swipe',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:17,name:'Fury Cutter',type:'Bug',cat:'Physical',pwr:40,acc:95},{lv:20,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:24,name:'Slash',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:27,name:'Swords Dance',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:30,name:'X-Scissor',type:'Bug',cat:'Physical',pwr:80,acc:100},{lv:34,name:'Bug Buzz',type:'Bug',cat:'Special',pwr:90,acc:100},{lv:37,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:40,name:'Fell Stinger',type:'Bug',cat:'Physical',pwr:50,acc:100}]},
+  589:{name:'Escavalier',types:['Bug','Steel'],base:{hp:70,atk:135,def:105,spatk:60,spdef:105,spe:20},abilities:[{name:'Swarm',isHA:false,desc:'Boosts Bug-type moves by 1.5× when HP is below 1/3.'},{name:'Shell Armor',isHA:false,desc:'Prevents critical hits.'},{name:'Overcoat',isHA:true,desc:'Protects against weather-based damage and powder moves.'}],pvp:[{setName:'Choice Band',moves:[['Megahorn'],['Iron Head'],['Knock Off'],['Pursuit']],item:'Choice Band',ability:'Overcoat (HA)',natures:['Adamant'],evs:'252 HP / 252 Atk / 4 Def',desc:'135 Atk + CB. Megahorn STAB Bug 120 potencia. Iron Head STAB Steel 30% flinch. Knock Off utility + daño. Pursuit para atrapar Psychics que quieren salir. 20 Speed lento pero bulk compensa.'},{setName:'Trick Room',moves:[['Megahorn'],['Iron Head'],['Knock Off'],['Swords Dance']],item:'Life Orb',ability:'Overcoat (HA)',natures:['Brave'],evs:'252 HP / 252 Atk / 4 Def',desc:'20 Speed = va primero bajo TR. 135 Atk + LO + SD. Megahorn + Iron Head STAB. Knock Off. Overcoat: inmune a granizo, arena y polvos. Bug/Steel solo débil a Fire.'}],learnset:[{lv:1,name:'Peck',type:'Flying',cat:'Physical',pwr:35,acc:100},{lv:1,name:'Leer',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:1,name:'Quick Guard',type:'Fighting',cat:'Status',pwr:null,acc:null},{lv:1,name:'Twineedle',type:'Bug',cat:'Physical',pwr:25,acc:100},{lv:17,name:'Fury Cutter',type:'Bug',cat:'Physical',pwr:40,acc:95},{lv:20,name:'Headbutt',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:24,name:'Slash',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:27,name:'Iron Defense',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:30,name:'X-Scissor',type:'Bug',cat:'Physical',pwr:80,acc:100},{lv:34,name:'Bug Buzz',type:'Bug',cat:'Special',pwr:90,acc:100},{lv:37,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:40,name:'Iron Head',type:'Steel',cat:'Physical',pwr:80,acc:100},{lv:44,name:'Swords Dance',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:47,name:'Megahorn',type:'Bug',cat:'Physical',pwr:120,acc:85}]},
+  590:{name:'Foongus',types:['Grass','Poison'],base:{hp:69,atk:55,def:45,spatk:55,spdef:55,spe:15},abilities:[{name:'Effect Spore',isHA:false,desc:'May inflict poison, paralysis, or sleep on contact.'},{name:'Regenerator',isHA:true,desc:'Restores 1/3 of max HP when switching out.'}],pvp:[],learnset:[{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:1,name:'Growth',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:5,name:'Astonish',type:'Ghost',cat:'Physical',pwr:30,acc:100},{lv:9,name:'Bide',type:'Normal',cat:'Physical',pwr:null,acc:null},{lv:13,name:'Mega Drain',type:'Grass',cat:'Special',pwr:40,acc:100},{lv:17,name:'Ingrain',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:21,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:25,name:'Sweet Scent',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:29,name:'Giga Drain',type:'Grass',cat:'Special',pwr:75,acc:100},{lv:33,name:'Toxic',type:'Poison',cat:'Status',pwr:null,acc:90},{lv:37,name:'Synthesis',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:41,name:'Clear Smog',type:'Poison',cat:'Special',pwr:50,acc:null},{lv:45,name:'Sludge Bomb',type:'Poison',cat:'Special',pwr:90,acc:100},{lv:49,name:'Spore',type:'Grass',cat:'Status',pwr:null,acc:100}]},
+  591:{name:'Amoonguss',types:['Grass','Poison'],base:{hp:114,atk:85,def:70,spatk:85,spdef:80,spe:30},abilities:[{name:'Effect Spore',isHA:false,desc:'May inflict poison, paralysis, or sleep on contact.'},{name:'Regenerator',isHA:true,desc:'Restores 1/3 of max HP when switching out.'}],pvp:[{setName:'Spore',moves:[['Spore'],['Giga Drain'],['Clear Smog'],['Synthesis']],item:'Black Sludge',ability:'Regenerator (HA)',natures:['Calm'],evs:'252 HP / 4 Def / 252 SpD',desc:'114 HP + Regenerator (1/3 al cambiar). Spore = sleep 100% preciso. Giga Drain STAB + recupera HP. Clear Smog resetea boosts rival. Synthesis curación. 30 Speed = TR lento útil.'}],learnset:[{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:1,name:'Growth',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:13,name:'Mega Drain',type:'Grass',cat:'Special',pwr:40,acc:100},{lv:17,name:'Ingrain',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:21,name:'Faint Attack',type:'Dark',cat:'Physical',pwr:60,acc:null},{lv:25,name:'Sweet Scent',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:29,name:'Giga Drain',type:'Grass',cat:'Special',pwr:75,acc:100},{lv:33,name:'Toxic',type:'Poison',cat:'Status',pwr:null,acc:90},{lv:37,name:'Synthesis',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:41,name:'Clear Smog',type:'Poison',cat:'Special',pwr:50,acc:null},{lv:45,name:'Sludge Bomb',type:'Poison',cat:'Special',pwr:90,acc:100},{lv:49,name:'Spore',type:'Grass',cat:'Status',pwr:null,acc:100},{lv:53,name:'Rage Powder',type:'Bug',cat:'Status',pwr:null,acc:null}]},
+  592:{name:'Frillish',types:['Water','Ghost'],base:{hp:55,atk:40,def:50,spatk:65,spdef:85,spe:40},abilities:[{name:'Water Absorb',isHA:false,desc:'Restores 1/4 of max HP when hit by Water moves.'},{name:'Cursed Body',isHA:false,desc:'May disable a move used against this Pokémon.'},{name:'Damp',isHA:true,desc:'Prevents the use of Self-Destruct, Explosion, and Aftermath.'}],pvp:[],learnset:[{lv:1,name:'Bubble',type:'Water',cat:'Special',pwr:40,acc:100},{lv:1,name:'Water Sport',type:'Water',cat:'Status',pwr:null,acc:null},{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:5,name:'Night Shade',type:'Ghost',cat:'Special',pwr:null,acc:100},{lv:9,name:'Bubblebeam',type:'Water',cat:'Special',pwr:65,acc:100},{lv:13,name:'Recover',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:17,name:'Water Pulse',type:'Water',cat:'Special',pwr:60,acc:100},{lv:21,name:'Ominous Wind',type:'Ghost',cat:'Special',pwr:60,acc:100},{lv:25,name:'Brine',type:'Water',cat:'Special',pwr:65,acc:100},{lv:29,name:'Rain Dance',type:'Water',cat:'Status',pwr:null,acc:null},{lv:33,name:'Hex',type:'Ghost',cat:'Special',pwr:65,acc:100},{lv:37,name:'Hydro Pump',type:'Water',cat:'Special',pwr:110,acc:80},{lv:41,name:'Wring Out',type:'Normal',cat:'Special',pwr:null,acc:100},{lv:45,name:'Water Spout',type:'Water',cat:'Special',pwr:150,acc:100}]},
+  593:{name:'Jellicent',types:['Water','Ghost'],base:{hp:100,atk:60,def:70,spatk:85,spdef:105,spe:60},abilities:[{name:'Water Absorb',isHA:false,desc:'Restores 1/4 of max HP when hit by Water moves.'},{name:'Cursed Body',isHA:false,desc:'May disable a move used against this Pokémon.'},{name:'Damp',isHA:true,desc:'Prevents the use of Self-Destruct, Explosion, and Aftermath.'}],pvp:[{setName:'Defensive',moves:[['Will-O-Wisp'],['Scald'],['Recover'],['Shadow Ball']],item:'Leftovers',ability:'Water Absorb',natures:['Bold'],evs:'252 HP / 252 Def / 4 SpA',desc:'Water Absorb: inmune a Water. 100/70/105 bulk + recupera HP. WoW quema físicos. Scald STAB 30% burn. Recover curación. Shadow Ball STAB Ghost. Cursed Body puede deshabilitar ataques.'},{setName:'Trick',moves:[['Trick'],['Scald'],['Shadow Ball'],['Ice Beam']],item:'Choice Specs',ability:'Cursed Body',natures:['Modest'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Trick da Specs al rival wall. 85 SpAtk + Specs. Scald STAB + burn. Shadow Ball STAB Ghost. Ice Beam cobertura Dragon/Grass. Cursed Body puede deshabilitar el movimiento que lo golpea.'}],learnset:[{lv:1,name:'Bubble',type:'Water',cat:'Special',pwr:40,acc:100},{lv:1,name:'Water Sport',type:'Water',cat:'Status',pwr:null,acc:null},{lv:1,name:'Absorb',type:'Grass',cat:'Special',pwr:20,acc:100},{lv:9,name:'Bubblebeam',type:'Water',cat:'Special',pwr:65,acc:100},{lv:13,name:'Recover',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:21,name:'Ominous Wind',type:'Ghost',cat:'Special',pwr:60,acc:100},{lv:25,name:'Brine',type:'Water',cat:'Special',pwr:65,acc:100},{lv:29,name:'Rain Dance',type:'Water',cat:'Status',pwr:null,acc:null},{lv:33,name:'Hex',type:'Ghost',cat:'Special',pwr:65,acc:100},{lv:37,name:'Hydro Pump',type:'Water',cat:'Special',pwr:110,acc:80},{lv:41,name:'Wring Out',type:'Normal',cat:'Special',pwr:null,acc:100},{lv:45,name:'Water Spout',type:'Water',cat:'Special',pwr:150,acc:100}]},
+  594:{name:'Alomomola',types:['Water'],base:{hp:165,atk:75,def:80,spatk:40,spdef:45,spe:65},abilities:[{name:'Healer',isHA:false,desc:"May heal an ally's status condition."},{name:'Hydration',isHA:false,desc:'Heals status conditions at the end of each turn in rain.'},{name:'Regenerator',isHA:true,desc:'Restores 1/3 of max HP when switching out.'}],pvp:[{setName:'Wish Passer',moves:[['Wish'],['Protect'],['Scald'],['Knock Off']],item:'Leftovers',ability:'Regenerator (HA)',natures:['Bold'],evs:'252 HP / 252 Def / 4 Atk',desc:'165 HP = Wish más grande del juego (82 HP curados). Regenerator 1/3 al cambiar. Protect para usar el Wish propio. Scald STAB 30% burn. Knock Off utility. Excelente soporte.'}],learnset:[{lv:1,name:'Pound',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Water Sport',type:'Water',cat:'Status',pwr:null,acc:null},{lv:5,name:'Aqua Ring',type:'Water',cat:'Status',pwr:null,acc:null},{lv:9,name:'Water Gun',type:'Water',cat:'Special',pwr:40,acc:100},{lv:13,name:'Doubleslap',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:17,name:'Heal Pulse',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:21,name:'Protect',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:25,name:'Water Pulse',type:'Water',cat:'Special',pwr:60,acc:100},{lv:29,name:'Wake-Up Slap',type:'Fighting',cat:'Physical',pwr:70,acc:100},{lv:33,name:'Helping Hand',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:37,name:'Wish',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:41,name:'Soak',type:'Water',cat:'Status',pwr:null,acc:100},{lv:45,name:'Aqua Tail',type:'Water',cat:'Physical',pwr:90,acc:90},{lv:49,name:'Attract',type:'Normal',cat:'Status',pwr:null,acc:100},{lv:53,name:'Safeguard',type:'Normal',cat:'Status',pwr:null,acc:null}]},
+  595:{name:'Joltik',types:['Bug','Electric'],base:{hp:50,atk:47,def:50,spatk:57,spdef:50,spe:65},abilities:[{name:'Compound Eyes',isHA:false,desc:"Raises this Pokémon's accuracy by 30%."},{name:'Unnerve',isHA:false,desc:"Prevents the opposing Pokémon from using its held Berry."},{name:'Swarm',isHA:true,desc:'Boosts Bug-type moves by 1.5× when HP is below 1/3.'}],pvp:[],learnset:[{lv:1,name:'String Shot',type:'Bug',cat:'Status',pwr:null,acc:95},{lv:1,name:'Leech Life',type:'Bug',cat:'Physical',pwr:80,acc:100},{lv:5,name:'Spider Web',type:'Bug',cat:'Status',pwr:null,acc:null},{lv:10,name:'Thunder Wave',type:'Electric',cat:'Status',pwr:null,acc:90},{lv:14,name:'Screech',type:'Normal',cat:'Status',pwr:null,acc:85},{lv:19,name:'Fury Cutter',type:'Bug',cat:'Physical',pwr:40,acc:95},{lv:23,name:'Electroweb',type:'Electric',cat:'Special',pwr:55,acc:95},{lv:28,name:'Bug Bite',type:'Bug',cat:'Physical',pwr:60,acc:100},{lv:32,name:'Gastro Acid',type:'Poison',cat:'Status',pwr:null,acc:100},{lv:37,name:'Slash',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:41,name:'Thunderbolt',type:'Electric',cat:'Special',pwr:90,acc:100},{lv:46,name:'Bug Buzz',type:'Bug',cat:'Special',pwr:90,acc:100},{lv:50,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:55,name:'Wild Charge',type:'Electric',cat:'Physical',pwr:90,acc:100},{lv:59,name:'Thunder',type:'Electric',cat:'Special',pwr:110,acc:70}]},
+  596:{name:'Galvantula',types:['Bug','Electric'],base:{hp:70,atk:77,def:60,spatk:97,spdef:60,spe:108},abilities:[{name:'Compound Eyes',isHA:false,desc:"Raises this Pokémon's accuracy by 30%."},{name:'Unnerve',isHA:false,desc:"Prevents the opposing Pokémon from using its held Berry."},{name:'Swarm',isHA:true,desc:'Boosts Bug-type moves by 1.5× when HP is below 1/3.'}],pvp:[{setName:'Compound Eyes Thunder',moves:[['Thunder'],['Bug Buzz'],['Hidden Power Ice'],['Sticky Web']],item:'Choice Specs',ability:'Compound Eyes',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Compound Eyes: Thunder tiene 91% precisión en vez de 70%. 108 Speed + 97 SpAtk + Specs. Thunder STAB Electric. Bug Buzz STAB. HP Ice cobertura Dragon. Sticky Web baja Speed rival al entrar.'},{setName:'Sticky Web Lead',moves:[['Sticky Web'],['Thunder'],['Bug Buzz'],['Thunder Wave']],item:'Focus Sash',ability:'Compound Eyes',natures:['Timid'],evs:'4 HP / 252 SpA / 252 Spe',desc:'Lead: Sash garantiza Sticky Web. 108 Speed outspeedea casi todo. TWave si no puede poner SW. Thunder + Bug Buzz para no ser inútil ofensivamente. Excelente setter de Sticky Web.'}],learnset:[{lv:1,name:'String Shot',type:'Bug',cat:'Status',pwr:null,acc:95},{lv:1,name:'Leech Life',type:'Bug',cat:'Physical',pwr:80,acc:100},{lv:1,name:'Spider Web',type:'Bug',cat:'Status',pwr:null,acc:null},{lv:14,name:'Screech',type:'Normal',cat:'Status',pwr:null,acc:85},{lv:19,name:'Fury Cutter',type:'Bug',cat:'Physical',pwr:40,acc:95},{lv:23,name:'Electroweb',type:'Electric',cat:'Special',pwr:55,acc:95},{lv:28,name:'Bug Bite',type:'Bug',cat:'Physical',pwr:60,acc:100},{lv:37,name:'Slash',type:'Normal',cat:'Physical',pwr:70,acc:100},{lv:41,name:'Thunderbolt',type:'Electric',cat:'Special',pwr:90,acc:100},{lv:46,name:'Bug Buzz',type:'Bug',cat:'Special',pwr:90,acc:100},{lv:50,name:'Agility',type:'Psychic',cat:'Status',pwr:null,acc:null},{lv:55,name:'Wild Charge',type:'Electric',cat:'Physical',pwr:90,acc:100},{lv:59,name:'Thunder',type:'Electric',cat:'Special',pwr:110,acc:70}]},
+  597:{name:'Ferroseed',types:['Grass','Steel'],base:{hp:44,atk:50,def:91,spatk:24,spdef:86,spe:10},abilities:[{name:'Iron Barbs',isHA:false,desc:'Inflicts damage on the Pokémon that makes contact with iron barbs.'}],pvp:[],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Harden',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:4,name:'Rollout',type:'Rock',cat:'Physical',pwr:30,acc:90},{lv:8,name:'Curse',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:12,name:'Metal Claw',type:'Steel',cat:'Physical',pwr:50,acc:95},{lv:16,name:'Pin Missile',type:'Bug',cat:'Physical',pwr:25,acc:95},{lv:20,name:'Gyro Ball',type:'Steel',cat:'Physical',pwr:null,acc:100},{lv:24,name:'Iron Defense',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:28,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:32,name:'Ingrain',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:36,name:'Selfdestruct',type:'Normal',cat:'Physical',pwr:200,acc:100},{lv:40,name:'Iron Head',type:'Steel',cat:'Physical',pwr:80,acc:100},{lv:44,name:'Payback',type:'Dark',cat:'Physical',pwr:50,acc:100},{lv:48,name:'Flash Cannon',type:'Steel',cat:'Special',pwr:80,acc:100},{lv:52,name:'Explosion',type:'Normal',cat:'Physical',pwr:250,acc:100}]},
+  598:{name:'Ferrothorn',types:['Grass','Steel'],base:{hp:74,atk:94,def:131,spatk:54,spdef:116,spe:20},abilities:[{name:'Iron Barbs',isHA:false,desc:'Inflicts damage on the Pokémon that makes contact with iron barbs.'},{name:'Anticipation',isHA:true,desc:"Senses the foe's dangerous moves."}],pvp:[{setName:'Spikes Setter',moves:[['Spikes'],['Stealth Rock'],['Power Whip'],['Knock Off']],item:'Leftovers',ability:'Iron Barbs',natures:['Impish'],evs:'252 HP / 104 Def / 152 SpD',desc:'Iron Barbs: contacto hace 1/8 de daño. 74/131/116 bulk excelente. Doble hazard setter. Power Whip STAB Grass 120 potencia. Knock Off utility. Leftovers sustain.'},{setName:'Curse',moves:[['Curse'],['Power Whip'],['Gyro Ball'],['Knock Off']],item:'Leftovers',ability:'Iron Barbs',natures:['Relaxed'],evs:'252 HP / 252 Def / 4 Atk',desc:'Curse: sube Atk/Def, baja Speed. Gyro Ball con Speed muy baja = 150 potencia. Power Whip STAB. Iron Barbs + Curse = contacto es peligroso. Knock Off utility. 20 Speed = Gyro Ball máximo.'}],learnset:[{lv:1,name:'Tackle',type:'Normal',cat:'Physical',pwr:40,acc:100},{lv:1,name:'Harden',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:8,name:'Curse',type:'Ghost',cat:'Status',pwr:null,acc:null},{lv:12,name:'Metal Claw',type:'Steel',cat:'Physical',pwr:50,acc:95},{lv:16,name:'Pin Missile',type:'Bug',cat:'Physical',pwr:25,acc:95},{lv:20,name:'Gyro Ball',type:'Steel',cat:'Physical',pwr:null,acc:100},{lv:24,name:'Iron Defense',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:28,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:32,name:'Ingrain',type:'Grass',cat:'Status',pwr:null,acc:null},{lv:36,name:'Iron Head',type:'Steel',cat:'Physical',pwr:80,acc:100},{lv:40,name:'Payback',type:'Dark',cat:'Physical',pwr:50,acc:100},{lv:44,name:'Power Whip',type:'Grass',cat:'Physical',pwr:120,acc:85},{lv:48,name:'Flash Cannon',type:'Steel',cat:'Special',pwr:80,acc:100},{lv:52,name:'Explosion',type:'Normal',cat:'Physical',pwr:250,acc:100}]},
+  599:{name:'Klink',types:['Steel'],base:{hp:40,atk:55,def:70,spatk:45,spdef:60,spe:30},abilities:[{name:'Plus',isHA:false,desc:'Raises Special Attack when paired with a Pokémon with Minus.'},{name:'Minus',isHA:false,desc:'Raises Special Attack when paired with a Pokémon with Plus.'},{name:'Clear Body',isHA:true,desc:"Prevents other Pokémon from lowering this Pokémon's stats."}],pvp:[],learnset:[{lv:1,name:'Vicegrip',type:'Normal',cat:'Physical',pwr:55,acc:100},{lv:1,name:'Charge',type:'Electric',cat:'Status',pwr:null,acc:null},{lv:6,name:'Thunder Shock',type:'Electric',cat:'Special',pwr:40,acc:100},{lv:11,name:'Gear Grind',type:'Steel',cat:'Physical',pwr:50,acc:85},{lv:16,name:'Bind',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:21,name:'Charge Beam',type:'Electric',cat:'Special',pwr:50,acc:90},{lv:26,name:'Autotomize',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:31,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:36,name:'Screech',type:'Normal',cat:'Status',pwr:null,acc:85},{lv:41,name:'Discharge',type:'Electric',cat:'Special',pwr:80,acc:100},{lv:46,name:'Metal Sound',type:'Steel',cat:'Status',pwr:null,acc:85},{lv:51,name:'Shift Gear',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:56,name:'Lock-On',type:'Normal',cat:'Status',pwr:null,acc:null},{lv:61,name:'Zap Cannon',type:'Electric',cat:'Special',pwr:120,acc:50},{lv:66,name:'Hyper Beam',type:'Normal',cat:'Special',pwr:150,acc:90}]},
+  600:{name:'Klang',types:['Steel'],base:{hp:60,atk:80,def:95,spatk:70,spdef:85,spe:50},abilities:[{name:'Plus',isHA:false,desc:'Raises Special Attack when paired with a Pokémon with Minus.'},{name:'Minus',isHA:false,desc:'Raises Special Attack when paired with a Pokémon with Plus.'},{name:'Clear Body',isHA:true,desc:"Prevents other Pokémon from lowering this Pokémon's stats."}],pvp:[],learnset:[{lv:1,name:'Vicegrip',type:'Normal',cat:'Physical',pwr:55,acc:100},{lv:1,name:'Charge',type:'Electric',cat:'Status',pwr:null,acc:null},{lv:6,name:'Thunder Shock',type:'Electric',cat:'Special',pwr:40,acc:100},{lv:11,name:'Gear Grind',type:'Steel',cat:'Physical',pwr:50,acc:85},{lv:16,name:'Bind',type:'Normal',cat:'Physical',pwr:15,acc:85},{lv:26,name:'Autotomize',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:31,name:'Mirror Shot',type:'Steel',cat:'Special',pwr:65,acc:85},{lv:41,name:'Discharge',type:'Electric',cat:'Special',pwr:80,acc:100},{lv:51,name:'Shift Gear',type:'Steel',cat:'Status',pwr:null,acc:null},{lv:61,name:'Zap Cannon',type:'Electric',cat:'Special',pwr:120,acc:50},{lv:66,name:'Hyper Beam',type:'Normal',cat:'Special',pwr:150,acc:90}]},
 };
 
 const NATURE_EFFECTS = {
@@ -1358,6 +1408,11 @@ function timeSinceCaught(dateUtc) {
 function spriteUrl(id, shiny = false) {
   const base = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
   return shiny ? `${base}/shiny/${id}.png` : `${base}/${id}.png`;
+}
+
+function itemSpriteUrl(itemName) {
+  const slug = itemName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${slug}.png`;
 }
 
 function ivClass(v) {
@@ -1580,7 +1635,10 @@ function pokeCardHTML(entry, large=false) {
   }).join('');
 
   const heldBadge = pk.Payload.HoldItemData
-    ? `<span class="tag">🎒 ${pk.Payload.HoldItemData.name}</span>`
+    ? `<span class="tag" style="display:inline-flex;align-items:center;gap:5px">
+        <img src="${itemSpriteUrl(pk.Payload.HoldItemData.name)}" alt="" style="width:20px;height:20px;image-rendering:pixelated" onerror="this.style.display='none'">
+        ${pk.Payload.HoldItemData.name}
+       </span>`
     : `<span class="tag" style="color:var(--text-muted);opacity:0.5">Sin objeto</span>`;
   const notTradeTag = payload.NotTradeable ? `<span class="tag" style="color:#f87171">🔒 No tradeable</span>` : '';
   const caughtDate = new Date(payload.CaughtDateUtc).toLocaleDateString('es-ES');
@@ -1648,4 +1706,1008 @@ function renderPC() {
 function setPCMode(mode) {
   pcSearchMode = mode;
   document.getElementById('pc-mode-name').classList.toggle('active', mode === 'name');
-  document.getElementById('pc
+  document.getElementById('pc-mode-evo').classList.toggle('active', mode === 'evo');
+  renderPCList();
+}
+
+function setRankMode(mode) {
+  rankSearchMode = mode;
+  document.getElementById('rank-mode-name').classList.toggle('active', mode === 'name');
+  document.getElementById('rank-mode-evo').classList.toggle('active', mode === 'evo');
+  renderRankingList();
+}
+
+function filterPokemon(list, query, mode) {
+  if (!query || query.length < 3) return list;
+  const q = query.toLowerCase();
+  if (mode === 'name') {
+    return list.filter(p => {
+      const name = p.Pokemon.StaticData.Name.toLowerCase();
+      const nick = (p.Pokemon.Payload.Nickname || '').toLowerCase();
+      return name.includes(q) || nick.includes(q);
+    });
+  } else {
+    const familyIds = new Set();
+    list.forEach(p => {
+      const name = p.Pokemon.StaticData.Name.toLowerCase();
+      const nick = (p.Pokemon.Payload.Nickname || '').toLowerCase();
+      if (name.includes(q) || nick.includes(q)) {
+        const id = p.Pokemon.Payload.PokemonID;
+        const chain = EVO_FAMILY_MAP[id];
+        if (chain) chain.forEach(fid => familyIds.add(fid));
+        else familyIds.add(id);
+      }
+    });
+    Object.entries(POKEMON_DB).forEach(([idStr, bs]) => {
+      if (bs.name.toLowerCase().includes(q)) {
+        const id = parseInt(idStr);
+        const chain = EVO_FAMILY_MAP[id];
+        if (chain) chain.forEach(fid => familyIds.add(fid));
+        else familyIds.add(id);
+      }
+    });
+    if (familyIds.size === 0) return [];
+    return list.filter(p => familyIds.has(p.Pokemon.Payload.PokemonID));
+  }
+}
+
+function renderPCList() {
+  const query = document.getElementById('pc-search').value;
+  const typeF = document.getElementById('pc-type-filter').value;
+  const sort  = document.getElementById('pc-sort').value;
+
+  let list = filterPokemon(allPokemon, query, pcSearchMode)
+    .filter(p => !typeF || p.Pokemon.StaticData.Types.some(t => t.name === typeF));
+
+  if (sort === 'level-desc') list.sort((a,b) => b.Pokemon.Payload.Level - a.Pokemon.Payload.Level);
+  else if (sort === 'level-asc') list.sort((a,b) => a.Pokemon.Payload.Level - b.Pokemon.Payload.Level);
+  else if (sort === 'iv-desc') list.sort((a,b) => ivTotal(b.Pokemon.Payload.IVs) - ivTotal(a.Pokemon.Payload.IVs));
+  else if (sort === 'name') list.sort((a,b) => a.Pokemon.StaticData.Name.localeCompare(b.Pokemon.StaticData.Name));
+  else list.sort((a,b) => a._boxIdx - b._boxIdx || a.Position - b.Position);
+
+  document.getElementById('pc-count').textContent = `${list.length} Pokémon`;
+
+  const byBox = {};
+  if (sort === 'box') {
+    list.forEach(p => {
+      const k = p._boxIdx;
+      if (!byBox[k]) byBox[k] = [];
+      byBox[k].push(p);
+    });
+  } else {
+    byBox['results'] = list;
+  }
+
+  const container = document.getElementById('pc-list');
+  container.innerHTML = '';
+
+  const boxLabels = {0:'⚔️ Equipo Activo (Caja 0)'};
+  for (const [boxKey, entries] of Object.entries(byBox)) {
+    if (!entries.length) continue;
+    const label = sort === 'box'
+      ? (boxLabels[boxKey] || `📦 Caja ${parseInt(boxKey)}`)
+      : `🔍 Resultados`;
+    const section = document.createElement('div');
+    section.className = 'box-section';
+    section.innerHTML = `
+      <div class="box-header">
+        <span>${label}</span>
+        <span style="font-size:12px">${entries.length} pokémon</span>
+      </div>
+      <div class="box-grid">
+        ${entries.map(p => pcPokeCardHTML(p)).join('')}
+      </div>
+    `;
+    container.appendChild(section);
+    if (sort !== 'box') break;
+  }
+
+  // Click handlers
+  container.querySelectorAll('.pc-poke-card').forEach((el, i) => {
+    el.addEventListener('click', () => {
+      const uid = el.dataset.uid;
+      const entry = allPokemon.find(p => p.Pokemon.UniqueID === uid);
+      if (entry) openModal(JSON.stringify(entry));
+    });
+  });
+}
+
+function pcPokeCardHTML(entry) {
+  const pk = entry.Pokemon;
+  const payload = pk.Payload;
+  const types = pk.StaticData.Types;
+  const ivs = payload.IVs;
+  const total = ivTotal(ivs);
+  const statKeys = ['HP','Atk','Def','SpAtk','SpDef','Speed'];
+
+  const heldItem = payload.HoldItemData;
+
+  const pct = getPerfection(entry);
+
+  return `
+    <div class="pc-poke-card" data-uid="${pk.UniqueID}">
+      <div style="position:absolute;top:6px;right:8px;display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+        ${payload.Shiny ? '<span style="font-size:13px">⭐</span>' : ''}
+        ${heldItem ? `<img src="${itemSpriteUrl(heldItem.name)}" title="${heldItem.name}" alt="${heldItem.name}" style="width:20px;height:20px;image-rendering:pixelated" onerror="this.outerHTML='<span style=\\'font-size:13px\\'>💠</span>'">` : ''}
+      </div>
+      <div class="pc-poke-header">
+        <img class="pc-sprite" src="${spriteUrl(payload.PokemonID, payload.Shiny)}" onerror="this.style.opacity=0" alt="">
+        <div style="flex:1;overflow:hidden">
+          <div class="pc-poke-name">${pk.StaticData.Name}</div>
+          <div class="pc-poke-meta" style="display:flex;align-items:center;gap:6px">
+            <span>Lv ${payload.Level}</span>
+            <span style="font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ─── CATÁLOGO DE STATS BASE (fuente: pokeonecommunity.com/pokedex/pokemon-list/) ───
+const BASE_STATS = {
+  1:{name:"Bulbasaur",hp:45,atk:49,def:49,spatk:65,spdef:65,spe:45},
+  2:{name:"Ivysaur",hp:60,atk:62,def:63,spatk:80,spdef:80,spe:60},
+  3:{name:"Venusaur",hp:80,atk:82,def:83,spatk:100,spdef:100,spe:80},
+  4:{name:"Charmander",hp:39,atk:52,def:43,spatk:60,spdef:50,spe:65},
+  5:{name:"Charmeleon",hp:58,atk:64,def:58,spatk:80,spdef:65,spe:80},
+  6:{name:"Charizard",hp:78,atk:84,def:78,spatk:109,spdef:85,spe:100},
+  7:{name:"Squirtle",hp:44,atk:48,def:65,spatk:50,spdef:64,spe:43},
+  8:{name:"Wartortle",hp:59,atk:63,def:80,spatk:65,spdef:80,spe:58},
+  9:{name:"Blastoise",hp:79,atk:83,def:100,spatk:85,spdef:105,spe:78},
+  10:{name:"Caterpie",hp:45,atk:30,def:35,spatk:20,spdef:20,spe:45},
+  11:{name:"Metapod",hp:50,atk:20,def:55,spatk:25,spdef:25,spe:30},
+  12:{name:"Butterfree",hp:60,atk:45,def:50,spatk:90,spdef:80,spe:70},
+  13:{name:"Weedle",hp:40,atk:35,def:30,spatk:20,spdef:20,spe:50},
+  14:{name:"Kakuna",hp:45,atk:25,def:50,spatk:25,spdef:25,spe:35},
+  15:{name:"Beedrill",hp:65,atk:90,def:40,spatk:45,spdef:80,spe:75},
+  16:{name:"Pidgey",hp:40,atk:45,def:40,spatk:35,spdef:35,spe:56},
+  17:{name:"Pidgeotto",hp:63,atk:60,def:55,spatk:50,spdef:50,spe:71},
+  18:{name:"Pidgeot",hp:83,atk:80,def:75,spatk:70,spdef:70,spe:101},
+  19:{name:"Rattata",hp:30,atk:56,def:35,spatk:25,spdef:35,spe:72},
+  20:{name:"Raticate",hp:55,atk:81,def:60,spatk:50,spdef:70,spe:97},
+  21:{name:"Spearow",hp:40,atk:60,def:30,spatk:31,spdef:31,spe:70},
+  22:{name:"Fearow",hp:65,atk:90,def:65,spatk:61,spdef:61,spe:100},
+  23:{name:"Ekans",hp:35,atk:60,def:44,spatk:40,spdef:54,spe:55},
+  24:{name:"Arbok",hp:60,atk:95,def:69,spatk:65,spdef:79,spe:80},
+  25:{name:"Pikachu",hp:35,atk:55,def:40,spatk:50,spdef:50,spe:90},
+  26:{name:"Raichu",hp:60,atk:90,def:55,spatk:90,spdef:80,spe:110},
+  27:{name:"Sandshrew",hp:50,atk:75,def:85,spatk:20,spdef:30,spe:40},
+  28:{name:"Sandslash",hp:75,atk:100,def:110,spatk:45,spdef:55,spe:65},
+  29:{name:"Nidoran-F",hp:55,atk:47,def:52,spatk:40,spdef:40,spe:41},
+  30:{name:"Nidorina",hp:70,atk:62,def:67,spatk:55,spdef:55,spe:56},
+  31:{name:"Nidoqueen",hp:90,atk:92,def:87,spatk:75,spdef:85,spe:76},
+  32:{name:"Nidoran-M",hp:46,atk:57,def:40,spatk:40,spdef:40,spe:50},
+  33:{name:"Nidorino",hp:61,atk:72,def:57,spatk:55,spdef:55,spe:65},
+  34:{name:"Nidoking",hp:81,atk:102,def:77,spatk:85,spdef:75,spe:85},
+  35:{name:"Clefairy",hp:70,atk:45,def:48,spatk:60,spdef:65,spe:35},
+  36:{name:"Clefable",hp:95,atk:70,def:73,spatk:95,spdef:90,spe:60},
+  37:{name:"Vulpix",hp:38,atk:41,def:40,spatk:50,spdef:65,spe:65},
+  38:{name:"Ninetales",hp:73,atk:76,def:75,spatk:81,spdef:100,spe:100},
+  39:{name:"Jigglypuff",hp:115,atk:45,def:20,spatk:45,spdef:25,spe:20},
+  40:{name:"Wigglytuff",hp:140,atk:70,def:45,spatk:85,spdef:50,spe:45},
+  41:{name:"Zubat",hp:40,atk:45,def:35,spatk:30,spdef:40,spe:55},
+  42:{name:"Golbat",hp:75,atk:80,def:70,spatk:65,spdef:75,spe:90},
+  43:{name:"Oddish",hp:45,atk:50,def:55,spatk:75,spdef:65,spe:30},
+  44:{name:"Gloom",hp:60,atk:65,def:70,spatk:85,spdef:75,spe:40},
+  45:{name:"Vileplume",hp:75,atk:80,def:85,spatk:110,spdef:90,spe:50},
+  46:{name:"Paras",hp:35,atk:70,def:55,spatk:45,spdef:55,spe:25},
+  47:{name:"Parasect",hp:60,atk:95,def:80,spatk:60,spdef:80,spe:30},
+  48:{name:"Venonat",hp:60,atk:55,def:50,spatk:40,spdef:55,spe:45},
+  49:{name:"Venomoth",hp:70,atk:65,def:60,spatk:90,spdef:75,spe:90},
+  50:{name:"Diglett",hp:10,atk:55,def:25,spatk:35,spdef:45,spe:95},
+  51:{name:"Dugtrio",hp:35,atk:100,def:50,spatk:50,spdef:70,spe:120},
+  52:{name:"Meowth",hp:40,atk:45,def:35,spatk:40,spdef:40,spe:90},
+  53:{name:"Persian",hp:65,atk:70,def:60,spatk:65,spdef:65,spe:115},
+  54:{name:"Psyduck",hp:50,atk:52,def:48,spatk:65,spdef:50,spe:55},
+  55:{name:"Golduck",hp:80,atk:82,def:78,spatk:95,spdef:80,spe:85},
+  56:{name:"Mankey",hp:40,atk:80,def:35,spatk:35,spdef:45,spe:70},
+  57:{name:"Primeape",hp:65,atk:105,def:60,spatk:60,spdef:70,spe:95},
+  58:{name:"Growlithe",hp:55,atk:70,def:45,spatk:70,spdef:50,spe:60},
+  59:{name:"Arcanine",hp:90,atk:110,def:80,spatk:100,spdef:80,spe:95},
+  60:{name:"Poliwag",hp:40,atk:50,def:40,spatk:40,spdef:40,spe:90},
+  61:{name:"Poliwhirl",hp:65,atk:65,def:65,spatk:50,spdef:50,spe:90},
+  62:{name:"Poliwrath",hp:90,atk:95,def:95,spatk:70,spdef:90,spe:70},
+  63:{name:"Abra",hp:25,atk:20,def:15,spatk:105,spdef:55,spe:90},
+  64:{name:"Kadabra",hp:40,atk:35,def:30,spatk:120,spdef:70,spe:105},
+  65:{name:"Alakazam",hp:55,atk:50,def:45,spatk:135,spdef:95,spe:120},
+  66:{name:"Machop",hp:70,atk:80,def:50,spatk:35,spdef:35,spe:35},
+  67:{name:"Machoke",hp:80,atk:100,def:70,spatk:50,spdef:60,spe:45},
+  68:{name:"Machamp",hp:90,atk:130,def:80,spatk:65,spdef:85,spe:55},
+  69:{name:"Bellsprout",hp:50,atk:75,def:35,spatk:70,spdef:30,spe:40},
+  70:{name:"Weepinbell",hp:65,atk:90,def:50,spatk:85,spdef:45,spe:55},
+  71:{name:"Victreebel",hp:80,atk:105,def:65,spatk:100,spdef:70,spe:70},
+  72:{name:"Tentacool",hp:40,atk:40,def:35,spatk:50,spdef:100,spe:70},
+  73:{name:"Tentacruel",hp:80,atk:70,def:65,spatk:80,spdef:120,spe:100},
+  74:{name:"Geodude",hp:40,atk:80,def:100,spatk:30,spdef:30,spe:20},
+  75:{name:"Graveler",hp:55,atk:95,def:115,spatk:45,spdef:45,spe:35},
+  76:{name:"Golem",hp:80,atk:120,def:130,spatk:55,spdef:65,spe:45},
+  77:{name:"Ponyta",hp:50,atk:85,def:55,spatk:65,spdef:65,spe:90},
+  78:{name:"Rapidash",hp:65,atk:100,def:70,spatk:80,spdef:80,spe:105},
+  79:{name:"Slowpoke",hp:90,atk:65,def:65,spatk:40,spdef:40,spe:15},
+  80:{name:"Slowbro",hp:95,atk:75,def:110,spatk:100,spdef:80,spe:30},
+  81:{name:"Magnemite",hp:25,atk:35,def:70,spatk:95,spdef:55,spe:45},
+  82:{name:"Magneton",hp:50,atk:60,def:95,spatk:120,spdef:70,spe:70},
+  83:{name:"Farfetchd",hp:52,atk:90,def:55,spatk:58,spdef:62,spe:60},
+  84:{name:"Doduo",hp:35,atk:85,def:45,spatk:35,spdef:35,spe:75},
+  85:{name:"Dodrio",hp:60,atk:110,def:70,spatk:60,spdef:60,spe:100},
+  86:{name:"Seel",hp:65,atk:45,def:55,spatk:45,spdef:70,spe:45},
+  87:{name:"Dewgong",hp:90,atk:70,def:80,spatk:70,spdef:95,spe:70},
+  88:{name:"Grimer",hp:80,atk:80,def:50,spatk:40,spdef:50,spe:25},
+  89:{name:"Muk",hp:105,atk:105,def:75,spatk:65,spdef:100,spe:50},
+  90:{name:"Shellder",hp:30,atk:65,def:100,spatk:45,spdef:25,spe:40},
+  91:{name:"Cloyster",hp:50,atk:95,def:180,spatk:85,spdef:45,spe:70},
+  92:{name:"Gastly",hp:30,atk:35,def:30,spatk:100,spdef:35,spe:80},
+  93:{name:"Haunter",hp:45,atk:50,def:45,spatk:115,spdef:55,spe:95},
+  94:{name:"Gengar",hp:60,atk:65,def:60,spatk:130,spdef:75,spe:110},
+  95:{name:"Onix",hp:35,atk:45,def:160,spatk:30,spdef:45,spe:70},
+  96:{name:"Drowzee",hp:60,atk:48,def:45,spatk:43,spdef:90,spe:42},
+  97:{name:"Hypno",hp:85,atk:73,def:70,spatk:73,spdef:115,spe:67},
+  98:{name:"Krabby",hp:30,atk:105,def:90,spatk:25,spdef:25,spe:50},
+  99:{name:"Kingler",hp:55,atk:130,def:115,spatk:50,spdef:50,spe:75},
+  100:{name:"Voltorb",hp:40,atk:30,def:50,spatk:55,spdef:55,spe:100},
+  101:{name:"Electrode",hp:60,atk:50,def:70,spatk:80,spdef:80,spe:140},
+  102:{name:"Exeggcute",hp:60,atk:40,def:80,spatk:60,spdef:45,spe:40},
+  103:{name:"Exeggutor",hp:95,atk:95,def:85,spatk:125,spdef:65,spe:55},
+  104:{name:"Cubone",hp:50,atk:50,def:95,spatk:40,spdef:50,spe:35},
+  105:{name:"Marowak",hp:60,atk:80,def:110,spatk:50,spdef:80,spe:45},
+  106:{name:"Hitmonlee",hp:50,atk:120,def:53,spatk:35,spdef:110,spe:87},
+  107:{name:"Hitmonchan",hp:50,atk:105,def:79,spatk:35,spdef:110,spe:76},
+  108:{name:"Lickitung",hp:90,atk:55,def:75,spatk:60,spdef:75,spe:30},
+  109:{name:"Koffing",hp:40,atk:65,def:95,spatk:60,spdef:45,spe:35},
+  110:{name:"Weezing",hp:65,atk:90,def:120,spatk:85,spdef:70,spe:60},
+  111:{name:"Rhyhorn",hp:80,atk:85,def:95,spatk:30,spdef:30,spe:25},
+  112:{name:"Rhydon",hp:105,atk:130,def:120,spatk:45,spdef:45,spe:40},
+  113:{name:"Chansey",hp:250,atk:5,def:5,spatk:35,spdef:105,spe:50},
+  114:{name:"Tangela",hp:65,atk:55,def:115,spatk:100,spdef:40,spe:60},
+  115:{name:"Kangaskhan",hp:105,atk:95,def:80,spatk:40,spdef:80,spe:90},
+  116:{name:"Horsea",hp:30,atk:40,def:70,spatk:70,spdef:25,spe:60},
+  117:{name:"Seadra",hp:55,atk:65,def:95,spatk:95,spdef:45,spe:85},
+  118:{name:"Goldeen",hp:45,atk:67,def:60,spatk:35,spdef:50,spe:63},
+  119:{name:"Seaking",hp:80,atk:92,def:65,spatk:65,spdef:80,spe:68},
+  120:{name:"Staryu",hp:30,atk:45,def:55,spatk:70,spdef:55,spe:85},
+  121:{name:"Starmie",hp:60,atk:75,def:85,spatk:100,spdef:85,spe:115},
+  122:{name:"Mr. Mime",hp:40,atk:45,def:65,spatk:100,spdef:120,spe:90},
+  123:{name:"Scyther",hp:70,atk:110,def:80,spatk:55,spdef:80,spe:105},
+  124:{name:"Jynx",hp:65,atk:50,def:35,spatk:115,spdef:95,spe:95},
+  125:{name:"Electabuzz",hp:65,atk:83,def:57,spatk:95,spdef:85,spe:105},
+  126:{name:"Magmar",hp:65,atk:95,def:57,spatk:100,spdef:85,spe:93},
+  127:{name:"Pinsir",hp:65,atk:125,def:100,spatk:55,spdef:70,spe:85},
+  128:{name:"Tauros",hp:75,atk:100,def:95,spatk:40,spdef:70,spe:110},
+  129:{name:"Magikarp",hp:20,atk:10,def:55,spatk:15,spdef:20,spe:80},
+  130:{name:"Gyarados",hp:95,atk:125,def:79,spatk:60,spdef:100,spe:81},
+  131:{name:"Lapras",hp:130,atk:85,def:80,spatk:85,spdef:95,spe:60},
+  132:{name:"Ditto",hp:48,atk:48,def:48,spatk:48,spdef:48,spe:48},
+  133:{name:"Eevee",hp:55,atk:55,def:50,spatk:45,spdef:65,spe:55},
+  134:{name:"Vaporeon",hp:130,atk:65,def:60,spatk:110,spdef:95,spe:65},
+  135:{name:"Jolteon",hp:65,atk:65,def:60,spatk:110,spdef:95,spe:130},
+  136:{name:"Flareon",hp:65,atk:130,def:60,spatk:95,spdef:110,spe:65},
+  137:{name:"Porygon",hp:65,atk:60,def:70,spatk:85,spdef:75,spe:40},
+  138:{name:"Omanyte",hp:35,atk:40,def:100,spatk:90,spdef:55,spe:35},
+  139:{name:"Omastar",hp:70,atk:60,def:125,spatk:115,spdef:70,spe:55},
+  140:{name:"Kabuto",hp:30,atk:80,def:90,spatk:55,spdef:45,spe:55},
+  141:{name:"Kabutops",hp:60,atk:115,def:105,spatk:65,spdef:70,spe:80},
+  142:{name:"Aerodactyl",hp:80,atk:105,def:65,spatk:60,spdef:75,spe:130},
+  143:{name:"Snorlax",hp:160,atk:110,def:65,spatk:65,spdef:110,spe:30},
+  144:{name:"Articuno",hp:90,atk:85,def:100,spatk:95,spdef:125,spe:85},
+  145:{name:"Zapdos",hp:90,atk:90,def:85,spatk:125,spdef:90,spe:100},
+  146:{name:"Moltres",hp:90,atk:100,def:90,spatk:125,spdef:85,spe:90},
+  147:{name:"Dratini",hp:41,atk:64,def:45,spatk:50,spdef:50,spe:50},
+  148:{name:"Dragonair",hp:61,atk:84,def:65,spatk:70,spdef:70,spe:70},
+  149:{name:"Dragonite",hp:91,atk:134,def:95,spatk:100,spdef:100,spe:80},
+  150:{name:"Mewtwo",hp:106,atk:110,def:90,spatk:154,spdef:90,spe:130},
+  151:{name:"Mew",hp:100,atk:100,def:100,spatk:100,spdef:100,spe:100},
+  152:{name:"Chikorita",hp:45,atk:49,def:65,spatk:49,spdef:65,spe:45},
+  153:{name:"Bayleef",hp:60,atk:62,def:80,spatk:63,spdef:80,spe:60},
+  154:{name:"Meganium",hp:80,atk:82,def:100,spatk:83,spdef:100,spe:80},
+  155:{name:"Cyndaquil",hp:39,atk:52,def:43,spatk:60,spdef:50,spe:65},
+  156:{name:"Quilava",hp:58,atk:64,def:58,spatk:80,spdef:65,spe:80},
+  157:{name:"Typhlosion",hp:78,atk:84,def:78,spatk:109,spdef:85,spe:100},
+  158:{name:"Totodile",hp:50,atk:65,def:64,spatk:44,spdef:48,spe:43},
+  159:{name:"Croconaw",hp:65,atk:80,def:80,spatk:59,spdef:63,spe:58},
+  160:{name:"Feraligatr",hp:85,atk:105,def:100,spatk:79,spdef:83,spe:78},
+  161:{name:"Sentret",hp:35,atk:46,def:34,spatk:35,spdef:45,spe:20},
+  162:{name:"Furret",hp:85,atk:76,def:64,spatk:45,spdef:55,spe:90},
+  163:{name:"Hoothoot",hp:60,atk:30,def:30,spatk:36,spdef:56,spe:50},
+  164:{name:"Noctowl",hp:100,atk:50,def:50,spatk:86,spdef:96,spe:70},
+  165:{name:"Ledyba",hp:40,atk:20,def:30,spatk:40,spdef:80,spe:55},
+  166:{name:"Ledian",hp:55,atk:35,def:50,spatk:55,spdef:110,spe:85},
+  167:{name:"Spinarak",hp:40,atk:60,def:40,spatk:40,spdef:40,spe:30},
+  168:{name:"Ariados",hp:70,atk:90,def:70,spatk:60,spdef:60,spe:40},
+  169:{name:"Crobat",hp:85,atk:90,def:80,spatk:70,spdef:80,spe:130},
+  170:{name:"Chinchou",hp:75,atk:38,def:38,spatk:56,spdef:56,spe:67},
+  171:{name:"Lanturn",hp:125,atk:58,def:58,spatk:76,spdef:76,spe:67},
+  172:{name:"Pichu",hp:20,atk:40,def:15,spatk:35,spdef:35,spe:60},
+  173:{name:"Cleffa",hp:50,atk:25,def:28,spatk:45,spdef:55,spe:15},
+  174:{name:"Igglybuff",hp:90,atk:30,def:15,spatk:40,spdef:20,spe:15},
+  175:{name:"Togepi",hp:35,atk:20,def:65,spatk:40,spdef:65,spe:20},
+  176:{name:"Togetic",hp:55,atk:40,def:85,spatk:80,spdef:105,spe:40},
+  177:{name:"Natu",hp:40,atk:50,def:45,spatk:70,spdef:45,spe:70},
+  178:{name:"Xatu",hp:65,atk:75,def:70,spatk:95,spdef:70,spe:95},
+  179:{name:"Mareep",hp:55,atk:40,def:40,spatk:65,spdef:45,spe:35},
+  180:{name:"Flaaffy",hp:70,atk:55,def:55,spatk:80,spdef:60,spe:45},
+  181:{name:"Ampharos",hp:90,atk:75,def:85,spatk:115,spdef:90,spe:55},
+  182:{name:"Bellossom",hp:75,atk:80,def:95,spatk:90,spdef:100,spe:50},
+  183:{name:"Marill",hp:70,atk:20,def:50,spatk:20,spdef:50,spe:40},
+  184:{name:"Azumarill",hp:100,atk:50,def:80,spatk:60,spdef:80,spe:50},
+  185:{name:"Sudowoodo",hp:70,atk:100,def:115,spatk:30,spdef:65,spe:30},
+  186:{name:"Politoed",hp:90,atk:75,def:75,spatk:90,spdef:100,spe:70},
+  187:{name:"Hoppip",hp:35,atk:35,def:40,spatk:35,spdef:55,spe:50},
+  188:{name:"Skiploom",hp:55,atk:45,def:50,spatk:45,spdef:65,spe:80},
+  189:{name:"Jumpluff",hp:75,atk:55,def:70,spatk:55,spdef:95,spe:110},
+  190:{name:"Aipom",hp:55,atk:70,def:55,spatk:40,spdef:55,spe:85},
+  191:{name:"Sunkern",hp:30,atk:30,def:30,spatk:30,spdef:30,spe:30},
+  192:{name:"Sunflora",hp:75,atk:75,def:55,spatk:105,spdef:85,spe:30},
+  193:{name:"Yanma",hp:65,atk:65,def:45,spatk:75,spdef:45,spe:95},
+  194:{name:"Wooper",hp:55,atk:45,def:45,spatk:25,spdef:25,spe:15},
+  195:{name:"Quagsire",hp:95,atk:85,def:85,spatk:65,spdef:65,spe:35},
+  196:{name:"Espeon",hp:65,atk:65,def:60,spatk:130,spdef:95,spe:110},
+  197:{name:"Umbreon",hp:95,atk:65,def:110,spatk:60,spdef:130,spe:65},
+  198:{name:"Murkrow",hp:60,atk:85,def:42,spatk:85,spdef:42,spe:91},
+  199:{name:"Slowking",hp:95,atk:75,def:80,spatk:100,spdef:110,spe:30},
+  200:{name:"Misdreavus",hp:60,atk:60,def:60,spatk:85,spdef:85,spe:85},
+  201:{name:"Unown",hp:48,atk:72,def:48,spatk:72,spdef:48,spe:48},
+  202:{name:"Wobbuffet",hp:190,atk:33,def:58,spatk:33,spdef:58,spe:33},
+  203:{name:"Girafarig",hp:70,atk:80,def:65,spatk:90,spdef:65,spe:85},
+  204:{name:"Pineco",hp:50,atk:65,def:90,spatk:35,spdef:35,spe:15},
+  205:{name:"Forretress",hp:75,atk:90,def:140,spatk:60,spdef:60,spe:40},
+  206:{name:"Dunsparce",hp:100,atk:70,def:70,spatk:65,spdef:65,spe:45},
+  207:{name:"Gligar",hp:65,atk:75,def:105,spatk:35,spdef:65,spe:85},
+  208:{name:"Steelix",hp:75,atk:85,def:200,spatk:55,spdef:65,spe:30},
+  209:{name:"Snubbull",hp:60,atk:80,def:50,spatk:40,spdef:40,spe:30},
+  210:{name:"Granbull",hp:90,atk:120,def:75,spatk:60,spdef:60,spe:45},
+  211:{name:"Qwilfish",hp:65,atk:95,def:85,spatk:55,spdef:55,spe:85},
+  212:{name:"Scizor",hp:70,atk:130,def:100,spatk:55,spdef:80,spe:65},
+  213:{name:"Shuckle",hp:20,atk:10,def:230,spatk:10,spdef:230,spe:5},
+  214:{name:"Heracross",hp:80,atk:125,def:75,spatk:40,spdef:95,spe:85},
+  215:{name:"Sneasel",hp:55,atk:95,def:55,spatk:35,spdef:75,spe:115},
+  216:{name:"Teddiursa",hp:60,atk:80,def:50,spatk:50,spdef:50,spe:40},
+  217:{name:"Ursaring",hp:90,atk:130,def:75,spatk:75,spdef:75,spe:55},
+  218:{name:"Slugma",hp:40,atk:40,def:40,spatk:70,spdef:40,spe:20},
+  219:{name:"Magcargo",hp:50,atk:50,def:120,spatk:80,spdef:80,spe:30},
+  220:{name:"Swinub",hp:50,atk:50,def:40,spatk:30,spdef:30,spe:50},
+  221:{name:"Piloswine",hp:100,atk:100,def:80,spatk:60,spdef:60,spe:50},
+  222:{name:"Corsola",hp:65,atk:55,def:95,spatk:65,spdef:95,spe:35},
+  223:{name:"Remoraid",hp:35,atk:65,def:35,spatk:65,spdef:35,spe:65},
+  224:{name:"Octillery",hp:75,atk:105,def:75,spatk:105,spdef:75,spe:45},
+  225:{name:"Delibird",hp:45,atk:55,def:45,spatk:65,spdef:45,spe:75},
+  226:{name:"Mantine",hp:65,atk:40,def:70,spatk:80,spdef:140,spe:70},
+  227:{name:"Skarmory",hp:65,atk:80,def:140,spatk:40,spdef:70,spe:70},
+  228:{name:"Houndour",hp:45,atk:60,def:30,spatk:80,spdef:50,spe:65},
+  229:{name:"Houndoom",hp:75,atk:90,def:50,spatk:110,spdef:80,spe:95},
+  230:{name:"Kingdra",hp:75,atk:95,def:95,spatk:95,spdef:95,spe:85},
+  231:{name:"Phanpy",hp:90,atk:60,def:60,spatk:40,spdef:40,spe:40},
+  232:{name:"Donphan",hp:90,atk:120,def:120,spatk:60,spdef:60,spe:50},
+  233:{name:"Porygon2",hp:85,atk:80,def:90,spatk:105,spdef:95,spe:60},
+  234:{name:"Stantler",hp:73,atk:95,def:62,spatk:85,spdef:65,spe:85},
+  235:{name:"Smeargle",hp:55,atk:20,def:35,spatk:20,spdef:45,spe:75},
+  236:{name:"Tyrogue",hp:35,atk:35,def:35,spatk:35,spdef:35,spe:35},
+  237:{name:"Hitmontop",hp:50,atk:95,def:95,spatk:35,spdef:110,spe:70},
+  238:{name:"Smoochum",hp:45,atk:30,def:15,spatk:85,spdef:65,spe:65},
+  239:{name:"Elekid",hp:45,atk:63,def:37,spatk:65,spdef:55,spe:95},
+  240:{name:"Magby",hp:45,atk:75,def:37,spatk:70,spdef:55,spe:83},
+  241:{name:"Miltank",hp:95,atk:80,def:105,spatk:40,spdef:70,spe:100},
+  242:{name:"Blissey",hp:255,atk:10,def:10,spatk:75,spdef:135,spe:55},
+  243:{name:"Raikou",hp:90,atk:85,def:75,spatk:115,spdef:100,spe:115},
+  244:{name:"Entei",hp:115,atk:115,def:85,spatk:90,spdef:75,spe:100},
+  245:{name:"Suicune",hp:100,atk:75,def:115,spatk:90,spdef:115,spe:85},
+  246:{name:"Larvitar",hp:50,atk:64,def:50,spatk:45,spdef:50,spe:41},
+  247:{name:"Pupitar",hp:70,atk:84,def:70,spatk:65,spdef:70,spe:51},
+  248:{name:"Tyranitar",hp:100,atk:134,def:110,spatk:95,spdef:100,spe:61},
+  249:{name:"Lugia",hp:106,atk:90,def:130,spatk:90,spdef:154,spe:110},
+  250:{name:"Ho-Oh",hp:106,atk:130,def:90,spatk:110,spdef:154,spe:90},
+  251:{name:"Celebi",hp:100,atk:100,def:100,spatk:100,spdef:100,spe:100},
+};
+
+// ─── ROLE ASSIGNMENT — basado únicamente en stats base de la especie ──
+// primaryIVs = stats clave para el rol (peso x2), secondaryIVs = secundarios (peso x1)
+function getPokemonRole(entry) {
+  const id = entry.Pokemon.Payload.PokemonID;
+  const bs  = POKEMON_DB[id] && POKEMON_DB[id].base;
+  // Fallback a stats calculados si el ID no está en el catálogo
+  const raw = bs || (() => {
+    const s = entry.Pokemon.Stats;
+    return { hp: s.HP, atk: s.Atk, def: s.Def, spatk: s.SpAtk, spdef: s.SpDef, spe: s.Speed };
+  })();
+
+  const hp = raw.hp, atk = raw.atk, def = raw.def;
+  const spa = raw.spatk, spd = raw.spdef, spe = raw.spe;
+
+  const offMax = Math.max(atk, spa);
+  const isPhys = atk > spa * 1.2;
+  const isSpec = spa > atk * 1.2;
+  const bulky  = hp + def + spd;
+
+  // Muros por defensa muy superior al ataque
+  if (def > offMax * 1.5 && hp > 70)  return { role:'Muro Fís.',  color:'#4ade80', icon:'🛡️', primaryIVs:['HP','Def'],    secondaryIVs:['SpDef'] };
+  if (spd > offMax * 1.5 && hp > 70)  return { role:'Muro Esp.',  color:'#22d3ee', icon:'🛡️', primaryIVs:['HP','SpDef'], secondaryIVs:['Def'] };
+  if (def > offMax * 1.2 && spd > offMax * 1.2 && hp > 60)
+    return { role:'Tanque',  color:'#34d399', icon:'🏰', primaryIVs:['HP','Def','SpDef'], secondaryIVs:[] };
+
+  // Barredores: rápidos con ofensa dominante
+  const esFast = spe >= offMax * 0.75;
+  if (esFast && offMax > bulky * 0.35) {
+    if (isPhys) return { role:'Barredor Fís.', color:'#f87171', icon:'⚔️', primaryIVs:['Atk','Speed'],         secondaryIVs:['HP'] };
+    if (isSpec) return { role:'Barredor Esp.', color:'#818cf8', icon:'🔮', primaryIVs:['SpAtk','Speed'],        secondaryIVs:['HP'] };
+    return            { role:'Barredor Mixto', color:'#fb923c', icon:'💥', primaryIVs:['Atk','SpAtk','Speed'],  secondaryIVs:['HP'] };
+  }
+
+  // Atacantes bulky: mucha HP + buen ataque pero sin velocidad para barrer
+  if (hp > 80 && offMax > 70) {
+    if (isPhys) return { role:'Atacante Fís.', color:'#f97316', icon:'🥊', primaryIVs:['Atk','HP'],        secondaryIVs:['Def','Speed'] };
+    if (isSpec) return { role:'Atacante Esp.', color:'#8b5cf6', icon:'🌀', primaryIVs:['SpAtk','HP'],      secondaryIVs:['SpDef','Speed'] };
+    return            { role:'Atacante Mixto', color:'#e879f9', icon:'🎲', primaryIVs:['Atk','SpAtk','HP'], secondaryIVs:['Speed'] };
+  }
+
+  // Fallback por stat ofensivo dominante
+  if (isPhys) return { role:'Físico',   color:'#f97316', icon:'⚔️', primaryIVs:['Atk','Speed'],    secondaryIVs:['HP'] };
+  if (isSpec) return { role:'Especial', color:'#8b5cf6', icon:'🔮', primaryIVs:['SpAtk','Speed'],  secondaryIVs:['HP'] };
+  return             { role:'Versátil', color:'#6b7280', icon:'🎯', primaryIVs:['HP','Atk','SpAtk'], secondaryIVs:['Speed'] };
+}
+
+// ─── PERFECCIÓN ──────────────────────────────────────────────────────
+// Pondera IVs relevantes al rol + bonif./penaliz. de naturaleza
+function getPerfection(entry) {
+  const r      = getPokemonRole(entry);
+  const ivs    = entry.Pokemon.Payload.IVs;
+  const nature = entry.Pokemon.Payload.NatureName;
+  const nfx    = NATURE_EFFECTS[nature] || {};
+  const primary   = r.primaryIVs   || [];
+  const secondary = r.secondaryIVs || [];
+
+  let score = 0, maxScore = 0;
+  primary.forEach(s   => { score += (ivs[s]||0) * 2; maxScore += 31 * 2; });
+  secondary.forEach(s => { score += (ivs[s]||0);      maxScore += 31; });
+
+  // Naturaleza boostea stat primaria → +5% bonus; la rebaja → -8% penalización
+  if (nfx.up   && primary.includes(nfx.up))   score = score * 1.05;
+  if (nfx.down && primary.includes(nfx.down))  score = score * 0.92;
+
+  return Math.min(100, Math.round(score / maxScore * 100));
+}
+
+function perfColor(pct) {
+  if (pct >= 85) return '#56d364';
+  if (pct >= 65) return '#e3b341';
+  return '#f87171';
+}
+
+function roleBadgeHTML(entry, small = false) {
+  const r   = getPokemonRole(entry);
+  const pct = getPerfection(entry);
+  const sz  = small ? '10px' : '11px';
+  return `<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
+    <span style="font-size:${sz};font-weight:700;padding:2px 8px;border-radius:20px;
+      background:${r.color}22;color:${r.color};border:1px solid ${r.color}44;white-space:nowrap">${r.icon} ${r.role}</span>
+    <span style="font-size:${small?'11px':'13px'};font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+  </div>`;
+}
+
+// ─── ANALYSIS ────────────────────────────────────────────────────────
+
+// ─── RANKING ──────────────────────────────────────────────────────────
+function renderRanking() {
+  document.getElementById('rank-search').addEventListener('input', renderRankingList);
+  renderRankingList();
+}
+
+function renderRankingList() {
+  const query = document.getElementById('rank-search').value;
+  const filtered = filterPokemon(allPokemon, query, rankSearchMode);
+
+  const count = document.getElementById('rank-count');
+  count.textContent = query.length >= 3
+    ? filtered.length + ' Pokémon filtrados'
+    : allPokemon.length + ' Pokémon totales';
+
+  const byPerf  = [...filtered].sort((a,b) => getPerfection(b) - getPerfection(a));
+  const top50   = byPerf.slice(0, 50);
+  const trash50 = [...byPerf].reverse().slice(0, 50);
+  fillRankTable('rank-top-body',   top50);
+  fillRankTable('rank-trash-body', trash50);
+
+  // Team: equipo activo (caja 0), filtrado si hay query, ordenado por perfección
+  const teamFiltered = filterPokemon(allPokemon.filter(p => p._boxIdx === 0), query, rankSearchMode);
+  const teamByPerf   = [...teamFiltered].sort((a,b) => getPerfection(b) - getPerfection(a));
+  fillRankTable('rank-team-body', teamByPerf);
+}
+
+function fillRankTable(bodyId, list) {
+  document.getElementById(bodyId).innerHTML = list.map((entry, i) => {
+    const pk   = entry.Pokemon;
+    const ivs  = pk.Payload.IVs;
+    const r    = getPokemonRole(entry);
+    const pct  = getPerfection(entry);
+    const totIV = ivTotal(ivs);
+    return `<tr style="cursor:pointer" onclick='openModal(${JSON.stringify(JSON.stringify(entry))})'>
+      <td style="color:var(--text-muted);font-weight:700">${i+1}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px">
+          <img src="${spriteUrl(pk.Payload.PokemonID, pk.Payload.Shiny)}" style="width:28px;height:28px;image-rendering:pixelated" onerror="this.style.display='none'">
+          <div>
+            <div style="font-weight:600">${pk.StaticData.Name}${pk.Payload.Shiny ? ' <span style="color:var(--gold)">⭐</span>' : ''}</div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:1px">${timeSinceCaught(pk.Payload.CaughtDateUtc)}</div>
+          </div>
+        </div>
+      </td>
+      <td style="color:var(--text-muted)">${pk.Payload.Level}</td>
+      <td><span style="font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;
+        background:${r.color}22;color:${r.color};border:1px solid ${r.color}44;white-space:nowrap">${r.icon} ${r.role}</span></td>
+      ${['HP','Atk','Def','SpAtk','SpDef','Speed'].map(k => {
+        const isPrimary   = r.primaryIVs.includes(k);
+        const isSecondary = r.secondaryIVs.includes(k);
+        const highlight   = isPrimary ? 'font-weight:800;' : isSecondary ? 'opacity:0.8;' : 'opacity:0.4;';
+        return `<td class="${ivClass(ivs[k])}" style="${highlight}">${ivs[k]}${isPrimary?'★':''}</td>`;
+      }).join('')}
+      <td><span class="iv-score" style="color:${totIV>=155?'#56d364':totIV>=120?'#e3b341':'#f87171'}">${totIV}</span></td>
+      <td style="font-size:12px;color:var(--text-muted)">${pk.Ability || '—'}</td>
+      <td style="font-size:12px;color:var(--text-muted)">${pk.Payload.NatureName || '—'}</td>
+      <td>
+        <span style="font-size:15px;font-weight:800;color:${perfColor(pct)}">${pct}%</span>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function switchRankTab(which, btn) {
+  document.querySelectorAll('.rank-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.rank-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('rank-' + which).style.display = 'block';
+}
+
+// ─── MODAL ───────────────────────────────────────────────────────────
+let _prevTab = 'pc';
+
+function openModal(jsonStr) {
+  const entry = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
+  const pk      = entry.Pokemon;
+  const payload = pk.Payload;
+  const ivs     = payload.IVs || {};
+  const evs     = payload.EVs || {};
+  const stats   = pk.Stats;
+  const nature  = payload.NatureName;
+  const nfx     = NATURE_EFFECTS[nature] || {};
+  const types   = pk.StaticData.Types;
+  const moves   = payload.Moves.filter(Boolean);
+  const statKeys = ['HP','Atk','Def','SpAtk','SpDef','Speed'];
+  const statLabel = {HP:'PS', Atk:'Ataque', Def:'Defensa', SpAtk:'At.Esp', SpDef:'Def.Esp', Speed:'Velocidad'};
+  const genderIcon = payload.Gender === 1 ? '♂️' : payload.Gender === 2 ? '♀️' : '⚪';
+  const caughtDate = new Date(payload.CaughtDateUtc).toLocaleDateString('es-ES');
+  const r   = getPokemonRole(entry);
+  const pct = getPerfection(entry);
+
+  // save current tab to restore on back
+  const active = document.querySelector('.nav-item.active');
+  if (active) _prevTab = active.dataset.tab;
+
+  const primaryBadges = r.primaryIVs.map(s =>
+    `<span style="font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;
+      background:#1e3a2a;color:#56d364;border:1px solid #56d36444">${statLabel[s]||s}: ${ivs[s]}</span>`).join('');
+  const secondaryBadges = r.secondaryIVs.map(s =>
+    `<span style="font-size:12px;padding:2px 8px;border-radius:4px;
+      background:#1e2a3a;color:#60a5fa;border:1px solid #60a5fa44">${statLabel[s]||s}: ${ivs[s]}</span>`).join('');
+
+  const html = `
+    <button class="detail-back" onclick="closeDetail()">← Volver</button>
+
+    <div class="detail-layout">
+      <!-- LEFT COLUMN -->
+      <div class="detail-left">
+        <div class="detail-hero">
+          <img class="modal-sprite" src="${spriteUrl(payload.PokemonID, payload.Shiny)}" onerror="this.style.display='none'" alt="">
+          <div class="modal-name">${pk.StaticData.Name} ${payload.Shiny ? '⭐' : ''} ${genderIcon}</div>
+          <div class="modal-id">#${payload.PokemonID} · ${pk.Ability}</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:center">
+            ${types.map(t => `<span class="type-badge" style="background:${t.color}">${t.name}</span>`).join('')}
+          </div>
+          <div style="margin-top:4px">${roleBadgeHTML(entry)}</div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Información</div>
+          <div class="modal-grid-2">
+            <div class="modal-kv"><div class="k">Nivel</div><div class="v">${payload.Level}</div></div>
+            <div class="modal-kv"><div class="k">HP actual</div><div class="v">${payload.HP}/${stats.HP}</div></div>
+            <div class="modal-kv"><div class="k">Naturaleza</div><div class="v">
+              ${nature}${nfx.up ? ` <span style="color:#f87171;font-size:11px">+${nfx.up}</span>` : ''}${nfx.down ? ` <span style="color:#60a5fa;font-size:11px">-${nfx.down}</span>` : ''}
+            </div></div>
+            <div class="modal-kv"><div class="k">Felicidad</div><div class="v">${payload.Happiness}/255</div></div>
+            <div class="modal-kv"><div class="k">Pokéball</div><div class="v">${payload.PokeballData?.name || '—'}</div></div>
+            <div class="modal-kv"><div class="k">Exp</div><div class="v">${payload.Exp.toLocaleString()}</div></div>
+            <div class="modal-kv"><div class="k">Capturado</div><div class="v">${caughtDate}</div></div>
+            <div class="modal-kv"><div class="k">Lv captura</div><div class="v">${payload.CaughtLevel}</div></div>
+            ${payload.HoldItemData ? `<div class="modal-kv" style="grid-column:span 2"><div class="k">Objeto equipado</div><div class="v" style="display:flex;align-items:center;gap:6px"><img src="${itemSpriteUrl(payload.HoldItemData.name)}" alt="" style="width:24px;height:24px;image-rendering:pixelated" onerror="this.style.display='none'"> ${payload.HoldItemData.name}</div></div>` : ''}
+            ${payload.NotTradeable ? `<div class="modal-kv" style="grid-column:span 2;background:#1a0808;border:1px solid #f8717133"><div class="k" style="color:#f87171">⚠️ No Tradeable</div></div>` : ''}
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:10px">
+            Caja ${entry._boxIdx} · Posición ${entry.Position}
+            ${pk.OriginalTrainer !== pk.Trainer ? ` · OT: ${pk.OriginalTrainer}` : ''}
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Movimientos</div>
+          <div class="moves-list">
+            ${moves.map(m => `
+              <div class="move-item">
+                <div class="move-name">${m.Name}</div>
+                <div class="move-pp">PP: ${m.PP}/${m.MaxPP}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <div class="modal-section">
+          <div class="modal-section-title">Stats · IVs · EVs</div>
+          <table class="iv-table">
+            <thead><tr><th>Stat</th><th>Base</th><th>Valor</th><th>IV</th><th>EV</th><th style="width:120px">—</th></tr></thead>
+            <tbody>
+              ${(() => {
+                const bs = (POKEMON_DB[payload.PokemonID] && POKEMON_DB[payload.PokemonID].base) || {};
+                const baseMap = {HP: bs.hp, Atk: bs.atk, Def: bs.def, SpAtk: bs.spatk, SpDef: bs.spdef, Speed: bs.spe};
+                return statKeys.map(k => `
+                <tr>
+                  <td style="color:${STAT_COLORS[k]};font-weight:700">${STAT_LABELS[k]}</td>
+                  <td style="color:var(--text-muted);font-size:13px">${baseMap[k] ?? '—'}</td>
+                  <td style="font-weight:700;font-size:15px">${stats[k]}</td>
+                  <td class="${ivClass(ivs[k])}" style="font-size:14px">${ivs[k]}</td>
+                  <td style="color:var(--text-muted)">${evs[k]}</td>
+                  <td><div class="bar-track" style="height:8px"><div class="bar-fill" style="width:${Math.round(stats[k]/STAT_MAX[k]*100)}%;background:${STAT_COLORS[k]}"></div></div></td>
+                </tr>`).join('');
+              })()}
+            </tbody>
+          </table>
+          <div style="display:flex;gap:12px;margin-top:12px;font-size:12px;color:var(--text-muted)">
+            <span>Total IVs: <strong style="color:var(--text)">${ivTotal(ivs)}/186</strong></span>
+            <span>Total EVs: <strong style="color:var(--text)">${Object.values(evs).reduce((a,b)=>a+b,0)}</strong></span>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">Valoración de rol — ${r.role}</div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px">
+            <span style="font-size:48px;font-weight:900;color:${perfColor(pct)}">${pct}%</span>
+            <div style="flex:1">
+              <div class="bar-track" style="height:10px;margin-bottom:8px">
+                <div class="bar-fill" style="width:${pct}%;background:${perfColor(pct)}"></div>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted)">
+                ${pct >= 85 ? 'Excelente para su rol' : pct >= 65 ? 'Aceptable para su rol' : 'Mejorable para su rol'}
+              </div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">IVs clave (×2)</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">${primaryBadges || '<span style="color:var(--text-muted);font-size:12px">—</span>'}</div>
+          </div>
+          ${secondaryBadges ? `
+          <div style="margin-bottom:8px">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">IVs secundarios (×1)</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">${secondaryBadges}</div>
+          </div>` : ''}
+          ${nfx.up || nfx.down ? `
+          <div style="font-size:12px;margin-top:8px;display:flex;flex-direction:column;gap:3px">
+            ${nfx.up   ? `<span style="color:#f87171">↑ ${payload.NatureName} sube ${nfx.up}${r.primaryIVs.includes(nfx.up)   ? ' — <strong>bonus +5%</strong>' : ''}</span>` : ''}
+            ${nfx.down ? `<span style="color:#60a5fa">↓ ${payload.NatureName} baja ${nfx.down}${r.primaryIVs.includes(nfx.down) ? ' — <strong>penaliz. -8%</strong>' : ''}</span>` : ''}
+          </div>` : ''}
+        </div>
+
+        ${payload.EVsCollected && Object.values(payload.EVsCollected).some(v=>v>0) ? `
+        <div class="modal-section">
+          <div class="modal-section-title">EVs acumulados (histórico)</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            ${statKeys.map(k => `
+              <div style="background:var(--surface2);border-radius:8px;padding:8px 12px;text-align:center;min-width:60px">
+                <div style="font-size:11px;color:${STAT_COLORS[k]};font-weight:700">${STAT_LABELS[k]}</div>
+                <div style="font-size:18px;font-weight:700">${payload.EVsCollected[k]||0}</div>
+              </div>`).join('')}
+          </div>
+        </div>` : ''}
+
+        ${(() => {
+          const learnset = LEARNSET_DB[payload.PokemonID];
+          if (!learnset) return '';
+          const catIcon = c => c === 'Physical' ? '⚔️' : c === 'Special' ? '✨' : '🔵';
+          const rows = learnset.map(m => `
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="color:var(--text-muted);font-size:12px;padding:5px 6px;text-align:center">${m.lv}</td>
+              <td style="font-weight:600;font-size:13px;padding:5px 6px">${m.name}</td>
+              <td style="padding:5px 6px"><span style="font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;background:${TYPE_COLORS[m.type]||'#444'}22;color:${TYPE_COLORS[m.type]||'#aaa'};border:1px solid ${TYPE_COLORS[m.type]||'#444'}44">${m.type}</span></td>
+              <td style="text-align:center;font-size:13px;padding:5px 6px" title="${m.cat}">${catIcon(m.cat)}</td>
+              <td style="text-align:center;font-size:13px;color:var(--text);padding:5px 6px">${m.pwr ?? '—'}</td>
+              <td style="text-align:center;font-size:13px;color:var(--text-muted);padding:5px 6px">${m.acc ?? '—'}</td>
+            </tr>`).join('');
+          return `
+          <div class="modal-section">
+            <div class="modal-section-title">Movimientos por nivel (PokeOne)</div>
+            <table style="width:100%;border-collapse:collapse;font-size:13px">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border)">
+                  <th style="color:var(--text-muted);font-size:11px;padding:4px 6px;text-align:center">Lv</th>
+                  <th style="color:var(--text-muted);font-size:11px;padding:4px 6px;text-align:left">Movimiento</th>
+                  <th style="color:var(--text-muted);font-size:11px;padding:4px 6px;text-align:left">Tipo</th>
+                  <th style="color:var(--text-muted);font-size:11px;padding:4px 6px;text-align:center">Cat</th>
+                  <th style="color:var(--text-muted);font-size:11px;padding:4px 6px;text-align:center">Pot</th>
+                  <th style="color:var(--text-muted);font-size:11px;padding:4px 6px;text-align:center">Prec</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>`;
+        })()}
+        ${(() => {
+          const pkData = POKEMON_DB[payload.PokemonID];
+          if (!pkData) return '';
+          const typeChip = t => `<span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-right:4px;background:${TYPE_COLORS[t]||'#444'}22;color:${TYPE_COLORS[t]||'#aaa'};border:1px solid ${TYPE_COLORS[t]||'#444'}44">${t}</span>`;
+          const statLabels = {hp:'HP',atk:'Atk',def:'Def',spatk:'SpAtk',spdef:'SpDef',spe:'Speed'};
+          const maxBase = 255;
+          const statRows = Object.entries(pkData.base).map(([k,v]) => {
+            const pct = Math.round(v/maxBase*100);
+            const col = v>=100?'#4ade80':v>=70?'#facc15':'#f87171';
+            return `<tr>
+              <td style="color:var(--text-muted);font-size:12px;padding:3px 6px;white-space:nowrap">${statLabels[k]}</td>
+              <td style="font-size:12px;font-weight:600;padding:3px 6px;text-align:right">${v}</td>
+              <td style="padding:3px 8px;width:100%"><div style="background:var(--surface2);border-radius:3px;height:6px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${col};border-radius:3px"></div></div></td>
+            </tr>`;
+          }).join('');
+          const abilityCards = pkData.abilities.map(a => `
+            <div style="margin-bottom:8px;padding:8px 10px;background:var(--surface2);border-radius:6px;border:1px solid var(--border)">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                <span style="font-weight:700;font-size:13px">${a.name}</span>
+                ${a.isHA?'<span style="font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;background:#a855f722;color:#a855f7;border:1px solid #a855f744">HA</span>':''}
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);line-height:1.4">${a.desc}</div>
+            </div>`).join('');
+          return `
+          <div class="modal-section">
+            <div class="modal-section-title">Datos de la especie (PokeOne)</div>
+            <div style="margin-bottom:8px">${pkData.types.map(typeChip).join('')}</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:600">Stats base</div>
+            <table style="width:100%;border-collapse:collapse;margin-bottom:12px">${statRows}</table>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:600">Habilidades</div>
+            ${abilityCards}
+          </div>
+          ${pkData.pvp && pkData.pvp.length > 0 ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Sets PVP (PokeOne)</div>
+            ${pkData.pvp.map(s => {
+              const moveRows = s.moves.map((opts,i) => `
+                <tr style="border-bottom:1px solid var(--border)">
+                  <td style="color:var(--text-muted);font-size:11px;padding:4px 6px;white-space:nowrap">Move ${i+1}</td>
+                  <td style="font-size:13px;font-weight:600;padding:4px 6px">${opts.join('<span style="color:var(--text-muted);margin:0 4px">/</span>')}</td>
+                </tr>`).join('');
+              return `
+              <div style="margin-bottom:12px;padding:10px 12px;background:var(--surface2);border-radius:8px;border:1px solid var(--border)">
+                <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent)">${s.setName}</div>
+                <table style="width:100%;border-collapse:collapse;margin-bottom:8px">${moveRows}</table>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12px;margin-bottom:8px">
+                  <div><span style="color:var(--text-muted)">Item:</span> <strong>${s.item}</strong></div>
+                  <div><span style="color:var(--text-muted)">Ability:</span> <strong>${s.ability}</strong></div>
+                  <div><span style="color:var(--text-muted)">Nature:</span> <strong>${s.natures.join(' / ')}</strong></div>
+                  <div><span style="color:var(--text-muted)">EVs:</span> <strong>${s.evs}</strong></div>
+                </div>
+                <div style="font-size:12px;color:var(--text-muted);line-height:1.5;border-top:1px solid var(--border);padding-top:8px">${s.desc}</div>
+              </div>`;
+            }).join('')}
+          </div>` : ''}`;
+        })()}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detail-content').innerHTML = html;
+  // switch to detail section
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('tab-detail').classList.add('active');
+  document.getElementById('main').scrollTop = 0;
+}
+
+function closeDetail() {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('tab-' + _prevTab).classList.add('active');
+  const navItem = document.querySelector(`.nav-item[data-tab="${_prevTab}"]`);
+  if (navItem) navItem.classList.add('active');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('tab-detail').classList.contains('active')) closeDetail();
+});
+
+// ─── AI TEAM EVALUATION ─────────────────────────────────────────────
+let cachedApiKey = '';
+
+function buildTeamPrompt() {
+  const party = allPokemon.filter(p => p._boxIdx === 0);
+  const ui    = gameData.user_info;
+
+  const teamLines = party.map((entry, i) => {
+    const pk      = entry.Pokemon;
+    const payload = pk.Payload;
+    const ivs     = payload.IVs;
+    const stats   = pk.Stats;
+    const role    = getPokemonRole(entry);
+    const pct     = getPerfection(entry);
+    const moves   = payload.Moves.filter(Boolean).map(m => m.Name).join(', ');
+    const nfx     = NATURE_EFFECTS[payload.NatureName] || {};
+    const natStr  = nfx.up ? `${payload.NatureName} (+${nfx.up}/-${nfx.down})` : payload.NatureName;
+    const types   = pk.StaticData.Types.map(t => t.name).join('/');
+    const ivStr   = `HP:${ivs.HP} Atk:${ivs.Atk} Def:${ivs.Def} SpAtk:${ivs.SpAtk} SpDef:${ivs.SpDef} Spe:${ivs.Speed}`;
+    const statStr = `HP:${stats.HP} Atk:${stats.Atk} Def:${stats.Def} SpAtk:${stats.SpAtk} SpDef:${stats.SpDef} Spe:${stats.Speed}`;
+    return `${i+1}. ${pk.StaticData.Name} (${types}) — Lv${payload.Level} | Rol: ${role.role} | Perfección: ${pct}%
+   Naturaleza: ${natStr} | Habilidad: ${pk.Ability} | Felicidad: ${payload.Happiness}
+   Stats: ${statStr}
+   IVs: ${ivStr}
+   Movimientos: ${moves}
+   ${payload.HoldItemData ? 'Objeto: ' + payload.HoldItemData.name : ''}`;
+  }).join('\n\n');
+
+  return `Eres un experto analizador de equipos Pokémon para PokeOne (un MMO). Analiza el siguiente equipo en castellano de España y proporciona una valoración detallada.
+
+CONTEXTO DEL JUGADOR:
+- Nombre: ${ui.userName} | Versión: ${ui.accountVersion}
+- Nivel entrenador Kanto: ${ui.kantoTrainerLevel} | Johto: ${ui.johtoTrainerLevel}
+- Días jugados: ${Math.floor(ui.playedDays)} | Medallas: ${ui.badges.length}/16
+- PVP: ${ui.pvpWins}V / ${ui.pvpLosses}D
+
+EQUIPO ACTUAL:
+${teamLines}
+
+Por favor, proporciona una valoración estructurada con estas secciones exactas usando los marcadores indicados:
+
+[PUNTUACION] Nota del equipo del 1 al 10 con una frase de diagnóstico corta.
+
+[SINERGIA] Analiza la sinergia entre los miembros: cobertura de tipos, roles complementarios, velocidades, si hay huecos evidentes. Sé específico mencionando los Pokémon por nombre.
+
+[FORTALEZAS] 3-4 puntos fuertes concretos del equipo.
+
+[DEBILIDADES] 3-4 vulnerabilidades claras (tipos no cubiertos, roles duplicados, IVs o naturalezas problemáticas para el rol asignado).
+
+[MEJORAS] 2-3 sugerencias accionables y concretas para mejorar el equipo, teniendo en cuenta el nivel de progresión del jugador en PokeOne.
+
+Sé directo, técnico y útil. Responde íntegramente en castellano de España.`;
+}
+
+async function runAIEval() {
+  const keyInput = document.getElementById('ai-key-input');
+  const apiKey   = keyInput.value.trim() || cachedApiKey;
+  if (!apiKey) {
+    keyInput.style.borderColor = 'var(--red)';
+    keyInput.placeholder = '¡Introduce tu API Key de Anthropic!';
+    keyInput.focus();
+    return;
+  }
+  cachedApiKey = apiKey;
+  keyInput.value = '';
+  keyInput.placeholder = 'API Key guardada ✓';
+
+  const btn    = document.getElementById('ai-eval-btn');
+  const result = document.getElementById('ai-eval-result');
+  btn.disabled = true;
+  btn.textContent = '⏳ Analizando…';
+  result.style.display = 'block';
+  result.innerHTML = `
+    <div class="ai-card">
+      <div class="ai-loading">
+        <div class="ai-spinner"></div>
+        <span>Claude está valorando tu equipo…</span>
+      </div>
+    </div>`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1200,
+        messages: [{ role: 'user', content: buildTeamPrompt() }],
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    result.innerHTML = renderAIResponse(text);
+  } catch(e) {
+    result.innerHTML = `<div class="ai-card" style="border-color:#f87171">
+      <div style="color:#f87171;font-weight:700">❌ Error al conectar con la IA</div>
+      <div style="color:var(--text-muted);font-size:13px;margin-top:6px">${e.message}</div>
+    </div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Volver a analizar';
+  }
+}
+
+function renderAIResponse(text) {
+  // Parse sections
+  const get = (tag) => {
+    const m = text.match(new RegExp(`\\[${tag}\\]([\\s\\S]*?)(?=\\[|$)`));
+    return m ? m[1].trim() : '';
+  };
+  const score      = get('PUNTUACION');
+  const synergy    = get('SINERGIA');
+  const strengths  = get('FORTALEZAS');
+  const weaknesses = get('DEBILIDADES');
+  const mejoras    = get('MEJORAS');
+
+  const scoreMatch = score.match(/(\d+(?:\.\d+)?)\s*(?:\/\s*10)?/);
+  const scoreNum   = scoreMatch ? parseFloat(scoreMatch[1]) : null;
+  const scoreColor = scoreNum >= 7 ? '#56d364' : scoreNum >= 5 ? '#e3b341' : '#f87171';
+
+  const fmtList = (txt) => txt.split('\n')
+    .map(l => l.trim()).filter(Boolean)
+    .map(l => l.replace(/^[-•*\d+\.\)]\s*/, ''))
+    .map(l => `<li>${l}</li>`).join('');
+
+  const fmtPara = (txt) => txt.split('\n')
+    .map(l => l.trim()).filter(Boolean)
+    .map(l => l.replace(/^[-•*\d+\.\)]\s*/, ''))
+    .map(l => `<p style="margin:0 0 7px">${l}</p>`).join('');
+
+  return `
+    <div class="ai-card">
+      <div class="ai-header">
+        <div class="ai-badge">🤖 Claude · claude-haiku</div>
+        ${scoreNum !== null ? `
+          <div style="display:flex;align-items:baseline;gap:6px">
+            <span style="font-size:42px;font-weight:900;color:${scoreColor}">${scoreNum}</span>
+            <span style="font-size:18px;color:var(--text-muted)">/10</span>
+          </div>
+        ` : ''}
+      </div>
+      ${score ? `<div class="ai-diagnosis">${score.replace(/\d+(\.\d+)?\s*\/?\s*10[:\s]*/,'').trim()}</div>` : ''}
+
+      <div class="ai-sections">
+        ${synergy ? `
+          <div class="ai-section">
+            <div class="ai-section-title">⚖️ Sinergia</div>
+            <div class="ai-section-body">${fmtPara(synergy)}</div>
+          </div>` : ''}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          ${strengths ? `
+            <div class="ai-section ai-section--green">
+              <div class="ai-section-title" style="color:#56d364">✅ Fortalezas</div>
+              <ul class="ai-list">${fmtList(strengths)}</ul>
+            </div>` : ''}
+          ${weaknesses ? `
+            <div class="ai-section ai-section--red">
+              <div class="ai-section-title" style="color:#f87171">⚠️ Debilidades</div>
+              <ul class="ai-list">${fmtList(weaknesses)}</ul>
+            </div>` : ''}
+        </div>
+        ${mejoras ? `
+          <div class="ai-section ai-section--blue">
+            <div class="ai-section-title" style="color:#60a5fa">💡 Sugerencias de mejora</div>
+            <ul class="ai-list">${fmtList(mejoras)}</ul>
+          </div>` : ''}
+      </div>
+    </div>`;
+}
+
+// ─── NAV ────────────────────────────────────────────────────────────
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById('tab-' + item.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
